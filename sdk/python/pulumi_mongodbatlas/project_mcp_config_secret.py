@@ -413,6 +413,30 @@ class ProjectMcpConfigSecret(pulumi.CustomResource):
         __props__.__dict__["secret_id"] = secret_id
         return ProjectMcpConfigSecret(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+            last_used_at: pulumi.Input[Optional[_builtins.str]] = None,
+            masked_secret_value: pulumi.Input[Optional[_builtins.str]] = None,
+            mcp_config_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            secret: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_expires_after_hours: pulumi.Input[Optional[_builtins.int]] = None,
+            secret_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["expiresAt"] = expires_at
+        __props__["lastUsedAt"] = last_used_at
+        __props__["maskedSecretValue"] = masked_secret_value
+        __props__["mcpConfigId"] = mcp_config_id
+        __props__["projectId"] = project_id
+        __props__["secret"] = secret
+        __props__["secretExpiresAfterHours"] = secret_expires_after_hours
+        __props__["secretId"] = secret_id
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/projectMcpConfigSecret:ProjectMcpConfigSecret', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[_builtins.str]:

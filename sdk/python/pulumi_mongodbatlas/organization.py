@@ -834,6 +834,46 @@ class Organization(pulumi.CustomResource):
         __props__.__dict__["skip_default_alerts_settings"] = skip_default_alerts_settings
         return Organization(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            api_access_list_required: pulumi.Input[Optional[_builtins.bool]] = None,
+            custom_session_timeouts: pulumi.Input[Optional[Union['OrganizationCustomSessionTimeoutsArgs', 'OrganizationCustomSessionTimeoutsArgsDict', 'outputs.OrganizationCustomSessionTimeouts']]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+            gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            multi_factor_auth_required: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            operations_contact: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            org_owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            public_key: pulumi.Input[Optional[_builtins.str]] = None,
+            restrict_employee_access: pulumi.Input[Optional[_builtins.bool]] = None,
+            role_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            security_contact: pulumi.Input[Optional[_builtins.str]] = None,
+            service_account: pulumi.Input[Optional[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict', 'outputs.OrganizationServiceAccount']]] = None,
+            skip_default_alerts_settings: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["apiAccessListRequired"] = api_access_list_required
+        __props__["customSessionTimeouts"] = custom_session_timeouts
+        __props__["description"] = description
+        __props__["federationSettingsId"] = federation_settings_id
+        __props__["genAiFeaturesEnabled"] = gen_ai_features_enabled
+        __props__["multiFactorAuthRequired"] = multi_factor_auth_required
+        __props__["name"] = name
+        __props__["operationsContact"] = operations_contact
+        __props__["orgId"] = org_id
+        __props__["orgOwnerId"] = org_owner_id
+        __props__["privateKey"] = private_key
+        __props__["publicKey"] = public_key
+        __props__["restrictEmployeeAccess"] = restrict_employee_access
+        __props__["roleNames"] = role_names
+        __props__["securityContact"] = security_contact
+        __props__["serviceAccount"] = service_account
+        __props__["skipDefaultAlertsSettings"] = skip_default_alerts_settings
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/organization:Organization', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="apiAccessListRequired")
     def api_access_list_required(self) -> pulumi.Output[_builtins.bool]:

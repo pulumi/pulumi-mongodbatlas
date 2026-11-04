@@ -424,6 +424,22 @@ class GlobalClusterConfig(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         return GlobalClusterConfig(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            custom_zone_mapping_zone_id: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            custom_zone_mappings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GlobalClusterConfigCustomZoneMappingArgs', 'GlobalClusterConfigCustomZoneMappingArgsDict', 'outputs.GlobalClusterConfigCustomZoneMapping']]]]] = None,
+            managed_namespaces: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GlobalClusterConfigManagedNamespaceArgs', 'GlobalClusterConfigManagedNamespaceArgsDict', 'outputs.GlobalClusterConfigManagedNamespace']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["clusterName"] = cluster_name
+        __props__["customZoneMappingZoneId"] = custom_zone_mapping_zone_id
+        __props__["customZoneMappings"] = custom_zone_mappings
+        __props__["managedNamespaces"] = managed_namespaces
+        __props__["projectId"] = project_id
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/globalClusterConfig:GlobalClusterConfig', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> pulumi.Output[_builtins.str]:

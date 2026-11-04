@@ -265,6 +265,12 @@ func (StreamConnectionFailoverState) ElementType() reflect.Type {
 	return reflect.TypeOf((*streamConnectionFailoverState)(nil)).Elem()
 }
 
+// StreamConnectionFailoverExists checks whether an existing StreamConnectionFailover resource with the given ID exists.
+func StreamConnectionFailoverExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *StreamConnectionFailoverState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/streamConnectionFailover:StreamConnectionFailover", id, state, "", opts...)
+}
+
 type streamConnectionFailoverArgs struct {
 	// Optional for type: Kafka. User credentials required to connect to a Kafka Cluster. Includes the authentication type, as well as the parameters for that authentication mode.
 	Authentication *StreamConnectionFailoverAuthentication `pulumi:"authentication"`

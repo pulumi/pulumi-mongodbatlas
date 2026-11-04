@@ -20,22 +20,20 @@ public final class GetStreamConnectionsArgs extends com.pulumi.resources.InvokeA
     /**
      * Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to workspace_name.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Deprecated
     @Import(name="instanceName")
     private @Nullable Output<String> instanceName;
 
     /**
      * @return Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to workspace_name.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Deprecated
     public Optional<Output<String>> instanceName() {
         return Optional.ofNullable(this.instanceName);
     }
@@ -137,11 +135,10 @@ public final class GetStreamConnectionsArgs extends com.pulumi.resources.InvokeA
          * 
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated. Please transition to workspace_name.
+         * @deprecated This parameter is deprecated. Please transition to workspace_name.
          * 
          */
-        @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+        @Deprecated
         public Builder instanceName(@Nullable Output<String> instanceName) {
             $.instanceName = instanceName;
             return this;
@@ -152,11 +149,10 @@ public final class GetStreamConnectionsArgs extends com.pulumi.resources.InvokeA
          * 
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated. Please transition to workspace_name.
+         * @deprecated This parameter is deprecated. Please transition to workspace_name.
          * 
          */
-        @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+        @Deprecated
         public Builder instanceName(String instanceName) {
             return instanceName(Output.of(instanceName));
         }

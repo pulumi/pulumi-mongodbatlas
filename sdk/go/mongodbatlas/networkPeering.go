@@ -478,6 +478,12 @@ func (NetworkPeeringState) ElementType() reflect.Type {
 	return reflect.TypeOf((*networkPeeringState)(nil)).Elem()
 }
 
+// NetworkPeeringExists checks whether an existing NetworkPeering resource with the given ID exists.
+func NetworkPeeringExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NetworkPeeringState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/networkPeering:NetworkPeering", id, state, "", opts...)
+}
+
 type networkPeeringArgs struct {
 	// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
 	AccepterRegionName *string `pulumi:"accepterRegionName"`

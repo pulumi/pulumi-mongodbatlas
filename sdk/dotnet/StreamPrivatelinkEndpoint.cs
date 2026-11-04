@@ -278,15 +278,15 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
         /// 
-        /// 	* AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
-        /// 
-        /// 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
-        /// 
-        /// 	* AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
-        /// 
-        /// 	* For GCP provider with PUBSUB vendor, the API computes this process.
-        /// 
-        /// 	This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
+        ///     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
+        ///     
+        ///     * AZURE provider with EVENTHUB or CONFLUENT vendor.
+        ///     
+        ///     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
+        ///     
+        ///     * For GCP provider with PUBSUB vendor, the API computes this process.
+        ///     
+        ///     This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
         /// </summary>
         [Output("dnsDomain")]
         public Output<string> DnsDomain { get; private set; } = null!;
@@ -360,11 +360,11 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Vendor that manages the endpoint. The following are the vendor values per provider:
         /// 
-        /// 	* **AWS**: MSK, CONFLUENT, S3, and LAMBDA
-        /// 
-        /// 	* **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
-        /// 
-        /// 	* **GCP**: CONFLUENT and PUBSUB
+        ///     * **AWS**: MSK, CONFLUENT, S3, and LAMBDA
+        ///     
+        ///     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
+        ///     
+        ///     * **GCP**: CONFLUENT and PUBSUB
         /// </summary>
         [Output("vendor")]
         public Output<string> Vendor { get; private set; } = null!;
@@ -430,15 +430,15 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
         /// 
-        /// 	* AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
-        /// 
-        /// 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
-        /// 
-        /// 	* AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
-        /// 
-        /// 	* For GCP provider with PUBSUB vendor, the API computes this process.
-        /// 
-        /// 	This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
+        ///     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
+        ///     
+        ///     * AZURE provider with EVENTHUB or CONFLUENT vendor.
+        ///     
+        ///     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
+        ///     
+        ///     * For GCP provider with PUBSUB vendor, the API computes this process.
+        ///     
+        ///     This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
         /// </summary>
         [Input("dnsDomain")]
         public Input<string>? DnsDomain { get; set; }
@@ -494,11 +494,11 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Vendor that manages the endpoint. The following are the vendor values per provider:
         /// 
-        /// 	* **AWS**: MSK, CONFLUENT, S3, and LAMBDA
-        /// 
-        /// 	* **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
-        /// 
-        /// 	* **GCP**: CONFLUENT and PUBSUB
+        ///     * **AWS**: MSK, CONFLUENT, S3, and LAMBDA
+        ///     
+        ///     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
+        ///     
+        ///     * **GCP**: CONFLUENT and PUBSUB
         /// </summary>
         [Input("vendor", required: true)]
         public Input<string> Vendor { get; set; } = null!;
@@ -526,15 +526,15 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
         /// 
-        /// 	* AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
-        /// 
-        /// 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
-        /// 
-        /// 	* AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
-        /// 
-        /// 	* For GCP provider with PUBSUB vendor, the API computes this process.
-        /// 
-        /// 	This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
+        ///     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
+        ///     
+        ///     * AZURE provider with EVENTHUB or CONFLUENT vendor.
+        ///     
+        ///     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
+        ///     
+        ///     * For GCP provider with PUBSUB vendor, the API computes this process.
+        ///     
+        ///     This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
         /// </summary>
         [Input("dnsDomain")]
         public Input<string>? DnsDomain { get; set; }
@@ -620,11 +620,11 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Vendor that manages the endpoint. The following are the vendor values per provider:
         /// 
-        /// 	* **AWS**: MSK, CONFLUENT, S3, and LAMBDA
-        /// 
-        /// 	* **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
-        /// 
-        /// 	* **GCP**: CONFLUENT and PUBSUB
+        ///     * **AWS**: MSK, CONFLUENT, S3, and LAMBDA
+        ///     
+        ///     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
+        ///     
+        ///     * **GCP**: CONFLUENT and PUBSUB
         /// </summary>
         [Input("vendor")]
         public Input<string>? Vendor { get; set; }

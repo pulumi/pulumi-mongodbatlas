@@ -1132,6 +1132,50 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         __props__.__dict__["provider_name"] = provider_name
         return PrivateLinkEndpointService(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            aws_connection_status: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_status: pulumi.Input[Optional[_builtins.str]] = None,
+            delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            delete_requested: pulumi.Input[Optional[_builtins.bool]] = None,
+            endpoint_group_name: pulumi.Input[Optional[_builtins.str]] = None,
+            endpoint_service_id: pulumi.Input[Optional[_builtins.str]] = None,
+            endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict', 'outputs.PrivateLinkEndpointServiceEndpoint']]]]] = None,
+            error_message: pulumi.Input[Optional[_builtins.str]] = None,
+            gcp_endpoint_status: pulumi.Input[Optional[_builtins.str]] = None,
+            gcp_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            gcp_status: pulumi.Input[Optional[_builtins.str]] = None,
+            interface_endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+            port_mapping_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            private_endpoint_connection_name: pulumi.Input[Optional[_builtins.str]] = None,
+            private_endpoint_ip_address: pulumi.Input[Optional[_builtins.str]] = None,
+            private_endpoint_resource_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_link_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_name: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["awsConnectionStatus"] = aws_connection_status
+        __props__["azureStatus"] = azure_status
+        __props__["deleteOnCreateTimeout"] = delete_on_create_timeout
+        __props__["deleteRequested"] = delete_requested
+        __props__["endpointGroupName"] = endpoint_group_name
+        __props__["endpointServiceId"] = endpoint_service_id
+        __props__["endpoints"] = endpoints
+        __props__["errorMessage"] = error_message
+        __props__["gcpEndpointStatus"] = gcp_endpoint_status
+        __props__["gcpProjectId"] = gcp_project_id
+        __props__["gcpStatus"] = gcp_status
+        __props__["interfaceEndpointId"] = interface_endpoint_id
+        __props__["portMappingEnabled"] = port_mapping_enabled
+        __props__["privateEndpointConnectionName"] = private_endpoint_connection_name
+        __props__["privateEndpointIpAddress"] = private_endpoint_ip_address
+        __props__["privateEndpointResourceId"] = private_endpoint_resource_id
+        __props__["privateLinkId"] = private_link_id
+        __props__["projectId"] = project_id
+        __props__["providerName"] = provider_name
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="awsConnectionStatus")
     def aws_connection_status(self) -> pulumi.Output[_builtins.str]:

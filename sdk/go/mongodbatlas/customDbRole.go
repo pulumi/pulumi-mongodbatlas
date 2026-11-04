@@ -262,6 +262,12 @@ func (CustomDbRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*customDbRoleState)(nil)).Elem()
 }
 
+// CustomDbRoleExists checks whether an existing CustomDbRole resource with the given ID exists.
+func CustomDbRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CustomDbRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/customDbRole:CustomDbRole", id, state, "", opts...)
+}
+
 type customDbRoleArgs struct {
 	Actions        []CustomDbRoleAction        `pulumi:"actions"`
 	InheritedRoles []CustomDbRoleInheritedRole `pulumi:"inheritedRoles"`

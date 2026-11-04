@@ -113,12 +113,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var test = new OnlineArchive("test", OnlineArchiveArgs.builder()
  *             .projectId(projectId)
  *             .clusterName(clusterName)
@@ -135,12 +135,12 @@ import javax.annotation.Nullable;
  *                     .build())
  *             .criteria(OnlineArchiveCriteriaArgs.builder()
  *                 .type("CUSTOM")
- *                 .query("{ \"department\": \"engineering\" }")
+ *                 .query("}{{@code  }&#92;{@code "department}&#92;{@code ": }&#92;{@code "engineering}&#92;{@code " }}{@code ")
  *                 .build())
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * 
@@ -165,12 +165,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var test = new OnlineArchive("test", OnlineArchiveArgs.builder()
  *             .projectId(projectId)
  *             .clusterName(clusterName)
@@ -186,12 +186,12 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .criteria(OnlineArchiveCriteriaArgs.builder()
  *                 .type("CUSTOM")
- *                 .query("{ \"department\": \"engineering\" }")
+ *                 .query("}{{@code  }&#92;{@code "department}&#92;{@code ": }&#92;{@code "engineering}&#92;{@code " }}{@code ")
  *                 .build())
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * ### Further Examples

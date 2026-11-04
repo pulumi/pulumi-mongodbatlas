@@ -166,7 +166,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Unique identifier of the export job.
-        /// * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
+        /// * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
         /// </summary>
         [Output("exportJobId")]
         public Output<string> ExportJobId { get; private set; } = null!;
@@ -349,7 +349,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Unique identifier of the export job.
-        /// * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
+        /// * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
         /// </summary>
         [Input("exportJobId")]
         public Input<string>? ExportJobId { get; set; }

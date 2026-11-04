@@ -184,6 +184,12 @@ func (AiModelRateLimitState) ElementType() reflect.Type {
 	return reflect.TypeOf((*aiModelRateLimitState)(nil)).Elem()
 }
 
+// AiModelRateLimitExists checks whether an existing AiModelRateLimit resource with the given ID exists.
+func AiModelRateLimitExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AiModelRateLimitState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/aiModelRateLimit:AiModelRateLimit", id, state, "", opts...)
+}
+
 type aiModelRateLimitArgs struct {
 	// Cloud provider scope. Must be "ANY". Additional values will be supported in future API versions.
 	Cloud string `pulumi:"cloud"`

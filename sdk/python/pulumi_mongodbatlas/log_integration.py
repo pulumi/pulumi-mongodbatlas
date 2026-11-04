@@ -1080,6 +1080,48 @@ class LogIntegration(pulumi.CustomResource):
         __props__.__dict__["use_legacy_path_structure"] = use_legacy_path_structure
         return LogIntegration(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            api_key: pulumi.Input[Optional[_builtins.str]] = None,
+            bucket_name: pulumi.Input[Optional[_builtins.str]] = None,
+            hec_token: pulumi.Input[Optional[_builtins.str]] = None,
+            hec_url: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_role_id: pulumi.Input[Optional[_builtins.str]] = None,
+            integration_id: pulumi.Input[Optional[_builtins.str]] = None,
+            kms_key: pulumi.Input[Optional[_builtins.str]] = None,
+            log_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            otel_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            otel_supplied_headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict', 'outputs.LogIntegrationOtelSuppliedHeader']]]]] = None,
+            prefix_path: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            role_id: pulumi.Input[Optional[_builtins.str]] = None,
+            storage_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+            storage_container_name: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            use_legacy_path_structure: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["apiKey"] = api_key
+        __props__["bucketName"] = bucket_name
+        __props__["hecToken"] = hec_token
+        __props__["hecUrl"] = hec_url
+        __props__["iamRoleId"] = iam_role_id
+        __props__["integrationId"] = integration_id
+        __props__["kmsKey"] = kms_key
+        __props__["logTypes"] = log_types
+        __props__["otelEndpoint"] = otel_endpoint
+        __props__["otelSuppliedHeaders"] = otel_supplied_headers
+        __props__["prefixPath"] = prefix_path
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["roleId"] = role_id
+        __props__["storageAccountName"] = storage_account_name
+        __props__["storageContainerName"] = storage_container_name
+        __props__["type"] = type
+        __props__["useLegacyPathStructure"] = use_legacy_path_structure
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/logIntegration:LogIntegration', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Output[Optional[_builtins.str]]:

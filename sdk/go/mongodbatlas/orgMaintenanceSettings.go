@@ -149,6 +149,12 @@ func (OrgMaintenanceSettingsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*orgMaintenanceSettingsState)(nil)).Elem()
 }
 
+// OrgMaintenanceSettingsExists checks whether an existing OrgMaintenanceSettings resource with the given ID exists.
+func OrgMaintenanceSettingsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OrgMaintenanceSettingsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/orgMaintenanceSettings:OrgMaintenanceSettings", id, state, "", opts...)
+}
+
 type orgMaintenanceSettingsArgs struct {
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId string `pulumi:"orgId"`

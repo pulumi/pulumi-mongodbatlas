@@ -471,7 +471,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://www.mongodb.com/docs/atlas/pause-terminate-cluster/#considerations-for-paused-clusters)\
+     * Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://www.mongodb.com/docs/atlas/pause-terminate-cluster/#considerations-for-paused-clusters)&#92;
      * **NOTE** Pause lasts for up to 30 days. If you don&#39;t resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
      * `lifecycle {
      * ignoreChanges = [paused]
@@ -482,7 +482,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<Boolean> paused;
 
     /**
-     * @return Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://www.mongodb.com/docs/atlas/pause-terminate-cluster/#considerations-for-paused-clusters)\
+     * @return Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://www.mongodb.com/docs/atlas/pause-terminate-cluster/#considerations-for-paused-clusters)&#92;
      * **NOTE** Pause lasts for up to 30 days. If you don&#39;t resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
      * `lifecycle {
      * ignoreChanges = [paused]
@@ -603,22 +603,20 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
     /**
      * **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host&#39;s root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
      * 
-     * @deprecated
-     * All EBS volumes are encrypted by default, the option to disable encryption has been removed
+     * @deprecated All EBS volumes are encrypted by default, the option to disable encryption has been removed
      * 
      */
-    @Deprecated /* All EBS volumes are encrypted by default, the option to disable encryption has been removed */
+    @Deprecated
     @Import(name="providerEncryptEbsVolume")
     private @Nullable Output<Boolean> providerEncryptEbsVolume;
 
     /**
      * @return **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host&#39;s root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
      * 
-     * @deprecated
-     * All EBS volumes are encrypted by default, the option to disable encryption has been removed
+     * @deprecated All EBS volumes are encrypted by default, the option to disable encryption has been removed
      * 
      */
-    @Deprecated /* All EBS volumes are encrypted by default, the option to disable encryption has been removed */
+    @Deprecated
     public Optional<Output<Boolean>> providerEncryptEbsVolume() {
         return Optional.ofNullable(this.providerEncryptEbsVolume);
     }
@@ -1542,7 +1540,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param paused Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://www.mongodb.com/docs/atlas/pause-terminate-cluster/#considerations-for-paused-clusters)\
+         * @param paused Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://www.mongodb.com/docs/atlas/pause-terminate-cluster/#considerations-for-paused-clusters)&#92;
          * **NOTE** Pause lasts for up to 30 days. If you don&#39;t resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
          * `lifecycle {
          * ignoreChanges = [paused]
@@ -1557,7 +1555,7 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param paused Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://www.mongodb.com/docs/atlas/pause-terminate-cluster/#considerations-for-paused-clusters)\
+         * @param paused Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://www.mongodb.com/docs/atlas/pause-terminate-cluster/#considerations-for-paused-clusters)&#92;
          * **NOTE** Pause lasts for up to 30 days. If you don&#39;t resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
          * `lifecycle {
          * ignoreChanges = [paused]
@@ -1724,11 +1722,10 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * All EBS volumes are encrypted by default, the option to disable encryption has been removed
+         * @deprecated All EBS volumes are encrypted by default, the option to disable encryption has been removed
          * 
          */
-        @Deprecated /* All EBS volumes are encrypted by default, the option to disable encryption has been removed */
+        @Deprecated
         public Builder providerEncryptEbsVolume(@Nullable Output<Boolean> providerEncryptEbsVolume) {
             $.providerEncryptEbsVolume = providerEncryptEbsVolume;
             return this;
@@ -1739,11 +1736,10 @@ public final class ClusterState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * All EBS volumes are encrypted by default, the option to disable encryption has been removed
+         * @deprecated All EBS volumes are encrypted by default, the option to disable encryption has been removed
          * 
          */
-        @Deprecated /* All EBS volumes are encrypted by default, the option to disable encryption has been removed */
+        @Deprecated
         public Builder providerEncryptEbsVolume(Boolean providerEncryptEbsVolume) {
             return providerEncryptEbsVolume(Output.of(providerEncryptEbsVolume));
         }

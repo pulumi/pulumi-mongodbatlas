@@ -144,6 +144,12 @@ func (AuditingState) ElementType() reflect.Type {
 	return reflect.TypeOf((*auditingState)(nil)).Elem()
 }
 
+// AuditingExists checks whether an existing Auditing resource with the given ID exists.
+func AuditingExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuditingState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/auditing:Auditing", id, state, "", opts...)
+}
+
 type auditingArgs struct {
 	// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
 	AuditAuthorizationSuccess *bool `pulumi:"auditAuthorizationSuccess"`

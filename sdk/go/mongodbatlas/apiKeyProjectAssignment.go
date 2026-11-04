@@ -97,6 +97,12 @@ func (ApiKeyProjectAssignmentState) ElementType() reflect.Type {
 	return reflect.TypeOf((*apiKeyProjectAssignmentState)(nil)).Elem()
 }
 
+// ApiKeyProjectAssignmentExists checks whether an existing ApiKeyProjectAssignment resource with the given ID exists.
+func ApiKeyProjectAssignmentExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ApiKeyProjectAssignmentState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/apiKeyProjectAssignment:ApiKeyProjectAssignment", id, state, "", opts...)
+}
+
 type apiKeyProjectAssignmentArgs struct {
 	// Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
 	ApiKeyId string `pulumi:"apiKeyId"`

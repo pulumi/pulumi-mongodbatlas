@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ### Basic Example.
@@ -50,7 +49,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ### Basic Example.
@@ -85,7 +83,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
-        /// 
         /// 
         /// ## Example Usage
         /// 

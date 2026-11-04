@@ -673,6 +673,48 @@ class CloudBackupSnapshot(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         return CloudBackupSnapshot(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+            master_key_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+            members: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupSnapshotMemberArgs', 'CloudBackupSnapshotMemberArgsDict', 'outputs.CloudBackupSnapshotMember']]]]] = None,
+            mongod_version: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            replica_set_name: pulumi.Input[Optional[_builtins.str]] = None,
+            retention_in_days: pulumi.Input[Optional[_builtins.int]] = None,
+            snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+            snapshot_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            snapshot_type: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            storage_size_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["cloudProvider"] = cloud_provider
+        __props__["clusterName"] = cluster_name
+        __props__["createdAt"] = created_at
+        __props__["deleteOnCreateTimeout"] = delete_on_create_timeout
+        __props__["description"] = description
+        __props__["expiresAt"] = expires_at
+        __props__["masterKeyUuid"] = master_key_uuid
+        __props__["members"] = members
+        __props__["mongodVersion"] = mongod_version
+        __props__["projectId"] = project_id
+        __props__["replicaSetName"] = replica_set_name
+        __props__["retentionInDays"] = retention_in_days
+        __props__["snapshotId"] = snapshot_id
+        __props__["snapshotIds"] = snapshot_ids
+        __props__["snapshotType"] = snapshot_type
+        __props__["status"] = status
+        __props__["storageSizeBytes"] = storage_size_bytes
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/cloudBackupSnapshot:CloudBackupSnapshot', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> pulumi.Output[_builtins.str]:

@@ -63,12 +63,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
  *             .projectId(projectId)
  *             .instanceName("InstanceName")
@@ -118,16 +118,16 @@ import javax.annotation.Nullable;
  *             .projectId(projectId)
  *             .workspaceName(example.instanceName())
  *             .processorName("sampleProcessorName")
- *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+ *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
  *                 var example-sampleConnectionName = values.t1;
  *                 var example-clusterConnectionName = values.t2;
  *                 return """
  * [
- *   {\"$source\": {\"connectionName\": \"%s\"}},
- *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+ *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+ *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "sample}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "solar}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "_ts}&#92;{@code "}}}}{@code
  * ]
  * ", example_sampleConnectionName,example_clusterConnectionName);
- *             }))
+ *             }}{@code ))
  *             .state("STARTED")
  *             .tier("SP30")
  *             .build());
@@ -136,16 +136,16 @@ import javax.annotation.Nullable;
  *             .projectId(projectId)
  *             .workspaceName(example.instanceName())
  *             .processorName("clusterProcessorName")
- *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+ *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> }{{@code
  *                 var example-clusterConnectionName = values.t1;
  *                 var example-kafkaConnectionName = values.t2;
  *                 return """
  * [
- *   {\"$source\": {\"connectionName\": \"%s\"}},
- *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+ *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+ *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_from_cluster}&#92;{@code "}}}{@code
  * ]
  * ", example_clusterConnectionName,example_kafkaConnectionName);
- *             }))
+ *             }}{@code ))
  *             .state("CREATED")
  *             .build());
  * 
@@ -153,16 +153,16 @@ import javax.annotation.Nullable;
  *             .projectId(projectId)
  *             .workspaceName(example.instanceName())
  *             .processorName("kafkaProcessorName")
- *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+ *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
  *                 var example-kafkaConnectionName = values.t1;
  *                 var example-clusterConnectionName = values.t2;
  *                 return """
  * [
- *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
- *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+ *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code "}}}{@code ,
+ *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "kafka}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "ts}&#92;{@code "}}}}{@code
  * ]
  * ", example_kafkaConnectionName,example_clusterConnectionName);
- *             }))
+ *             }}{@code ))
  *             .state("CREATED")
  *             .tier("SP10")
  *             .options(StreamProcessorOptionsArgs.builder()
@@ -191,8 +191,8 @@ import javax.annotation.Nullable;
  * 
  *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
  *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * 
@@ -253,11 +253,10 @@ public class StreamProcessor extends com.pulumi.resources.CustomResource {
     /**
      * Label that identifies the stream processing workspace.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to workspace_name.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Deprecated
     @Export(name="instanceName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> instanceName;
 

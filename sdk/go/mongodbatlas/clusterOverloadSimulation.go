@@ -193,6 +193,12 @@ func (ClusterOverloadSimulationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*clusterOverloadSimulationState)(nil)).Elem()
 }
 
+// ClusterOverloadSimulationExists checks whether an existing ClusterOverloadSimulation resource with the given ID exists.
+func ClusterOverloadSimulationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ClusterOverloadSimulationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/clusterOverloadSimulation:ClusterOverloadSimulation", id, state, "", opts...)
+}
+
 type clusterOverloadSimulationArgs struct {
 	// Human-readable label that identifies the cluster on which to start the overload protection simulation.
 	ClusterName string `pulumi:"clusterName"`

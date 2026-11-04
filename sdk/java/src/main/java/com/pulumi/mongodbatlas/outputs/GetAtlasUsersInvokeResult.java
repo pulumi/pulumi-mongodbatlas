@@ -16,11 +16,10 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetAtlasUsersInvokeResult {
     /**
-     * @deprecated
-     * Please use each user&#39;s id attribute instead
+     * @deprecated Please use each user&#39;s id attribute instead
      * 
      */
-    @Deprecated /* Please use each user's id attribute instead */
+    @Deprecated
     private String id;
     private @Nullable Integer itemsPerPage;
     private @Nullable String orgId;
@@ -40,11 +39,10 @@ public final class GetAtlasUsersInvokeResult {
 
     private GetAtlasUsersInvokeResult() {}
     /**
-     * @deprecated
-     * Please use each user&#39;s id attribute instead
+     * @deprecated Please use each user&#39;s id attribute instead
      * 
      */
-    @Deprecated /* Please use each user's id attribute instead */
+    @Deprecated
     public String id() {
         return this.id;
     }

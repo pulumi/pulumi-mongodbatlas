@@ -17,11 +17,10 @@ public final class GetServerlessInstancesResult {
     /**
      * @return (Deprecated) Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
+     * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
+    @Deprecated
     private Boolean autoIndexing;
     private List<String> connectionStringsPrivateEndpointSrvs;
     /**
@@ -32,11 +31,10 @@ public final class GetServerlessInstancesResult {
     /**
      * @return (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
+     * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
+    @Deprecated
     private Boolean continuousBackupEnabled;
     /**
      * @return Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
@@ -99,11 +97,10 @@ public final class GetServerlessInstancesResult {
     /**
      * @return (Deprecated) Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
+     * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
+    @Deprecated
     public Boolean autoIndexing() {
         return this.autoIndexing;
     }
@@ -120,11 +117,10 @@ public final class GetServerlessInstancesResult {
     /**
      * @return (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
+     * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
+    @Deprecated
     public Boolean continuousBackupEnabled() {
         return this.continuousBackupEnabled;
     }

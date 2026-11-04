@@ -958,6 +958,46 @@ class BackupCompliancePolicy(pulumi.CustomResource):
         __props__.__dict__["updated_user"] = updated_user
         return BackupCompliancePolicy(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            authorized_email: pulumi.Input[Optional[_builtins.str]] = None,
+            authorized_user_first_name: pulumi.Input[Optional[_builtins.str]] = None,
+            authorized_user_last_name: pulumi.Input[Optional[_builtins.str]] = None,
+            copy_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            encryption_at_rest_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            on_demand_policy_item: pulumi.Input[Optional[Union['BackupCompliancePolicyOnDemandPolicyItemArgs', 'BackupCompliancePolicyOnDemandPolicyItemArgsDict', 'outputs.BackupCompliancePolicyOnDemandPolicyItem']]] = None,
+            pit_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            policy_item_daily: pulumi.Input[Optional[Union['BackupCompliancePolicyPolicyItemDailyArgs', 'BackupCompliancePolicyPolicyItemDailyArgsDict', 'outputs.BackupCompliancePolicyPolicyItemDaily']]] = None,
+            policy_item_hourly: pulumi.Input[Optional[Union['BackupCompliancePolicyPolicyItemHourlyArgs', 'BackupCompliancePolicyPolicyItemHourlyArgsDict', 'outputs.BackupCompliancePolicyPolicyItemHourly']]] = None,
+            policy_item_monthlies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemMonthlyArgs', 'BackupCompliancePolicyPolicyItemMonthlyArgsDict', 'outputs.BackupCompliancePolicyPolicyItemMonthly']]]]] = None,
+            policy_item_weeklies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemWeeklyArgs', 'BackupCompliancePolicyPolicyItemWeeklyArgsDict', 'outputs.BackupCompliancePolicyPolicyItemWeekly']]]]] = None,
+            policy_item_yearlies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemYearlyArgs', 'BackupCompliancePolicyPolicyItemYearlyArgsDict', 'outputs.BackupCompliancePolicyPolicyItemYearly']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            restore_window_days: pulumi.Input[Optional[_builtins.int]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_date: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_user: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["authorizedEmail"] = authorized_email
+        __props__["authorizedUserFirstName"] = authorized_user_first_name
+        __props__["authorizedUserLastName"] = authorized_user_last_name
+        __props__["copyProtectionEnabled"] = copy_protection_enabled
+        __props__["encryptionAtRestEnabled"] = encryption_at_rest_enabled
+        __props__["onDemandPolicyItem"] = on_demand_policy_item
+        __props__["pitEnabled"] = pit_enabled
+        __props__["policyItemDaily"] = policy_item_daily
+        __props__["policyItemHourly"] = policy_item_hourly
+        __props__["policyItemMonthlies"] = policy_item_monthlies
+        __props__["policyItemWeeklies"] = policy_item_weeklies
+        __props__["policyItemYearlies"] = policy_item_yearlies
+        __props__["projectId"] = project_id
+        __props__["restoreWindowDays"] = restore_window_days
+        __props__["state"] = state
+        __props__["updatedDate"] = updated_date
+        __props__["updatedUser"] = updated_user
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="authorizedEmail")
     def authorized_email(self) -> pulumi.Output[_builtins.str]:

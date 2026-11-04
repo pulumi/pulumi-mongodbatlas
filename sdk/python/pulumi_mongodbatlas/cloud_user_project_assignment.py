@@ -536,6 +536,40 @@ class CloudUserProjectAssignment(pulumi.CustomResource):
         __props__.__dict__["username"] = username
         return CloudUserProjectAssignment(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            country: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            first_name: pulumi.Input[Optional[_builtins.str]] = None,
+            invitation_created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            invitation_expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+            inviter_username: pulumi.Input[Optional[_builtins.str]] = None,
+            last_auth: pulumi.Input[Optional[_builtins.str]] = None,
+            last_name: pulumi.Input[Optional[_builtins.str]] = None,
+            mobile_number: pulumi.Input[Optional[_builtins.str]] = None,
+            org_membership_status: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            user_id: pulumi.Input[Optional[_builtins.str]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["country"] = country
+        __props__["createdAt"] = created_at
+        __props__["firstName"] = first_name
+        __props__["invitationCreatedAt"] = invitation_created_at
+        __props__["invitationExpiresAt"] = invitation_expires_at
+        __props__["inviterUsername"] = inviter_username
+        __props__["lastAuth"] = last_auth
+        __props__["lastName"] = last_name
+        __props__["mobileNumber"] = mobile_number
+        __props__["orgMembershipStatus"] = org_membership_status
+        __props__["projectId"] = project_id
+        __props__["roles"] = roles
+        __props__["userId"] = user_id
+        __props__["username"] = username
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/cloudUserProjectAssignment:CloudUserProjectAssignment', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def country(self) -> pulumi.Output[_builtins.str]:

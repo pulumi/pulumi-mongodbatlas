@@ -215,6 +215,12 @@ func (CloudUserProjectAssignmentState) ElementType() reflect.Type {
 	return reflect.TypeOf((*cloudUserProjectAssignmentState)(nil)).Elem()
 }
 
+// CloudUserProjectAssignmentExists checks whether an existing CloudUserProjectAssignment resource with the given ID exists.
+func CloudUserProjectAssignmentExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CloudUserProjectAssignmentState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/cloudUserProjectAssignment:CloudUserProjectAssignment", id, state, "", opts...)
+}
+
 type cloudUserProjectAssignmentArgs struct {
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`

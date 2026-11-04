@@ -176,7 +176,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<string>> RequestedScopes { get; private set; } = null!;
 
         /// <summary>
-        /// Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
+        /// Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include ` SHA-1  `and `SHA-256`.
         /// </summary>
         [Output("responseSignatureAlgorithm")]
         public Output<string?> ResponseSignatureAlgorithm { get; private set; } = null!;
@@ -342,7 +342,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
+        /// Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include ` SHA-1  `and `SHA-256`.
         /// </summary>
         [Input("responseSignatureAlgorithm")]
         public Input<string>? ResponseSignatureAlgorithm { get; set; }
@@ -482,7 +482,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
+        /// Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include ` SHA-1  `and `SHA-256`.
         /// </summary>
         [Input("responseSignatureAlgorithm")]
         public Input<string>? ResponseSignatureAlgorithm { get; set; }

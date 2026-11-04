@@ -1297,6 +1297,12 @@ func (AdvancedClusterState) ElementType() reflect.Type {
 	return reflect.TypeOf((*advancedClusterState)(nil)).Elem()
 }
 
+// AdvancedClusterExists checks whether an existing AdvancedCluster resource with the given ID exists.
+func AdvancedClusterExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AdvancedClusterState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/advancedCluster:AdvancedCluster", id, state, "", opts...)
+}
+
 type advancedClusterArgs struct {
 	// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `acceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://www.mongodb.com/docs/atlas/reconfigure-replica-set-during-regional-outage/).
 	AcceptDataRisksAndForceReplicaSetReconfig *string `pulumi:"acceptDataRisksAndForceReplicaSetReconfig"`

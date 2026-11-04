@@ -195,6 +195,12 @@ func (PrivatelinkEndpointServiceDataFederationOnlineArchiveState) ElementType() 
 	return reflect.TypeOf((*privatelinkEndpointServiceDataFederationOnlineArchiveState)(nil)).Elem()
 }
 
+// PrivatelinkEndpointServiceDataFederationOnlineArchiveExists checks whether an existing PrivatelinkEndpointServiceDataFederationOnlineArchive resource with the given ID exists.
+func PrivatelinkEndpointServiceDataFederationOnlineArchiveExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PrivatelinkEndpointServiceDataFederationOnlineArchiveState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive", id, state, "", opts...)
+}
+
 type privatelinkEndpointServiceDataFederationOnlineArchiveArgs struct {
 	// Human-readable string to associate with this private endpoint.
 	Comment *string `pulumi:"comment"`

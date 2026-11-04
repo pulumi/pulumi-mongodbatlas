@@ -504,6 +504,28 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
         __props__.__dict__["tenant_id"] = tenant_id
         return CloudBackupSnapshotExportBucket(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bucket_name: pulumi.Input[Optional[_builtins.str]] = None,
+            cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+            export_bucket_id: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_role_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            role_id: pulumi.Input[Optional[_builtins.str]] = None,
+            service_url: pulumi.Input[Optional[_builtins.str]] = None,
+            tenant_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["bucketName"] = bucket_name
+        __props__["cloudProvider"] = cloud_provider
+        __props__["exportBucketId"] = export_bucket_id
+        __props__["iamRoleId"] = iam_role_id
+        __props__["projectId"] = project_id
+        __props__["roleId"] = role_id
+        __props__["serviceUrl"] = service_url
+        __props__["tenantId"] = tenant_id
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> pulumi.Output[_builtins.str]:

@@ -726,6 +726,44 @@ class ServerlessInstance(pulumi.CustomResource):
         __props__.__dict__["termination_protection_enabled"] = termination_protection_enabled
         return ServerlessInstance(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            auto_indexing: pulumi.Input[Optional[_builtins.bool]] = None,
+            connection_strings_private_endpoint_srvs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            connection_strings_standard_srv: pulumi.Input[Optional[_builtins.str]] = None,
+            continuous_backup_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            create_date: pulumi.Input[Optional[_builtins.str]] = None,
+            links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessInstanceLinkArgs', 'ServerlessInstanceLinkArgsDict', 'outputs.ServerlessInstanceLink']]]]] = None,
+            mongo_db_version: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_settings_backing_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_settings_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_settings_region_name: pulumi.Input[Optional[_builtins.str]] = None,
+            serverless_instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+            state_name: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessInstanceTagArgs', 'ServerlessInstanceTagArgsDict', 'outputs.ServerlessInstanceTag']]]]] = None,
+            termination_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["autoIndexing"] = auto_indexing
+        __props__["connectionStringsPrivateEndpointSrvs"] = connection_strings_private_endpoint_srvs
+        __props__["connectionStringsStandardSrv"] = connection_strings_standard_srv
+        __props__["continuousBackupEnabled"] = continuous_backup_enabled
+        __props__["createDate"] = create_date
+        __props__["links"] = links
+        __props__["mongoDbVersion"] = mongo_db_version
+        __props__["name"] = name
+        __props__["projectId"] = project_id
+        __props__["providerSettingsBackingProviderName"] = provider_settings_backing_provider_name
+        __props__["providerSettingsProviderName"] = provider_settings_provider_name
+        __props__["providerSettingsRegionName"] = provider_settings_region_name
+        __props__["serverlessInstanceId"] = serverless_instance_id
+        __props__["stateName"] = state_name
+        __props__["tags"] = tags
+        __props__["terminationProtectionEnabled"] = termination_protection_enabled
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/serverlessInstance:ServerlessInstance', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="autoIndexing")
     @_utilities.deprecated("""This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.""")

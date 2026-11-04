@@ -201,6 +201,12 @@ func (AiModelApiKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*aiModelApiKeyState)(nil)).Elem()
 }
 
+// AiModelApiKeyExists checks whether an existing AiModelApiKey resource with the given ID exists.
+func AiModelApiKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AiModelApiKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/aiModelApiKey:AiModelApiKey", id, state, "", opts...)
+}
+
 type aiModelApiKeyArgs struct {
 	// Cloud provider scope for this API key. Must be "ANY". Additional cloud values will be supported in future API versions.
 	Cloud string `pulumi:"cloud"`

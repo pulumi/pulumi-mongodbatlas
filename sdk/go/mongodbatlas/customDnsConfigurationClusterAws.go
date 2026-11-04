@@ -114,6 +114,12 @@ func (CustomDnsConfigurationClusterAwsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*customDnsConfigurationClusterAwsState)(nil)).Elem()
 }
 
+// CustomDnsConfigurationClusterAwsExists checks whether an existing CustomDnsConfigurationClusterAws resource with the given ID exists.
+func CustomDnsConfigurationClusterAwsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CustomDnsConfigurationClusterAwsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws", id, state, "", opts...)
+}
+
 type customDnsConfigurationClusterAwsArgs struct {
 	// Indicates whether the project's clusters deployed to AWS use custom DNS. If `true`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
 	Enabled bool `pulumi:"enabled"`

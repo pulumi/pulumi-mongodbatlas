@@ -962,6 +962,52 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
         __props__.__dict__["user_claim"] = user_claim
         return FederatedSettingsIdentityProvider(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            associated_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            audience: pulumi.Input[Optional[_builtins.str]] = None,
+            authorization_type: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+            groups_claim: pulumi.Input[Optional[_builtins.str]] = None,
+            idp_id: pulumi.Input[Optional[_builtins.str]] = None,
+            idp_type: pulumi.Input[Optional[_builtins.str]] = None,
+            issuer_uri: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            okta_idp_id: pulumi.Input[Optional[_builtins.str]] = None,
+            protocol: pulumi.Input[Optional[_builtins.str]] = None,
+            request_binding: pulumi.Input[Optional[_builtins.str]] = None,
+            requested_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            response_signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            sso_debug_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            sso_url: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            user_claim: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["associatedDomains"] = associated_domains
+        __props__["audience"] = audience
+        __props__["authorizationType"] = authorization_type
+        __props__["clientId"] = client_id
+        __props__["description"] = description
+        __props__["federationSettingsId"] = federation_settings_id
+        __props__["groupsClaim"] = groups_claim
+        __props__["idpId"] = idp_id
+        __props__["idpType"] = idp_type
+        __props__["issuerUri"] = issuer_uri
+        __props__["name"] = name
+        __props__["oktaIdpId"] = okta_idp_id
+        __props__["protocol"] = protocol
+        __props__["requestBinding"] = request_binding
+        __props__["requestedScopes"] = requested_scopes
+        __props__["responseSignatureAlgorithm"] = response_signature_algorithm
+        __props__["ssoDebugEnabled"] = sso_debug_enabled
+        __props__["ssoUrl"] = sso_url
+        __props__["status"] = status
+        __props__["userClaim"] = user_claim
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="associatedDomains")
     def associated_domains(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:

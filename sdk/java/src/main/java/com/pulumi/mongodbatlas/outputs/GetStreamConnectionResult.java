@@ -75,11 +75,10 @@ public final class GetStreamConnectionResult {
     private Map<String,String> headers;
     private String id;
     /**
-     * @deprecated
-     * This parameter is deprecated. Please transition to workspace_name.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Deprecated
     private @Nullable String instanceName;
     /**
      * @return Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
@@ -199,11 +198,10 @@ public final class GetStreamConnectionResult {
         return this.id;
     }
     /**
-     * @deprecated
-     * This parameter is deprecated. Please transition to workspace_name.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Deprecated
     public Optional<String> instanceName() {
         return Optional.ofNullable(this.instanceName);
     }

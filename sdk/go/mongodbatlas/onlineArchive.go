@@ -314,6 +314,12 @@ func (OnlineArchiveState) ElementType() reflect.Type {
 	return reflect.TypeOf((*onlineArchiveState)(nil)).Elem()
 }
 
+// OnlineArchiveExists checks whether an existing OnlineArchive resource with the given ID exists.
+func OnlineArchiveExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OnlineArchiveState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/onlineArchive:OnlineArchive", id, state, "", opts...)
+}
+
 type onlineArchiveArgs struct {
 	// Name of the cluster that contains the collection.
 	ClusterName string `pulumi:"clusterName"`

@@ -546,6 +546,12 @@ func (CloudBackupScheduleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*cloudBackupScheduleState)(nil)).Elem()
 }
 
+// CloudBackupScheduleExists checks whether an existing CloudBackupSchedule resource with the given ID exists.
+func CloudBackupScheduleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CloudBackupScheduleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule", id, state, "", opts...)
+}
+
 type cloudBackupScheduleArgs struct {
 	// Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
 	// * true - Enables Atlas-managed snapshot copy settings for the cluster. Atlas copies snapshots to each secondary region and updates the snapshot copy policy when secondary regions are added or removed. Must omit `copySettings`; setting both `autoCopySettingsEnabled = true` and `copySettings` causes a plan-time error.

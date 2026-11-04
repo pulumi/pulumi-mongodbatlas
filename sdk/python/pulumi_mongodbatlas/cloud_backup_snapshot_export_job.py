@@ -644,6 +644,38 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         __props__.__dict__["state"] = state
         return CloudBackupSnapshotExportJob(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            components: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobComponentArgs', 'CloudBackupSnapshotExportJobComponentArgsDict', 'outputs.CloudBackupSnapshotExportJobComponent']]]]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            custom_datas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobCustomDataArgs', 'CloudBackupSnapshotExportJobCustomDataArgsDict', 'outputs.CloudBackupSnapshotExportJobCustomData']]]]] = None,
+            export_bucket_id: pulumi.Input[Optional[_builtins.str]] = None,
+            export_job_id: pulumi.Input[Optional[_builtins.str]] = None,
+            export_status_exported_collections: pulumi.Input[Optional[_builtins.int]] = None,
+            export_status_total_collections: pulumi.Input[Optional[_builtins.int]] = None,
+            finished_at: pulumi.Input[Optional[_builtins.str]] = None,
+            prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["clusterName"] = cluster_name
+        __props__["components"] = components
+        __props__["createdAt"] = created_at
+        __props__["customDatas"] = custom_datas
+        __props__["exportBucketId"] = export_bucket_id
+        __props__["exportJobId"] = export_job_id
+        __props__["exportStatusExportedCollections"] = export_status_exported_collections
+        __props__["exportStatusTotalCollections"] = export_status_total_collections
+        __props__["finishedAt"] = finished_at
+        __props__["prefix"] = prefix
+        __props__["projectId"] = project_id
+        __props__["snapshotId"] = snapshot_id
+        __props__["state"] = state
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/cloudBackupSnapshotExportJob:CloudBackupSnapshotExportJob', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> pulumi.Output[_builtins.str]:

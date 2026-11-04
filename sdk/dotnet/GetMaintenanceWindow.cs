@@ -42,7 +42,6 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// 
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -99,7 +98,6 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// 
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -155,7 +153,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// 
         /// 
         /// ```csharp
         /// using System.Collections.Generic;

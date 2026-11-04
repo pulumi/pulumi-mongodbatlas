@@ -828,6 +828,52 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         __props__.__dict__["user_name"] = user_name
         return ThirdPartyIntegration(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            api_key: pulumi.Input[Optional[_builtins.str]] = None,
+            channel_name: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            microsoft_teams_webhook_url: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            routing_key: pulumi.Input[Optional[_builtins.str]] = None,
+            secret: pulumi.Input[Optional[_builtins.str]] = None,
+            send_collection_latency_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+            send_database_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+            send_query_stats_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+            send_sharding_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+            send_user_provided_resource_tags: pulumi.Input[Optional[_builtins.bool]] = None,
+            service_discovery: pulumi.Input[Optional[_builtins.str]] = None,
+            service_key: pulumi.Input[Optional[_builtins.str]] = None,
+            team_name: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            url: pulumi.Input[Optional[_builtins.str]] = None,
+            user_name: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["apiKey"] = api_key
+        __props__["channelName"] = channel_name
+        __props__["enabled"] = enabled
+        __props__["microsoftTeamsWebhookUrl"] = microsoft_teams_webhook_url
+        __props__["password"] = password
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["routingKey"] = routing_key
+        __props__["secret"] = secret
+        __props__["sendCollectionLatencyMetrics"] = send_collection_latency_metrics
+        __props__["sendDatabaseMetrics"] = send_database_metrics
+        __props__["sendQueryStatsMetrics"] = send_query_stats_metrics
+        __props__["sendShardingMetrics"] = send_sharding_metrics
+        __props__["sendUserProvidedResourceTags"] = send_user_provided_resource_tags
+        __props__["serviceDiscovery"] = service_discovery
+        __props__["serviceKey"] = service_key
+        __props__["teamName"] = team_name
+        __props__["type"] = type
+        __props__["url"] = url
+        __props__["userName"] = user_name
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Output[_builtins.str]:

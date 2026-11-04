@@ -38,11 +38,10 @@ public final class GetProjectResult {
     /**
      * @return IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `mongodbatlas.getProjectIpAddresses` data source instead.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source.
+     * @deprecated This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source. */
+    @Deprecated
     private GetProjectIpAddresses ipAddresses;
     /**
      * @return Flag that indicates whether the AI Assistant is enabled for the project&#39;s clusters.
@@ -97,11 +96,10 @@ public final class GetProjectResult {
     /**
      * @return (Deprecated) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don&#39;t need to take any action.
      * 
-     * @deprecated
-     * This parameter is deprecated.
+     * @deprecated This parameter is deprecated.
      * 
      */
-    @Deprecated /* This parameter is deprecated. */
+    @Deprecated
     private Boolean isSlowOperationThresholdingEnabled;
     /**
      * @return The limits for the specified project. See Limits.
@@ -132,11 +130,10 @@ public final class GetProjectResult {
     /**
      * @return **(DEPRECATED)** Returns all teams to which the authenticated user has access in the project. See Teams.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+     * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+    @Deprecated
     private List<GetProjectTeam> teams;
     /**
      * @return Returns list of all pending and active MongoDB Cloud users associated with the specified project.
@@ -169,11 +166,10 @@ public final class GetProjectResult {
     /**
      * @return IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `mongodbatlas.getProjectIpAddresses` data source instead.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source.
+     * @deprecated This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source. */
+    @Deprecated
     public GetProjectIpAddresses ipAddresses() {
         return this.ipAddresses;
     }
@@ -250,11 +246,10 @@ public final class GetProjectResult {
     /**
      * @return (Deprecated) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don&#39;t need to take any action.
      * 
-     * @deprecated
-     * This parameter is deprecated.
+     * @deprecated This parameter is deprecated.
      * 
      */
-    @Deprecated /* This parameter is deprecated. */
+    @Deprecated
     public Boolean isSlowOperationThresholdingEnabled() {
         return this.isSlowOperationThresholdingEnabled;
     }
@@ -299,11 +294,10 @@ public final class GetProjectResult {
     /**
      * @return **(DEPRECATED)** Returns all teams to which the authenticated user has access in the project. See Teams.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+     * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+    @Deprecated
     public List<GetProjectTeam> teams() {
         return this.teams;
     }

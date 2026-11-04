@@ -403,6 +403,12 @@ func (DatabaseUserState) ElementType() reflect.Type {
 	return reflect.TypeOf((*databaseUserState)(nil)).Elem()
 }
 
+// DatabaseUserExists checks whether an existing DatabaseUser resource with the given ID exists.
+func DatabaseUserExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DatabaseUserState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/databaseUser:DatabaseUser", id, state, "", opts...)
+}
+
 type databaseUserArgs struct {
 	// Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
 	// Accepted values include:

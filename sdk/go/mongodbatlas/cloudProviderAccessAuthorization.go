@@ -246,6 +246,12 @@ func (CloudProviderAccessAuthorizationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*cloudProviderAccessAuthorizationState)(nil)).Elem()
 }
 
+// CloudProviderAccessAuthorizationExists checks whether an existing CloudProviderAccessAuthorization resource with the given ID exists.
+func CloudProviderAccessAuthorizationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CloudProviderAccessAuthorizationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization", id, state, "", opts...)
+}
+
 type cloudProviderAccessAuthorizationArgs struct {
 	Aws   *CloudProviderAccessAuthorizationAws   `pulumi:"aws"`
 	Azure *CloudProviderAccessAuthorizationAzure `pulumi:"azure"`

@@ -600,6 +600,34 @@ class MetricIntegration(pulumi.CustomResource):
         __props__.__dict__["provider_type"] = provider_type
         return MetricIntegration(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            aggregation_temporality: pulumi.Input[Optional[_builtins.str]] = None,
+            auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+            endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['MetricIntegrationHeaderArgs', 'MetricIntegrationHeaderArgsDict', 'outputs.MetricIntegrationHeader']]]]] = None,
+            headers_redacteds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['MetricIntegrationHeadersRedactedArgs', 'MetricIntegrationHeadersRedactedArgsDict', 'outputs.MetricIntegrationHeadersRedacted']]]]] = None,
+            integration_type: pulumi.Input[Optional[_builtins.str]] = None,
+            metric_integration_id: pulumi.Input[Optional[_builtins.str]] = None,
+            metric_selections: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            oauth: pulumi.Input[Optional[Union['MetricIntegrationOauthArgs', 'MetricIntegrationOauthArgsDict', 'outputs.MetricIntegrationOauth']]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["aggregationTemporality"] = aggregation_temporality
+        __props__["authType"] = auth_type
+        __props__["endpoint"] = endpoint
+        __props__["headers"] = headers
+        __props__["headersRedacteds"] = headers_redacteds
+        __props__["integrationType"] = integration_type
+        __props__["metricIntegrationId"] = metric_integration_id
+        __props__["metricSelections"] = metric_selections
+        __props__["oauth"] = oauth
+        __props__["projectId"] = project_id
+        __props__["providerType"] = provider_type
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/metricIntegration:MetricIntegration', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="aggregationTemporality")
     def aggregation_temporality(self) -> pulumi.Output[_builtins.str]:

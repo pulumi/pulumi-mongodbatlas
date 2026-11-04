@@ -240,6 +240,12 @@ func (OrganizationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*organizationState)(nil)).Elem()
 }
 
+// OrganizationExists checks whether an existing Organization resource with the given ID exists.
+func OrganizationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OrganizationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/organization:Organization", id, state, "", opts...)
+}
+
 type organizationArgs struct {
 	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
 	ApiAccessListRequired *bool `pulumi:"apiAccessListRequired"`

@@ -169,6 +169,12 @@ func (FederatedSettingsOrgRoleMappingState) ElementType() reflect.Type {
 	return reflect.TypeOf((*federatedSettingsOrgRoleMappingState)(nil)).Elem()
 }
 
+// FederatedSettingsOrgRoleMappingExists checks whether an existing FederatedSettingsOrgRoleMapping resource with the given ID exists.
+func FederatedSettingsOrgRoleMappingExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FederatedSettingsOrgRoleMappingState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping", id, state, "", opts...)
+}
+
 type federatedSettingsOrgRoleMappingArgs struct {
 	// Unique label that identifies the identity provider group to which this role mapping applies.
 	ExternalGroupName string `pulumi:"externalGroupName"`

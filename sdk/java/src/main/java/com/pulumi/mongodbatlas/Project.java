@@ -129,11 +129,10 @@ public class Project extends com.pulumi.resources.CustomResource {
     /**
      * IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `mongodbatlas.getProjectIpAddresses` data source instead.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source.
+     * @deprecated This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source. */
+    @Deprecated
     @Export(name="ipAddresses", refs={ProjectIpAddresses.class}, tree="[0]")
     private Output<ProjectIpAddresses> ipAddresses;
 
@@ -287,11 +286,10 @@ public class Project extends com.pulumi.resources.CustomResource {
     /**
      * (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don&#39;t need to take any action.
      * 
-     * @deprecated
-     * This parameter is deprecated.
+     * @deprecated This parameter is deprecated.
      * 
      */
-    @Deprecated /* This parameter is deprecated. */
+    @Deprecated
     @Export(name="isSlowOperationThresholdingEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> isSlowOperationThresholdingEnabled;
 
@@ -379,11 +377,10 @@ public class Project extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.tags);
     }
     /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+     * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+    @Deprecated
     @Export(name="teams", refs={List.class,ProjectTeam.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ProjectTeam>> teams;
 

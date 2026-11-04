@@ -28,11 +28,10 @@ public final class CloudBackupScheduleCopySetting {
     /**
      * @return List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `copyPolicyItems` and `lastNumberOfSnapshots` on the same entry. You can switch an entry from `frequencies` to `copyPolicyItems` or `lastNumberOfSnapshots` in one apply; the switch back is not possible because `copyPolicyItemsEnabled` cannot be turned off once it is `true`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
+     * @deprecated This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`. */
+    @Deprecated
     private @Nullable List<String> frequencies;
     /**
      * @return Number of most recent snapshots to copy, from 1 to 500, when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `copyPolicyItems`.
@@ -73,11 +72,10 @@ public final class CloudBackupScheduleCopySetting {
     /**
      * @return List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `copyPolicyItems` and `lastNumberOfSnapshots` on the same entry. You can switch an entry from `frequencies` to `copyPolicyItems` or `lastNumberOfSnapshots` in one apply; the switch back is not possible because `copyPolicyItemsEnabled` cannot be turned off once it is `true`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
+     * @deprecated This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`. */
+    @Deprecated
     public List<String> frequencies() {
         return this.frequencies == null ? List.of() : this.frequencies;
     }

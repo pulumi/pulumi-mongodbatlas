@@ -235,6 +235,12 @@ func (CloudProviderAccessSetupState) ElementType() reflect.Type {
 	return reflect.TypeOf((*cloudProviderAccessSetupState)(nil)).Elem()
 }
 
+// CloudProviderAccessSetupExists checks whether an existing CloudProviderAccessSetup resource with the given ID exists.
+func CloudProviderAccessSetupExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CloudProviderAccessSetupState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup", id, state, "", opts...)
+}
+
 type cloudProviderAccessSetupArgs struct {
 	// azure related configurations
 	AzureConfigs []CloudProviderAccessSetupAzureConfig `pulumi:"azureConfigs"`

@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -48,7 +47,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -81,7 +79,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
-        /// 
         /// 
         /// ## Example Usage
         /// 

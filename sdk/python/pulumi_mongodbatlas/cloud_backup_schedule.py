@@ -1420,6 +1420,58 @@ class CloudBackupSchedule(pulumi.CustomResource):
         __props__.__dict__["use_org_and_group_names_in_export_prefix"] = use_org_and_group_names_in_export_prefix
         return CloudBackupSchedule(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            auto_copy_settings_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            auto_export_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            copy_policy_items_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            copy_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupScheduleCopySettingArgs', 'CloudBackupScheduleCopySettingArgsDict', 'outputs.CloudBackupScheduleCopySetting']]]]] = None,
+            delete_copy_snapshots: pulumi.Input[Optional[_builtins.bool]] = None,
+            export: pulumi.Input[Optional[Union['CloudBackupScheduleExportArgs', 'CloudBackupScheduleExportArgsDict', 'outputs.CloudBackupScheduleExport']]] = None,
+            id_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            next_snapshot: pulumi.Input[Optional[_builtins.str]] = None,
+            policy_item_daily: pulumi.Input[Optional[Union['CloudBackupSchedulePolicyItemDailyArgs', 'CloudBackupSchedulePolicyItemDailyArgsDict', 'outputs.CloudBackupSchedulePolicyItemDaily']]] = None,
+            policy_item_hourly: pulumi.Input[Optional[Union['CloudBackupSchedulePolicyItemHourlyArgs', 'CloudBackupSchedulePolicyItemHourlyArgsDict', 'outputs.CloudBackupSchedulePolicyItemHourly']]] = None,
+            policy_item_monthlies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemMonthlyArgs', 'CloudBackupSchedulePolicyItemMonthlyArgsDict', 'outputs.CloudBackupSchedulePolicyItemMonthly']]]]] = None,
+            policy_item_weeklies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemWeeklyArgs', 'CloudBackupSchedulePolicyItemWeeklyArgsDict', 'outputs.CloudBackupSchedulePolicyItemWeekly']]]]] = None,
+            policy_item_yearlies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemYearlyArgs', 'CloudBackupSchedulePolicyItemYearlyArgsDict', 'outputs.CloudBackupSchedulePolicyItemYearly']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            reference_hour_of_day: pulumi.Input[Optional[_builtins.int]] = None,
+            reference_minute_of_hour: pulumi.Input[Optional[_builtins.int]] = None,
+            restore_window_days: pulumi.Input[Optional[_builtins.int]] = None,
+            skip_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+            update_copy_snapshots: pulumi.Input[Optional[_builtins.bool]] = None,
+            update_snapshots: pulumi.Input[Optional[_builtins.bool]] = None,
+            use_org_and_group_names_in_export_prefix: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["autoCopySettingsEnabled"] = auto_copy_settings_enabled
+        __props__["autoExportEnabled"] = auto_export_enabled
+        __props__["clusterId"] = cluster_id
+        __props__["clusterName"] = cluster_name
+        __props__["copyPolicyItemsEnabled"] = copy_policy_items_enabled
+        __props__["copySettings"] = copy_settings
+        __props__["deleteCopySnapshots"] = delete_copy_snapshots
+        __props__["export"] = export
+        __props__["idPolicy"] = id_policy
+        __props__["nextSnapshot"] = next_snapshot
+        __props__["policyItemDaily"] = policy_item_daily
+        __props__["policyItemHourly"] = policy_item_hourly
+        __props__["policyItemMonthlies"] = policy_item_monthlies
+        __props__["policyItemWeeklies"] = policy_item_weeklies
+        __props__["policyItemYearlies"] = policy_item_yearlies
+        __props__["projectId"] = project_id
+        __props__["referenceHourOfDay"] = reference_hour_of_day
+        __props__["referenceMinuteOfHour"] = reference_minute_of_hour
+        __props__["restoreWindowDays"] = restore_window_days
+        __props__["skipDestroy"] = skip_destroy
+        __props__["updateCopySnapshots"] = update_copy_snapshots
+        __props__["updateSnapshots"] = update_snapshots
+        __props__["useOrgAndGroupNamesInExportPrefix"] = use_org_and_group_names_in_export_prefix
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="autoCopySettingsEnabled")
     def auto_copy_settings_enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:

@@ -508,6 +508,30 @@ class FederatedQueryLimit(pulumi.CustomResource):
         __props__.__dict__["value"] = value
         return FederatedQueryLimit(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            current_usage: pulumi.Input[Optional[_builtins.int]] = None,
+            default_limit: pulumi.Input[Optional[_builtins.int]] = None,
+            last_modified_date: pulumi.Input[Optional[_builtins.str]] = None,
+            limit_name: pulumi.Input[Optional[_builtins.str]] = None,
+            maximum_limit: pulumi.Input[Optional[_builtins.int]] = None,
+            overrun_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            tenant_name: pulumi.Input[Optional[_builtins.str]] = None,
+            value: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["currentUsage"] = current_usage
+        __props__["defaultLimit"] = default_limit
+        __props__["lastModifiedDate"] = last_modified_date
+        __props__["limitName"] = limit_name
+        __props__["maximumLimit"] = maximum_limit
+        __props__["overrunPolicy"] = overrun_policy
+        __props__["projectId"] = project_id
+        __props__["tenantName"] = tenant_name
+        __props__["value"] = value
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/federatedQueryLimit:FederatedQueryLimit', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="currentUsage")
     def current_usage(self) -> pulumi.Output[_builtins.int]:

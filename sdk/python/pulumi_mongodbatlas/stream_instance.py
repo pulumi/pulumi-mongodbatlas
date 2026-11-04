@@ -363,6 +363,22 @@ class StreamInstance(pulumi.CustomResource):
         __props__.__dict__["stream_config"] = stream_config
         return StreamInstance(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            data_process_region: pulumi.Input[Optional[Union['StreamInstanceDataProcessRegionArgs', 'StreamInstanceDataProcessRegionArgsDict', 'outputs.StreamInstanceDataProcessRegion']]] = None,
+            hostnames: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            instance_name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            stream_config: pulumi.Input[Optional[Union['StreamInstanceStreamConfigArgs', 'StreamInstanceStreamConfigArgsDict', 'outputs.StreamInstanceStreamConfig']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["dataProcessRegion"] = data_process_region
+        __props__["hostnames"] = hostnames
+        __props__["instanceName"] = instance_name
+        __props__["projectId"] = project_id
+        __props__["streamConfig"] = stream_config
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/streamInstance:StreamInstance', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="dataProcessRegion")
     def data_process_region(self) -> pulumi.Output['outputs.StreamInstanceDataProcessRegion']:

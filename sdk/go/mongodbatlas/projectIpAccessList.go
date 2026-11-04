@@ -220,6 +220,12 @@ func (ProjectIpAccessListState) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectIpAccessListState)(nil)).Elem()
 }
 
+// ProjectIpAccessListExists checks whether an existing ProjectIpAccessList resource with the given ID exists.
+func ProjectIpAccessListExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ProjectIpAccessListState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/projectIpAccessList:ProjectIpAccessList", id, state, "", opts...)
+}
+
 type projectIpAccessListArgs struct {
 	// Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
 	AwsSecurityGroup *string `pulumi:"awsSecurityGroup"`

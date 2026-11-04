@@ -59,7 +59,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> AuditFilter { get; private set; } = null!;
 
         /// <summary>
-        /// Denotes the configuration method for the audit filter. Possible values are: 
+        /// Denotes the configuration method for the audit filter. Possible values are:
         /// * NONE - auditing not configured for the project.
         /// * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
         /// * FILTER_JSON - auditing configured via Atlas custom filter or API.
@@ -174,7 +174,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? AuditFilter { get; set; }
 
         /// <summary>
-        /// Denotes the configuration method for the audit filter. Possible values are: 
+        /// Denotes the configuration method for the audit filter. Possible values are:
         /// * NONE - auditing not configured for the project.
         /// * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
         /// * FILTER_JSON - auditing configured via Atlas custom filter or API.

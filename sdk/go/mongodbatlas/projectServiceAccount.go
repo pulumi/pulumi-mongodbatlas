@@ -190,6 +190,12 @@ func (ProjectServiceAccountState) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectServiceAccountState)(nil)).Elem()
 }
 
+// ProjectServiceAccountExists checks whether an existing ProjectServiceAccount resource with the given ID exists.
+func ProjectServiceAccountExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ProjectServiceAccountState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/projectServiceAccount:ProjectServiceAccount", id, state, "", opts...)
+}
+
 type projectServiceAccountArgs struct {
 	// Human readable description for the Service Account.
 	Description string `pulumi:"description"`

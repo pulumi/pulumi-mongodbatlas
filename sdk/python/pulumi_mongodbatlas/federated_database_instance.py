@@ -1021,6 +1021,30 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
         __props__.__dict__["storage_stores"] = storage_stores
         return FederatedDatabaseInstance(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cloud_provider_config: pulumi.Input[Optional[Union['FederatedDatabaseInstanceCloudProviderConfigArgs', 'FederatedDatabaseInstanceCloudProviderConfigArgsDict', 'outputs.FederatedDatabaseInstanceCloudProviderConfig']]] = None,
+            data_process_region: pulumi.Input[Optional[Union['FederatedDatabaseInstanceDataProcessRegionArgs', 'FederatedDatabaseInstanceDataProcessRegionArgsDict', 'outputs.FederatedDatabaseInstanceDataProcessRegion']]] = None,
+            hostnames: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            private_endpoint_hostnames: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstancePrivateEndpointHostnameArgs', 'FederatedDatabaseInstancePrivateEndpointHostnameArgsDict', 'outputs.FederatedDatabaseInstancePrivateEndpointHostname']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            storage_databases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageDatabaseArgs', 'FederatedDatabaseInstanceStorageDatabaseArgsDict', 'outputs.FederatedDatabaseInstanceStorageDatabase']]]]] = None,
+            storage_stores: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageStoreArgs', 'FederatedDatabaseInstanceStorageStoreArgsDict', 'outputs.FederatedDatabaseInstanceStorageStore']]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["cloudProviderConfig"] = cloud_provider_config
+        __props__["dataProcessRegion"] = data_process_region
+        __props__["hostnames"] = hostnames
+        __props__["name"] = name
+        __props__["privateEndpointHostnames"] = private_endpoint_hostnames
+        __props__["projectId"] = project_id
+        __props__["state"] = state
+        __props__["storageDatabases"] = storage_databases
+        __props__["storageStores"] = storage_stores
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="cloudProviderConfig")
     def cloud_provider_config(self) -> pulumi.Output['outputs.FederatedDatabaseInstanceCloudProviderConfig']:

@@ -236,6 +236,12 @@ func (CloudBackupCollectionRestoreJobState) ElementType() reflect.Type {
 	return reflect.TypeOf((*cloudBackupCollectionRestoreJobState)(nil)).Elem()
 }
 
+// CloudBackupCollectionRestoreJobExists checks whether an existing CloudBackupCollectionRestoreJob resource with the given ID exists.
+func CloudBackupCollectionRestoreJobExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CloudBackupCollectionRestoreJobState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/cloudBackupCollectionRestoreJob:CloudBackupCollectionRestoreJob", id, state, "", opts...)
+}
+
 type cloudBackupCollectionRestoreJobArgs struct {
 	// Human-readable label that identifies the source cluster for the restore.
 	ClusterName string `pulumi:"clusterName"`

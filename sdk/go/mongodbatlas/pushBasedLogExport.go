@@ -184,6 +184,12 @@ func (PushBasedLogExportState) ElementType() reflect.Type {
 	return reflect.TypeOf((*pushBasedLogExportState)(nil)).Elem()
 }
 
+// PushBasedLogExportExists checks whether an existing PushBasedLogExport resource with the given ID exists.
+func PushBasedLogExportExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PushBasedLogExportState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/pushBasedLogExport:PushBasedLogExport", id, state, "", opts...)
+}
+
 type pushBasedLogExportArgs struct {
 	// The name of the bucket to which the agent sends the logs to.
 	BucketName string `pulumi:"bucketName"`

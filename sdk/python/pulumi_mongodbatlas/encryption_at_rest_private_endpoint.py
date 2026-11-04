@@ -544,6 +544,28 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
         __props__.__dict__["timeouts"] = timeouts
         return EncryptionAtRestPrivateEndpoint(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+            delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            error_message: pulumi.Input[Optional[_builtins.str]] = None,
+            private_endpoint_connection_name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region_name: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            timeouts: pulumi.Input[Optional[Union['EncryptionAtRestPrivateEndpointTimeoutsArgs', 'EncryptionAtRestPrivateEndpointTimeoutsArgsDict', 'outputs.EncryptionAtRestPrivateEndpointTimeouts']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["cloudProvider"] = cloud_provider
+        __props__["deleteOnCreateTimeout"] = delete_on_create_timeout
+        __props__["errorMessage"] = error_message
+        __props__["privateEndpointConnectionName"] = private_endpoint_connection_name
+        __props__["projectId"] = project_id
+        __props__["regionName"] = region_name
+        __props__["status"] = status
+        __props__["timeouts"] = timeouts
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/encryptionAtRestPrivateEndpoint:EncryptionAtRestPrivateEndpoint', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> pulumi.Output[_builtins.str]:

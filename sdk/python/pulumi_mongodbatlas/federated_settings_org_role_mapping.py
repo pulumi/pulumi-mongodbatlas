@@ -396,6 +396,22 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
         __props__.__dict__["role_mapping_id"] = role_mapping_id
         return FederatedSettingsOrgRoleMapping(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            external_group_name: pulumi.Input[Optional[_builtins.str]] = None,
+            federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            role_assignments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedSettingsOrgRoleMappingRoleAssignmentArgs', 'FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict', 'outputs.FederatedSettingsOrgRoleMappingRoleAssignment']]]]] = None,
+            role_mapping_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["externalGroupName"] = external_group_name
+        __props__["federationSettingsId"] = federation_settings_id
+        __props__["orgId"] = org_id
+        __props__["roleAssignments"] = role_assignments
+        __props__["roleMappingId"] = role_mapping_id
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="externalGroupName")
     def external_group_name(self) -> pulumi.Output[_builtins.str]:

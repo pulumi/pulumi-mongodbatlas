@@ -477,6 +477,28 @@ class OrgInvitation(pulumi.CustomResource):
         __props__.__dict__["username"] = username
         return OrgInvitation(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+            invitation_id: pulumi.Input[Optional[_builtins.str]] = None,
+            inviter_username: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            teams_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["expiresAt"] = expires_at
+        __props__["invitationId"] = invitation_id
+        __props__["inviterUsername"] = inviter_username
+        __props__["orgId"] = org_id
+        __props__["roles"] = roles
+        __props__["teamsIds"] = teams_ids
+        __props__["username"] = username
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/orgInvitation:OrgInvitation', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[_builtins.str]:

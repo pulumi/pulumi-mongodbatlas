@@ -166,6 +166,12 @@ func (MetricIntegrationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*metricIntegrationState)(nil)).Elem()
 }
 
+// MetricIntegrationExists checks whether an existing MetricIntegration resource with the given ID exists.
+func MetricIntegrationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MetricIntegrationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/metricIntegration:MetricIntegration", id, state, "", opts...)
+}
+
 type metricIntegrationArgs struct {
 	// The temporality to send to the metric integration.
 	AggregationTemporality string `pulumi:"aggregationTemporality"`

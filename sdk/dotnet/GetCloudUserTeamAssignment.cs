@@ -14,8 +14,8 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.CloudUserTeamAssignment` provides a Cloud User Team Assignment data source. The data source lets you retrieve a user assigned to a team.
         /// 
-        /// &gt; **NOTE**Users with pending invitations created using the deprecated `mongodbatlas.ProjectInvitation` resource or via the deprecated [Invite One MongoDB Cloud User to One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getorganizationuser#tag/Projects/operation/createProjectInvitation) 
-        /// endpoint are not returned with this resource. See  [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listteamusers) for details. 
+        /// &gt; **NOTE**Users with pending invitations created using the deprecated `mongodbatlas.ProjectInvitation` resource or via the deprecated [Invite One MongoDB Cloud User to One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getorganizationuser#tag/Projects/operation/createProjectInvitation)
+        /// endpoint are not returned with this resource. See  [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listteamusers) for details.
         /// To manage such users with this resource, refer to our Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
         /// 
         /// ## Example Usage
@@ -60,8 +60,8 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.CloudUserTeamAssignment` provides a Cloud User Team Assignment data source. The data source lets you retrieve a user assigned to a team.
         /// 
-        /// &gt; **NOTE**Users with pending invitations created using the deprecated `mongodbatlas.ProjectInvitation` resource or via the deprecated [Invite One MongoDB Cloud User to One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getorganizationuser#tag/Projects/operation/createProjectInvitation) 
-        /// endpoint are not returned with this resource. See  [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listteamusers) for details. 
+        /// &gt; **NOTE**Users with pending invitations created using the deprecated `mongodbatlas.ProjectInvitation` resource or via the deprecated [Invite One MongoDB Cloud User to One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getorganizationuser#tag/Projects/operation/createProjectInvitation)
+        /// endpoint are not returned with this resource. See  [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listteamusers) for details.
         /// To manage such users with this resource, refer to our Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
         /// 
         /// ## Example Usage
@@ -106,8 +106,8 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.CloudUserTeamAssignment` provides a Cloud User Team Assignment data source. The data source lets you retrieve a user assigned to a team.
         /// 
-        /// &gt; **NOTE**Users with pending invitations created using the deprecated `mongodbatlas.ProjectInvitation` resource or via the deprecated [Invite One MongoDB Cloud User to One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getorganizationuser#tag/Projects/operation/createProjectInvitation) 
-        /// endpoint are not returned with this resource. See  [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listteamusers) for details. 
+        /// &gt; **NOTE**Users with pending invitations created using the deprecated `mongodbatlas.ProjectInvitation` resource or via the deprecated [Invite One MongoDB Cloud User to One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getorganizationuser#tag/Projects/operation/createProjectInvitation)
+        /// endpoint are not returned with this resource. See  [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listteamusers) for details.
         /// To manage such users with this resource, refer to our Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
         /// 
         /// ## Example Usage

@@ -28,11 +28,10 @@ public final class GetAtlasUserResult {
     /**
      * @return **(DEPRECATED)** Email address that belongs to the MongoDB Atlas user. This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username`, `data.mongodbatlas_team.users.username` or `data.mongodbatlas_project.users.username` attributes. For more details, see Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.&#34;
      * 
-     * @deprecated
-     * This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username, data.mongodbatlas_team.users.username or data.mongodbatlas_project.users.username attributes`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+     * @deprecated This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username, data.mongodbatlas_team.users.username or data.mongodbatlas_project.users.username attributes`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      * 
      */
-    @Deprecated /* This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username, data.mongodbatlas_team.users.username or data.mongodbatlas_project.users.username attributes`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+    @Deprecated
     private String emailAddress;
     /**
      * @return First or given name that belongs to the MongoDB Atlas user.
@@ -40,11 +39,10 @@ public final class GetAtlasUserResult {
      */
     private String firstName;
     /**
-     * @deprecated
-     * Please use userId id attribute instead
+     * @deprecated Please use userId id attribute instead
      * 
      */
-    @Deprecated /* Please use userId id attribute instead */
+    @Deprecated
     private String id;
     /**
      * @return Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
@@ -94,11 +92,10 @@ public final class GetAtlasUserResult {
     /**
      * @return **(DEPRECATED)** Email address that belongs to the MongoDB Atlas user. This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username`, `data.mongodbatlas_team.users.username` or `data.mongodbatlas_project.users.username` attributes. For more details, see Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.&#34;
      * 
-     * @deprecated
-     * This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username, data.mongodbatlas_team.users.username or data.mongodbatlas_project.users.username attributes`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+     * @deprecated This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username, data.mongodbatlas_team.users.username or data.mongodbatlas_project.users.username attributes`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      * 
      */
-    @Deprecated /* This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username, data.mongodbatlas_team.users.username or data.mongodbatlas_project.users.username attributes`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+    @Deprecated
     public String emailAddress() {
         return this.emailAddress;
     }
@@ -110,11 +107,10 @@ public final class GetAtlasUserResult {
         return this.firstName;
     }
     /**
-     * @deprecated
-     * Please use userId id attribute instead
+     * @deprecated Please use userId id attribute instead
      * 
      */
-    @Deprecated /* Please use userId id attribute instead */
+    @Deprecated
     public String id() {
         return this.id;
     }

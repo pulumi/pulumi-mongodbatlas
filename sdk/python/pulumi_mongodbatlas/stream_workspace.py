@@ -466,6 +466,24 @@ class StreamWorkspace(pulumi.CustomResource):
         __props__.__dict__["workspace_name"] = workspace_name
         return StreamWorkspace(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            data_process_region: pulumi.Input[Optional[Union['StreamWorkspaceDataProcessRegionArgs', 'StreamWorkspaceDataProcessRegionArgsDict', 'outputs.StreamWorkspaceDataProcessRegion']]] = None,
+            failover_regions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['StreamWorkspaceFailoverRegionArgs', 'StreamWorkspaceFailoverRegionArgsDict', 'outputs.StreamWorkspaceFailoverRegion']]]]] = None,
+            hostnames: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            stream_config: pulumi.Input[Optional[Union['StreamWorkspaceStreamConfigArgs', 'StreamWorkspaceStreamConfigArgsDict', 'outputs.StreamWorkspaceStreamConfig']]] = None,
+            workspace_name: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["dataProcessRegion"] = data_process_region
+        __props__["failoverRegions"] = failover_regions
+        __props__["hostnames"] = hostnames
+        __props__["projectId"] = project_id
+        __props__["streamConfig"] = stream_config
+        __props__["workspaceName"] = workspace_name
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/streamWorkspace:StreamWorkspace', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="dataProcessRegion")
     def data_process_region(self) -> pulumi.Output['outputs.StreamWorkspaceDataProcessRegion']:

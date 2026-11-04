@@ -64,22 +64,20 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
     /**
      * **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+     * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+    @Deprecated
     @Import(name="usernames")
     private @Nullable Output<List<String>> usernames;
 
     /**
      * @return **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+     * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+    @Deprecated
     public Optional<Output<List<String>>> usernames() {
         return Optional.ofNullable(this.usernames);
     }
@@ -179,11 +177,10 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+         * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
          * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+        @Deprecated
         public Builder usernames(@Nullable Output<List<String>> usernames) {
             $.usernames = usernames;
             return this;
@@ -194,11 +191,10 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+         * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
          * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+        @Deprecated
         public Builder usernames(List<String> usernames) {
             return usernames(Output.of(usernames));
         }
@@ -208,11 +204,10 @@ public final class TeamState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+         * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
          * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+        @Deprecated
         public Builder usernames(String... usernames) {
             return usernames(List.of(usernames));
         }

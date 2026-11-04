@@ -26,11 +26,10 @@ public final class GetAtlasUsersResult {
     /**
      * @return **(DEPRECATED)** Email address that belongs to the MongoDB Atlas user. This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username`, `data.mongodbatlas_team.users.username` or `data.mongodbatlas_project.users.username` attributes. For more details, see Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.&#34;
      * 
-     * @deprecated
-     * This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username, data.mongodbatlas_team.users.username or data.mongodbatlas_project.users.username attributes`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+     * @deprecated This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username, data.mongodbatlas_team.users.username or data.mongodbatlas_project.users.username attributes`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      * 
      */
-    @Deprecated /* This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username, data.mongodbatlas_team.users.username or data.mongodbatlas_project.users.username attributes`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+    @Deprecated
     private String emailAddress;
     /**
      * @return First or given name that belongs to the MongoDB Atlas user.
@@ -94,11 +93,10 @@ public final class GetAtlasUsersResult {
     /**
      * @return **(DEPRECATED)** Email address that belongs to the MongoDB Atlas user. This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username`, `data.mongodbatlas_team.users.username` or `data.mongodbatlas_project.users.username` attributes. For more details, see Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.&#34;
      * 
-     * @deprecated
-     * This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username, data.mongodbatlas_team.users.username or data.mongodbatlas_project.users.username attributes`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+     * @deprecated This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username, data.mongodbatlas_team.users.username or data.mongodbatlas_project.users.username attributes`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      * 
      */
-    @Deprecated /* This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username, data.mongodbatlas_team.users.username or data.mongodbatlas_project.users.username attributes`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+    @Deprecated
     public String emailAddress() {
         return this.emailAddress;
     }

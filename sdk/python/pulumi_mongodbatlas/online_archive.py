@@ -864,6 +864,42 @@ class OnlineArchive(pulumi.CustomResource):
         __props__.__dict__["sync_creation"] = sync_creation
         return OnlineArchive(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            archive_id: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            coll_name: pulumi.Input[Optional[_builtins.str]] = None,
+            collection_type: pulumi.Input[Optional[_builtins.str]] = None,
+            criteria: pulumi.Input[Optional[Union['OnlineArchiveCriteriaArgs', 'OnlineArchiveCriteriaArgsDict', 'outputs.OnlineArchiveCriteria']]] = None,
+            data_expiration_rule: pulumi.Input[Optional[Union['OnlineArchiveDataExpirationRuleArgs', 'OnlineArchiveDataExpirationRuleArgsDict', 'outputs.OnlineArchiveDataExpirationRule']]] = None,
+            data_process_region: pulumi.Input[Optional[Union['OnlineArchiveDataProcessRegionArgs', 'OnlineArchiveDataProcessRegionArgsDict', 'outputs.OnlineArchiveDataProcessRegion']]] = None,
+            db_name: pulumi.Input[Optional[_builtins.str]] = None,
+            delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            partition_fields: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OnlineArchivePartitionFieldArgs', 'OnlineArchivePartitionFieldArgsDict', 'outputs.OnlineArchivePartitionField']]]]] = None,
+            paused: pulumi.Input[Optional[_builtins.bool]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            schedule: pulumi.Input[Optional[Union['OnlineArchiveScheduleArgs', 'OnlineArchiveScheduleArgsDict', 'outputs.OnlineArchiveSchedule']]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            sync_creation: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["archiveId"] = archive_id
+        __props__["clusterName"] = cluster_name
+        __props__["collName"] = coll_name
+        __props__["collectionType"] = collection_type
+        __props__["criteria"] = criteria
+        __props__["dataExpirationRule"] = data_expiration_rule
+        __props__["dataProcessRegion"] = data_process_region
+        __props__["dbName"] = db_name
+        __props__["deleteOnCreateTimeout"] = delete_on_create_timeout
+        __props__["partitionFields"] = partition_fields
+        __props__["paused"] = paused
+        __props__["projectId"] = project_id
+        __props__["schedule"] = schedule
+        __props__["state"] = state
+        __props__["syncCreation"] = sync_creation
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/onlineArchive:OnlineArchive', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="archiveId")
     def archive_id(self) -> pulumi.Output[_builtins.str]:

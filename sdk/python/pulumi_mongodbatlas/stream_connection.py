@@ -1587,6 +1587,56 @@ class StreamConnection(pulumi.CustomResource):
         __props__.__dict__["workspace_name"] = workspace_name
         return StreamConnection(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            authentication: pulumi.Input[Optional[Union['StreamConnectionAuthenticationArgs', 'StreamConnectionAuthenticationArgsDict', 'outputs.StreamConnectionAuthentication']]] = None,
+            aws: pulumi.Input[Optional[Union['StreamConnectionAwsArgs', 'StreamConnectionAwsArgsDict', 'outputs.StreamConnectionAws']]] = None,
+            azure: pulumi.Input[Optional[Union['StreamConnectionAzureArgs', 'StreamConnectionAzureArgsDict', 'outputs.StreamConnectionAzure']]] = None,
+            bootstrap_servers: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            connection_name: pulumi.Input[Optional[_builtins.str]] = None,
+            db_role_to_execute: pulumi.Input[Optional[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict', 'outputs.StreamConnectionDbRoleToExecute']]] = None,
+            gcp: pulumi.Input[Optional[Union['StreamConnectionGcpArgs', 'StreamConnectionGcpArgsDict', 'outputs.StreamConnectionGcp']]] = None,
+            headers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            instance_name: pulumi.Input[Optional[_builtins.str]] = None,
+            networking: pulumi.Input[Optional[Union['StreamConnectionNetworkingArgs', 'StreamConnectionNetworkingArgsDict', 'outputs.StreamConnectionNetworking']]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            schema_registry_authentication: pulumi.Input[Optional[Union['StreamConnectionSchemaRegistryAuthenticationArgs', 'StreamConnectionSchemaRegistryAuthenticationArgsDict', 'outputs.StreamConnectionSchemaRegistryAuthentication']]] = None,
+            schema_registry_provider: pulumi.Input[Optional[_builtins.str]] = None,
+            schema_registry_urls: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            security: pulumi.Input[Optional[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict', 'outputs.StreamConnectionSecurity']]] = None,
+            timeouts: pulumi.Input[Optional[Union['StreamConnectionTimeoutsArgs', 'StreamConnectionTimeoutsArgsDict', 'outputs.StreamConnectionTimeouts']]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            url: pulumi.Input[Optional[_builtins.str]] = None,
+            workspace_name: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["authentication"] = authentication
+        __props__["aws"] = aws
+        __props__["azure"] = azure
+        __props__["bootstrapServers"] = bootstrap_servers
+        __props__["clusterName"] = cluster_name
+        __props__["clusterProjectId"] = cluster_project_id
+        __props__["config"] = config
+        __props__["connectionName"] = connection_name
+        __props__["dbRoleToExecute"] = db_role_to_execute
+        __props__["gcp"] = gcp
+        __props__["headers"] = headers
+        __props__["instanceName"] = instance_name
+        __props__["networking"] = networking
+        __props__["projectId"] = project_id
+        __props__["schemaRegistryAuthentication"] = schema_registry_authentication
+        __props__["schemaRegistryProvider"] = schema_registry_provider
+        __props__["schemaRegistryUrls"] = schema_registry_urls
+        __props__["security"] = security
+        __props__["timeouts"] = timeouts
+        __props__["type"] = type
+        __props__["url"] = url
+        __props__["workspaceName"] = workspace_name
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/streamConnection:StreamConnection', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def authentication(self) -> pulumi.Output[Optional['outputs.StreamConnectionAuthentication']]:

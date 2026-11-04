@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Organizational configuration provides federated settings outputs for the configured Organizational configuration.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -60,7 +59,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Organizational configuration provides federated settings outputs for the configured Organizational configuration.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -105,7 +103,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Organizational configuration provides federated settings outputs for the configured Organizational configuration.
-        /// 
         /// 
         /// ## Example Usage
         /// 

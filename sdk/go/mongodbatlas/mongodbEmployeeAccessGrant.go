@@ -142,6 +142,12 @@ func (MongodbEmployeeAccessGrantState) ElementType() reflect.Type {
 	return reflect.TypeOf((*mongodbEmployeeAccessGrantState)(nil)).Elem()
 }
 
+// MongodbEmployeeAccessGrantExists checks whether an existing MongodbEmployeeAccessGrant resource with the given ID exists.
+func MongodbEmployeeAccessGrantExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MongodbEmployeeAccessGrantState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/mongodbEmployeeAccessGrant:MongodbEmployeeAccessGrant", id, state, "", opts...)
+}
+
 type mongodbEmployeeAccessGrantArgs struct {
 	// Human-readable label that identifies this cluster.
 	ClusterName string `pulumi:"clusterName"`

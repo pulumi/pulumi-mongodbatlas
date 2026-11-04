@@ -214,11 +214,10 @@ public class CloudBackupSnapshotExportBucket extends com.pulumi.resources.Custom
     /**
      * This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
      * 
-     * @deprecated
-     * This parameter is deprecated.
+     * @deprecated This parameter is deprecated.
      * 
      */
-    @Deprecated /* This parameter is deprecated. */
+    @Deprecated
     @Export(name="tenantId", refs={String.class}, tree="[0]")
     private Output<String> tenantId;
 

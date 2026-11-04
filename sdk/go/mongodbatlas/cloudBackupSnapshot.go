@@ -258,6 +258,12 @@ func (CloudBackupSnapshotState) ElementType() reflect.Type {
 	return reflect.TypeOf((*cloudBackupSnapshotState)(nil)).Elem()
 }
 
+// CloudBackupSnapshotExists checks whether an existing CloudBackupSnapshot resource with the given ID exists.
+func CloudBackupSnapshotExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CloudBackupSnapshotState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/cloudBackupSnapshot:CloudBackupSnapshot", id, state, "", opts...)
+}
+
 type cloudBackupSnapshotArgs struct {
 	// The name of the Atlas cluster that contains the snapshots you want to retrieve.
 	ClusterName string `pulumi:"clusterName"`

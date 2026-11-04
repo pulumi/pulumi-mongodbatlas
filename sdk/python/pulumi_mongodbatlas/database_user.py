@@ -970,6 +970,40 @@ class DatabaseUser(pulumi.CustomResource):
         __props__.__dict__["x509_type"] = x509_type
         return DatabaseUser(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            auth_database_name: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_iam_type: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserLabelArgs', 'DatabaseUserLabelArgsDict', 'outputs.DatabaseUserLabel']]]]] = None,
+            ldap_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+            oidc_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict', 'outputs.DatabaseUserRole']]]]] = None,
+            scopes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserScopeArgs', 'DatabaseUserScopeArgsDict', 'outputs.DatabaseUserScope']]]]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None,
+            x509_type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["authDatabaseName"] = auth_database_name
+        __props__["awsIamType"] = aws_iam_type
+        __props__["description"] = description
+        __props__["labels"] = labels
+        __props__["ldapAuthType"] = ldap_auth_type
+        __props__["oidcAuthType"] = oidc_auth_type
+        __props__["password"] = password
+        __props__["passwordWo"] = password_wo
+        __props__["passwordWoVersion"] = password_wo_version
+        __props__["projectId"] = project_id
+        __props__["roles"] = roles
+        __props__["scopes"] = scopes
+        __props__["username"] = username
+        __props__["x509Type"] = x509_type
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/databaseUser:DatabaseUser', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="authDatabaseName")
     def auth_database_name(self) -> pulumi.Output[_builtins.str]:

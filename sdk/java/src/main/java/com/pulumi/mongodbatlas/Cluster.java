@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
  * 
  * To:
  * 
- * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://www.mongodb.com/docs/atlas/billing/).\
+ * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://www.mongodb.com/docs/atlas/billing/).&#92;
  * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
  * 
  * ## Example Usage
@@ -913,7 +913,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
         return this.numShards;
     }
     /**
-     * Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://www.mongodb.com/docs/atlas/pause-terminate-cluster/#considerations-for-paused-clusters)\
+     * Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://www.mongodb.com/docs/atlas/pause-terminate-cluster/#considerations-for-paused-clusters)&#92;
      * **NOTE** Pause lasts for up to 30 days. If you don&#39;t resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
      * `lifecycle {
      * ignoreChanges = [paused]
@@ -924,7 +924,7 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     private Output<Boolean> paused;
 
     /**
-     * @return Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://www.mongodb.com/docs/atlas/pause-terminate-cluster/#considerations-for-paused-clusters)\
+     * @return Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://www.mongodb.com/docs/atlas/pause-terminate-cluster/#considerations-for-paused-clusters)&#92;
      * **NOTE** Pause lasts for up to 30 days. If you don&#39;t resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
      * `lifecycle {
      * ignoreChanges = [paused]
@@ -1037,11 +1037,10 @@ public class Cluster extends com.pulumi.resources.CustomResource {
     /**
      * **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host&#39;s root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
      * 
-     * @deprecated
-     * All EBS volumes are encrypted by default, the option to disable encryption has been removed
+     * @deprecated All EBS volumes are encrypted by default, the option to disable encryption has been removed
      * 
      */
-    @Deprecated /* All EBS volumes are encrypted by default, the option to disable encryption has been removed */
+    @Deprecated
     @Export(name="providerEncryptEbsVolume", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> providerEncryptEbsVolume;
 

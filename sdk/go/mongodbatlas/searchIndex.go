@@ -451,6 +451,12 @@ func (SearchIndexState) ElementType() reflect.Type {
 	return reflect.TypeOf((*searchIndexState)(nil)).Elem()
 }
 
+// SearchIndexExists checks whether an existing SearchIndex resource with the given ID exists.
+func SearchIndexExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SearchIndexState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/searchIndex:SearchIndex", id, state, "", opts...)
+}
+
 type searchIndexArgs struct {
 	// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	Analyzer *string `pulumi:"analyzer"`

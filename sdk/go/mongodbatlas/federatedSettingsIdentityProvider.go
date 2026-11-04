@@ -275,6 +275,12 @@ func (FederatedSettingsIdentityProviderState) ElementType() reflect.Type {
 	return reflect.TypeOf((*federatedSettingsIdentityProviderState)(nil)).Elem()
 }
 
+// FederatedSettingsIdentityProviderExists checks whether an existing FederatedSettingsIdentityProvider resource with the given ID exists.
+func FederatedSettingsIdentityProviderExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FederatedSettingsIdentityProviderState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider", id, state, "", opts...)
+}
+
 type federatedSettingsIdentityProviderArgs struct {
 	// List that contains the domains associated with the identity provider.
 	AssociatedDomains []string `pulumi:"associatedDomains"`

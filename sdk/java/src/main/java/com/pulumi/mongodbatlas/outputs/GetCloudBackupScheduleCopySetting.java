@@ -27,11 +27,10 @@ public final class GetCloudBackupScheduleCopySetting {
     /**
      * @return (Deprecated) List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
+     * @deprecated This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`. */
+    @Deprecated
     private List<String> frequencies;
     /**
      * @return Number of most recent snapshots copied when `copyPolicyItemsEnabled` is true.
@@ -72,11 +71,10 @@ public final class GetCloudBackupScheduleCopySetting {
     /**
      * @return (Deprecated) List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
+     * @deprecated This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`. */
+    @Deprecated
     public List<String> frequencies() {
         return this.frequencies;
     }

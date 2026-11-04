@@ -902,11 +902,10 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
     /**
      * Label that identifies the stream processing workspace. Use `workspaceName` instead; this attribute will be removed in a future major version.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to workspace_name.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Deprecated
     @Export(name="instanceName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> instanceName;
 

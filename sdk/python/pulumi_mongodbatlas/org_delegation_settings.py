@@ -368,6 +368,22 @@ class OrgDelegationSettings(pulumi.CustomResource):
         __props__.__dict__["org_id"] = org_id
         return OrgDelegationSettings(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            delegated_mcp_access: pulumi.Input[Optional[_builtins.str]] = None,
+            delegated_partner_access: pulumi.Input[Optional[_builtins.str]] = None,
+            idle_refresh_token_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+            maximum_refresh_token_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["delegatedMcpAccess"] = delegated_mcp_access
+        __props__["delegatedPartnerAccess"] = delegated_partner_access
+        __props__["idleRefreshTokenLifetime"] = idle_refresh_token_lifetime
+        __props__["maximumRefreshTokenLifetime"] = maximum_refresh_token_lifetime
+        __props__["orgId"] = org_id
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/orgDelegationSettings:OrgDelegationSettings', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="delegatedMcpAccess")
     def delegated_mcp_access(self) -> pulumi.Output[_builtins.str]:

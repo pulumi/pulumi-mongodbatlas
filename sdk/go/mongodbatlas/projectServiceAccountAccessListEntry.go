@@ -191,6 +191,12 @@ func (ProjectServiceAccountAccessListEntryState) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectServiceAccountAccessListEntryState)(nil)).Elem()
 }
 
+// ProjectServiceAccountAccessListEntryExists checks whether an existing ProjectServiceAccountAccessListEntry resource with the given ID exists.
+func ProjectServiceAccountAccessListEntryExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ProjectServiceAccountAccessListEntryState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/projectServiceAccountAccessListEntry:ProjectServiceAccountAccessListEntry", id, state, "", opts...)
+}
+
 type projectServiceAccountAccessListEntryArgs struct {
 	// Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
 	CidrBlock *string `pulumi:"cidrBlock"`

@@ -473,6 +473,24 @@ class ProjectIpAccessList(pulumi.CustomResource):
         __props__.__dict__["timeouts"] = timeouts
         return ProjectIpAccessList(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            aws_security_group: pulumi.Input[Optional[_builtins.str]] = None,
+            cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+            comment: pulumi.Input[Optional[_builtins.str]] = None,
+            ip_address: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            timeouts: pulumi.Input[Optional[Union['ProjectIpAccessListTimeoutsArgs', 'ProjectIpAccessListTimeoutsArgsDict', 'outputs.ProjectIpAccessListTimeouts']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["awsSecurityGroup"] = aws_security_group
+        __props__["cidrBlock"] = cidr_block
+        __props__["comment"] = comment
+        __props__["ipAddress"] = ip_address
+        __props__["projectId"] = project_id
+        __props__["timeouts"] = timeouts
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/projectIpAccessList:ProjectIpAccessList', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="awsSecurityGroup")
     def aws_security_group(self) -> pulumi.Output[_builtins.str]:

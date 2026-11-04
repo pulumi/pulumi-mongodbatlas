@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -45,7 +44,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -75,7 +73,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
-        /// 
         /// 
         /// ## Example Usage
         /// 

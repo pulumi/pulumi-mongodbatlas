@@ -13,7 +13,7 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// `mongodbatlas.getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
-        /// applied across the project. 
+        /// applied across the project.
         /// 
         /// ## Example Usage
         /// 
@@ -53,7 +53,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
-        /// applied across the project. 
+        /// applied across the project.
         /// 
         /// ## Example Usage
         /// 
@@ -93,7 +93,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
-        /// applied across the project. 
+        /// applied across the project.
         /// 
         /// ## Example Usage
         /// 

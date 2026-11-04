@@ -190,6 +190,12 @@ func (GlobalClusterConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*globalClusterConfigState)(nil)).Elem()
 }
 
+// GlobalClusterConfigExists checks whether an existing GlobalClusterConfig resource with the given ID exists.
+func GlobalClusterConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GlobalClusterConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/globalClusterConfig:GlobalClusterConfig", id, state, "", opts...)
+}
+
 type globalClusterConfigArgs struct {
 	// The name of the Global Cluster.
 	ClusterName string `pulumi:"clusterName"`

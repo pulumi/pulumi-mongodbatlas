@@ -52,22 +52,20 @@ public final class CloudBackupScheduleCopySettingArgs extends com.pulumi.resourc
     /**
      * List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `copyPolicyItems` and `lastNumberOfSnapshots` on the same entry. You can switch an entry from `frequencies` to `copyPolicyItems` or `lastNumberOfSnapshots` in one apply; the switch back is not possible because `copyPolicyItemsEnabled` cannot be turned off once it is `true`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
+     * @deprecated This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`. */
+    @Deprecated
     @Import(name="frequencies")
     private @Nullable Output<List<String>> frequencies;
 
     /**
      * @return List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `copyPolicyItems` and `lastNumberOfSnapshots` on the same entry. You can switch an entry from `frequencies` to `copyPolicyItems` or `lastNumberOfSnapshots` in one apply; the switch back is not possible because `copyPolicyItemsEnabled` cannot be turned off once it is `true`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
+     * @deprecated This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`. */
+    @Deprecated
     public Optional<Output<List<String>>> frequencies() {
         return Optional.ofNullable(this.frequencies);
     }
@@ -219,11 +217,10 @@ public final class CloudBackupScheduleCopySettingArgs extends com.pulumi.resourc
          * 
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
+         * @deprecated This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
          * 
          */
-        @Deprecated /* This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`. */
+        @Deprecated
         public Builder frequencies(@Nullable Output<List<String>> frequencies) {
             $.frequencies = frequencies;
             return this;
@@ -234,11 +231,10 @@ public final class CloudBackupScheduleCopySettingArgs extends com.pulumi.resourc
          * 
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
+         * @deprecated This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
          * 
          */
-        @Deprecated /* This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`. */
+        @Deprecated
         public Builder frequencies(List<String> frequencies) {
             return frequencies(Output.of(frequencies));
         }
@@ -248,11 +244,10 @@ public final class CloudBackupScheduleCopySettingArgs extends com.pulumi.resourc
          * 
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
+         * @deprecated This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
          * 
          */
-        @Deprecated /* This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`. */
+        @Deprecated
         public Builder frequencies(String... frequencies) {
             return frequencies(List.of(frequencies));
         }

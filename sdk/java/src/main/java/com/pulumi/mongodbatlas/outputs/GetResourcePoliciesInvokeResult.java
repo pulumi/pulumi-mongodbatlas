@@ -19,11 +19,10 @@ public final class GetResourcePoliciesInvokeResult {
      */
     private String orgId;
     /**
-     * @deprecated
-     * This parameter is deprecated. Please transition to `results`.
+     * @deprecated This parameter is deprecated. Please transition to `results`.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to `results`. */
+    @Deprecated
     private List<GetResourcePoliciesResourcePolicy> resourcePolicies;
     /**
      * @return List of documents that MongoDB Cloud returns for this request.
@@ -40,11 +39,10 @@ public final class GetResourcePoliciesInvokeResult {
         return this.orgId;
     }
     /**
-     * @deprecated
-     * This parameter is deprecated. Please transition to `results`.
+     * @deprecated This parameter is deprecated. Please transition to `results`.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to `results`. */
+    @Deprecated
     public List<GetResourcePoliciesResourcePolicy> resourcePolicies() {
         return this.resourcePolicies;
     }

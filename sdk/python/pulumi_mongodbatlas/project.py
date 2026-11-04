@@ -1002,6 +1002,56 @@ class Project(pulumi.CustomResource):
         __props__.__dict__["with_default_alerts_settings"] = with_default_alerts_settings
         return Project(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cluster_count: pulumi.Input[Optional[_builtins.int]] = None,
+            created: pulumi.Input[Optional[_builtins.str]] = None,
+            ip_addresses: pulumi.Input[Optional[Union['ProjectIpAddressesArgs', 'ProjectIpAddressesArgsDict', 'outputs.ProjectIpAddresses']]] = None,
+            is_cluster_ai_assistant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_collect_database_specifics_statistics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_data_explorer_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_data_explorer_gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_data_explorer_gen_ai_sample_document_passing_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_extended_storage_sizes_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_native_reranking_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_performance_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_realtime_performance_panel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_schema_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_slow_operation_thresholding_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectLimitArgs', 'ProjectLimitArgsDict', 'outputs.ProjectLimit']]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region_usage_restrictions: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            teams: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectTeamArgs', 'ProjectTeamArgsDict', 'outputs.ProjectTeam']]]]] = None,
+            with_default_alerts_settings: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["clusterCount"] = cluster_count
+        __props__["created"] = created
+        __props__["ipAddresses"] = ip_addresses
+        __props__["isClusterAiAssistantEnabled"] = is_cluster_ai_assistant_enabled
+        __props__["isCollectDatabaseSpecificsStatisticsEnabled"] = is_collect_database_specifics_statistics_enabled
+        __props__["isDataExplorerEnabled"] = is_data_explorer_enabled
+        __props__["isDataExplorerGenAiFeaturesEnabled"] = is_data_explorer_gen_ai_features_enabled
+        __props__["isDataExplorerGenAiSampleDocumentPassingEnabled"] = is_data_explorer_gen_ai_sample_document_passing_enabled
+        __props__["isExtendedStorageSizesEnabled"] = is_extended_storage_sizes_enabled
+        __props__["isNativeRerankingEnabled"] = is_native_reranking_enabled
+        __props__["isPerformanceAdvisorEnabled"] = is_performance_advisor_enabled
+        __props__["isRealtimePerformancePanelEnabled"] = is_realtime_performance_panel_enabled
+        __props__["isSchemaAdvisorEnabled"] = is_schema_advisor_enabled
+        __props__["isSlowOperationThresholdingEnabled"] = is_slow_operation_thresholding_enabled
+        __props__["limits"] = limits
+        __props__["name"] = name
+        __props__["orgId"] = org_id
+        __props__["projectOwnerId"] = project_owner_id
+        __props__["regionUsageRestrictions"] = region_usage_restrictions
+        __props__["tags"] = tags
+        __props__["teams"] = teams
+        __props__["withDefaultAlertsSettings"] = with_default_alerts_settings
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/project:Project', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="clusterCount")
     def cluster_count(self) -> pulumi.Output[_builtins.int]:

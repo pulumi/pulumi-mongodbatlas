@@ -864,6 +864,46 @@ class StreamConnectionFailover(pulumi.CustomResource):
         __props__.__dict__["workspace_name"] = workspace_name
         return StreamConnectionFailover(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            authentication: pulumi.Input[Optional[Union['StreamConnectionFailoverAuthenticationArgs', 'StreamConnectionFailoverAuthenticationArgsDict', 'outputs.StreamConnectionFailoverAuthentication']]] = None,
+            bootstrap_servers: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            connection_name: pulumi.Input[Optional[_builtins.str]] = None,
+            db_role_to_execute: pulumi.Input[Optional[Union['StreamConnectionFailoverDbRoleToExecuteArgs', 'StreamConnectionFailoverDbRoleToExecuteArgsDict', 'outputs.StreamConnectionFailoverDbRoleToExecute']]] = None,
+            delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            failover_connection_id: pulumi.Input[Optional[_builtins.str]] = None,
+            networking: pulumi.Input[Optional[Union['StreamConnectionFailoverNetworkingArgs', 'StreamConnectionFailoverNetworkingArgsDict', 'outputs.StreamConnectionFailoverNetworking']]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            security: pulumi.Input[Optional[Union['StreamConnectionFailoverSecurityArgs', 'StreamConnectionFailoverSecurityArgsDict', 'outputs.StreamConnectionFailoverSecurity']]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            timeouts: pulumi.Input[Optional[Union['StreamConnectionFailoverTimeoutsArgs', 'StreamConnectionFailoverTimeoutsArgsDict', 'outputs.StreamConnectionFailoverTimeouts']]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            workspace_name: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["authentication"] = authentication
+        __props__["bootstrapServers"] = bootstrap_servers
+        __props__["clusterName"] = cluster_name
+        __props__["clusterProjectId"] = cluster_project_id
+        __props__["config"] = config
+        __props__["connectionName"] = connection_name
+        __props__["dbRoleToExecute"] = db_role_to_execute
+        __props__["deleteOnCreateTimeout"] = delete_on_create_timeout
+        __props__["failoverConnectionId"] = failover_connection_id
+        __props__["networking"] = networking
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["security"] = security
+        __props__["state"] = state
+        __props__["timeouts"] = timeouts
+        __props__["type"] = type
+        __props__["workspaceName"] = workspace_name
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/streamConnectionFailover:StreamConnectionFailover', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def authentication(self) -> pulumi.Output[Optional['outputs.StreamConnectionFailoverAuthentication']]:

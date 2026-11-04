@@ -17,11 +17,10 @@ public final class GetServerlessInstanceResult {
     /**
      * @return (Deprecated) Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
+     * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
+    @Deprecated
     private Boolean autoIndexing;
     /**
      * @return List of Serverless Private Endpoint Connections
@@ -36,11 +35,10 @@ public final class GetServerlessInstanceResult {
     /**
      * @return (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
+     * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
+    @Deprecated
     private Boolean continuousBackupEnabled;
     private String createDate;
     /**
@@ -91,11 +89,10 @@ public final class GetServerlessInstanceResult {
     /**
      * @return (Deprecated) Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
+     * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
+    @Deprecated
     public Boolean autoIndexing() {
         return this.autoIndexing;
     }
@@ -116,11 +113,10 @@ public final class GetServerlessInstanceResult {
     /**
      * @return (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
+     * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
+    @Deprecated
     public Boolean continuousBackupEnabled() {
         return this.continuousBackupEnabled;
     }

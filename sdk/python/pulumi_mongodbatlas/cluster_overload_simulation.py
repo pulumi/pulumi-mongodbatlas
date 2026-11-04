@@ -484,6 +484,32 @@ class ClusterOverloadSimulation(pulumi.CustomResource):
         __props__.__dict__["timeouts"] = timeouts
         return ClusterOverloadSimulation(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cancel_requested_at: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            duration_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            request_date: pulumi.Input[Optional[_builtins.str]] = None,
+            simulation_id: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            timeouts: pulumi.Input[Optional[Union['ClusterOverloadSimulationTimeoutsArgs', 'ClusterOverloadSimulationTimeoutsArgsDict', 'outputs.ClusterOverloadSimulationTimeouts']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["cancelRequestedAt"] = cancel_requested_at
+        __props__["clusterName"] = cluster_name
+        __props__["deleteOnCreateTimeout"] = delete_on_create_timeout
+        __props__["durationSeconds"] = duration_seconds
+        __props__["expiresAt"] = expires_at
+        __props__["projectId"] = project_id
+        __props__["requestDate"] = request_date
+        __props__["simulationId"] = simulation_id
+        __props__["state"] = state
+        __props__["timeouts"] = timeouts
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/clusterOverloadSimulation:ClusterOverloadSimulation', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="cancelRequestedAt")
     def cancel_requested_at(self) -> pulumi.Output[_builtins.str]:

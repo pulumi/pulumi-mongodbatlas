@@ -17,11 +17,10 @@ public final class GetStreamProcessorsInvokeResult {
     /**
      * @return Label that identifies the stream processing workspace.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to workspace_name.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Deprecated
     private @Nullable String instanceName;
     /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -43,11 +42,10 @@ public final class GetStreamProcessorsInvokeResult {
     /**
      * @return Label that identifies the stream processing workspace.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to workspace_name.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Deprecated
     public Optional<String> instanceName() {
         return Optional.ofNullable(this.instanceName);
     }

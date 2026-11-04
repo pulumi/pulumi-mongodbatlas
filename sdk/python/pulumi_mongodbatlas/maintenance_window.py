@@ -653,6 +653,34 @@ class MaintenanceWindow(pulumi.CustomResource):
         __props__.__dict__["wave_assignment"] = wave_assignment
         return MaintenanceWindow(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            auto_defer: pulumi.Input[Optional[_builtins.bool]] = None,
+            auto_defer_once_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            day_of_week: pulumi.Input[Optional[_builtins.int]] = None,
+            defer: pulumi.Input[Optional[_builtins.bool]] = None,
+            hour_of_day: pulumi.Input[Optional[_builtins.int]] = None,
+            number_of_deferrals: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            protected_hours: pulumi.Input[Optional[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict', 'outputs.MaintenanceWindowProtectedHours']]] = None,
+            start_asap: pulumi.Input[Optional[_builtins.bool]] = None,
+            time_zone_id: pulumi.Input[Optional[_builtins.str]] = None,
+            wave_assignment: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["autoDefer"] = auto_defer
+        __props__["autoDeferOnceEnabled"] = auto_defer_once_enabled
+        __props__["dayOfWeek"] = day_of_week
+        __props__["defer"] = defer
+        __props__["hourOfDay"] = hour_of_day
+        __props__["numberOfDeferrals"] = number_of_deferrals
+        __props__["projectId"] = project_id
+        __props__["protectedHours"] = protected_hours
+        __props__["startAsap"] = start_asap
+        __props__["timeZoneId"] = time_zone_id
+        __props__["waveAssignment"] = wave_assignment
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/maintenanceWindow:MaintenanceWindow', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="autoDefer")
     def auto_defer(self) -> pulumi.Output[_builtins.bool]:

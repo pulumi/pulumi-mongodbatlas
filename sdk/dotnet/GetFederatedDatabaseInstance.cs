@@ -37,7 +37,6 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// 
         /// ### S With Amazon S3 Bucket As Storage Database
         /// 
         /// ```csharp
@@ -145,7 +144,6 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// 
         /// ### S With Amazon S3 Bucket As Storage Database
         /// 
         /// ```csharp
@@ -252,7 +250,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// 
         /// 
         /// ### S With Amazon S3 Bucket As Storage Database
         /// 

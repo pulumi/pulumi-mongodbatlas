@@ -482,6 +482,28 @@ class FederatedSettingsOrgConfig(pulumi.CustomResource):
         __props__.__dict__["user_conflicts"] = user_conflicts
         return FederatedSettingsOrgConfig(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            data_access_identity_provider_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            domain_allow_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            domain_restriction_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            post_auth_role_grants: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            user_conflicts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedSettingsOrgConfigUserConflictArgs', 'FederatedSettingsOrgConfigUserConflictArgsDict', 'outputs.FederatedSettingsOrgConfigUserConflict']]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["dataAccessIdentityProviderIds"] = data_access_identity_provider_ids
+        __props__["domainAllowLists"] = domain_allow_lists
+        __props__["domainRestrictionEnabled"] = domain_restriction_enabled
+        __props__["federationSettingsId"] = federation_settings_id
+        __props__["identityProviderId"] = identity_provider_id
+        __props__["orgId"] = org_id
+        __props__["postAuthRoleGrants"] = post_auth_role_grants
+        __props__["userConflicts"] = user_conflicts
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="dataAccessIdentityProviderIds")
     def data_access_identity_provider_ids(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:

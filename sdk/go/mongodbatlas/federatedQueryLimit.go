@@ -184,6 +184,12 @@ func (FederatedQueryLimitState) ElementType() reflect.Type {
 	return reflect.TypeOf((*federatedQueryLimitState)(nil)).Elem()
 }
 
+// FederatedQueryLimitExists checks whether an existing FederatedQueryLimit resource with the given ID exists.
+func FederatedQueryLimitExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FederatedQueryLimitState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/federatedQueryLimit:FederatedQueryLimit", id, state, "", opts...)
+}
+
 type federatedQueryLimitArgs struct {
 	// Default value of the limit.
 	DefaultLimit *int `pulumi:"defaultLimit"`

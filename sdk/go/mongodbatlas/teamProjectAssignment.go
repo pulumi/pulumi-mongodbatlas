@@ -133,6 +133,12 @@ func (TeamProjectAssignmentState) ElementType() reflect.Type {
 	return reflect.TypeOf((*teamProjectAssignmentState)(nil)).Elem()
 }
 
+// TeamProjectAssignmentExists checks whether an existing TeamProjectAssignment resource with the given ID exists.
+func TeamProjectAssignmentExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TeamProjectAssignmentState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/teamProjectAssignment:TeamProjectAssignment", id, state, "", opts...)
+}
+
 type teamProjectAssignmentArgs struct {
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`

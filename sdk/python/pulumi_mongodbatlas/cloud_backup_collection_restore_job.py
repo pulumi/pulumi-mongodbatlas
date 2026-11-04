@@ -901,6 +901,58 @@ class CloudBackupCollectionRestoreJob(pulumi.CustomResource):
         __props__.__dict__["write_strategy"] = write_strategy
         return CloudBackupCollectionRestoreJob(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            collection_suffix: pulumi.Input[Optional[_builtins.str]] = None,
+            collections: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobCollectionArgs', 'CloudBackupCollectionRestoreJobCollectionArgsDict', 'outputs.CloudBackupCollectionRestoreJobCollection']]]]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            database_suffix: pulumi.Input[Optional[_builtins.str]] = None,
+            databases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobDatabaseArgs', 'CloudBackupCollectionRestoreJobDatabaseArgsDict', 'outputs.CloudBackupCollectionRestoreJobDatabase']]]]] = None,
+            error_message: pulumi.Input[Optional[_builtins.str]] = None,
+            finished_at: pulumi.Input[Optional[_builtins.str]] = None,
+            index_status: pulumi.Input[Optional[Union['CloudBackupCollectionRestoreJobIndexStatusArgs', 'CloudBackupCollectionRestoreJobIndexStatusArgsDict', 'outputs.CloudBackupCollectionRestoreJobIndexStatus']]] = None,
+            index_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+            job_id: pulumi.Input[Optional[_builtins.str]] = None,
+            oplog_inc: pulumi.Input[Optional[_builtins.int]] = None,
+            oplog_ts: pulumi.Input[Optional[_builtins.int]] = None,
+            point_in_time_utc_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            restored_documents: pulumi.Input[Optional[_builtins.int]] = None,
+            snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            target_cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            target_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            timeouts: pulumi.Input[Optional[Union['CloudBackupCollectionRestoreJobTimeoutsArgs', 'CloudBackupCollectionRestoreJobTimeoutsArgsDict', 'outputs.CloudBackupCollectionRestoreJobTimeouts']]] = None,
+            total_documents: pulumi.Input[Optional[_builtins.int]] = None,
+            write_strategy: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["clusterName"] = cluster_name
+        __props__["collectionSuffix"] = collection_suffix
+        __props__["collections"] = collections
+        __props__["createdAt"] = created_at
+        __props__["databaseSuffix"] = database_suffix
+        __props__["databases"] = databases
+        __props__["errorMessage"] = error_message
+        __props__["finishedAt"] = finished_at
+        __props__["indexStatus"] = index_status
+        __props__["indexStrategy"] = index_strategy
+        __props__["jobId"] = job_id
+        __props__["oplogInc"] = oplog_inc
+        __props__["oplogTs"] = oplog_ts
+        __props__["pointInTimeUtcSeconds"] = point_in_time_utc_seconds
+        __props__["projectId"] = project_id
+        __props__["restoredDocuments"] = restored_documents
+        __props__["snapshotId"] = snapshot_id
+        __props__["state"] = state
+        __props__["targetClusterName"] = target_cluster_name
+        __props__["targetProjectId"] = target_project_id
+        __props__["timeouts"] = timeouts
+        __props__["totalDocuments"] = total_documents
+        __props__["writeStrategy"] = write_strategy
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/cloudBackupCollectionRestoreJob:CloudBackupCollectionRestoreJob', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> pulumi.Output[_builtins.str]:

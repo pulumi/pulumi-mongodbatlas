@@ -80,12 +80,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var test_basic_search_vector = new SearchIndex("test-basic-search-vector", SearchIndexArgs.builder()
  *             .projectId("<PROJECT_ID>")
  *             .clusterName("<CLUSTER_NAME>")
@@ -93,17 +93,17 @@ import javax.annotation.Nullable;
  *             .database("database_test")
  *             .type("vectorSearch")
  *             .fields("""
- * [{
- *       \"type\": \"vector\",
- *       \"path\": \"plot_embedding\",
- *       \"numDimensions\": 1536,
- *       \"similarity\": \"euclidean\"
- * }]
+ * [}{{@code
+ *       }&#92;{@code "type}&#92;{@code ": }&#92;{@code "vector}&#92;{@code ",
+ *       }&#92;{@code "path}&#92;{@code ": }&#92;{@code "plot_embedding}&#92;{@code ",
+ *       }&#92;{@code "numDimensions}&#92;{@code ": 1536,
+ *       }&#92;{@code "similarity}&#92;{@code ": }&#92;{@code "euclidean}&#92;{@code "
+ * }}{@code ]
  *             """)
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * 
@@ -124,12 +124,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var test_auto_embed_vector_index = new SearchIndex("test-auto-embed-vector-index", SearchIndexArgs.builder()
  *             .projectId("<PROJECT_ID>")
  *             .clusterName("<CLUSTER_NAME>")
@@ -138,21 +138,21 @@ import javax.annotation.Nullable;
  *             .name("test-auto-embed-vector-index")
  *             .type("vectorSearch")
  *             .fields("""
- * [{
- *       \"type\": \"autoEmbed\",
- *       \"path\": \"description\",
- *       \"model\": \"voyage-4-lite\",
- *       \"modality\": \"text\"
- * },
- * {
- *       \"type\": \"filter\",
- *       \"path\": \"property_type\"
- * }]
+ * [}{{@code
+ *       }&#92;{@code "type}&#92;{@code ": }&#92;{@code "autoEmbed}&#92;{@code ",
+ *       }&#92;{@code "path}&#92;{@code ": }&#92;{@code "description}&#92;{@code ",
+ *       }&#92;{@code "model}&#92;{@code ": }&#92;{@code "voyage-4-lite}&#92;{@code ",
+ *       }&#92;{@code "modality}&#92;{@code ": }&#92;{@code "text}&#92;{@code "
+ * }}{@code ,
+ * }{{@code
+ *       }&#92;{@code "type}&#92;{@code ": }&#92;{@code "filter}&#92;{@code ",
+ *       }&#92;{@code "path}&#92;{@code ": }&#92;{@code "property_type}&#92;{@code "
+ * }}{@code ]
  *             """)
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * 
@@ -174,12 +174,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var test_advanced_search_index = new SearchIndex("test-advanced-search-index", SearchIndexArgs.builder()
  *             .projectId("<PROJECT_ID>")
  *             .clusterName("<CLUSTER_NAME>")
@@ -188,57 +188,57 @@ import javax.annotation.Nullable;
  *             .database("database_test")
  *             .mappingsDynamic(false)
  *             .mappingsFields("""
- * {
- *       \"address\": {
- *         \"type\": \"document\",
- *         \"fields\": {
- *           \"city\": {
- *             \"type\": \"string\",
- *             \"analyzer\": \"lucene.simple\",
- *             \"ignoreAbove\": 255
- *           },
- *           \"state\": {
- *             \"type\": \"string\",
- *             \"analyzer\": \"lucene.english\"
- *           }
- *         }
- *       },
- *       \"company\": {
- *         \"type\": \"string\",
- *         \"analyzer\": \"lucene.whitespace\",
- *         \"multi\": {
- *           \"mySecondaryAnalyzer\": {
- *             \"type\": \"string\",
- *             \"analyzer\": \"lucene.french\"
- *           }
- *         }
- *       },
- *       \"employees\": {
- *         \"type\": \"string\",
- *         \"analyzer\": \"lucene.standard\"
- *       }
- * }
+ * }{{@code
+ *       }&#92;{@code "address}&#92;{@code ": }{{@code
+ *         }&#92;{@code "type}&#92;{@code ": }&#92;{@code "document}&#92;{@code ",
+ *         }&#92;{@code "fields}&#92;{@code ": }{{@code
+ *           }&#92;{@code "city}&#92;{@code ": }{{@code
+ *             }&#92;{@code "type}&#92;{@code ": }&#92;{@code "string}&#92;{@code ",
+ *             }&#92;{@code "analyzer}&#92;{@code ": }&#92;{@code "lucene.simple}&#92;{@code ",
+ *             }&#92;{@code "ignoreAbove}&#92;{@code ": 255
+ *           }}{@code ,
+ *           }&#92;{@code "state}&#92;{@code ": }{{@code
+ *             }&#92;{@code "type}&#92;{@code ": }&#92;{@code "string}&#92;{@code ",
+ *             }&#92;{@code "analyzer}&#92;{@code ": }&#92;{@code "lucene.english}&#92;{@code "
+ *           }}{@code
+ *         }}{@code
+ *       }}{@code ,
+ *       }&#92;{@code "company}&#92;{@code ": }{{@code
+ *         }&#92;{@code "type}&#92;{@code ": }&#92;{@code "string}&#92;{@code ",
+ *         }&#92;{@code "analyzer}&#92;{@code ": }&#92;{@code "lucene.whitespace}&#92;{@code ",
+ *         }&#92;{@code "multi}&#92;{@code ": }{{@code
+ *           }&#92;{@code "mySecondaryAnalyzer}&#92;{@code ": }{{@code
+ *             }&#92;{@code "type}&#92;{@code ": }&#92;{@code "string}&#92;{@code ",
+ *             }&#92;{@code "analyzer}&#92;{@code ": }&#92;{@code "lucene.french}&#92;{@code "
+ *           }}{@code
+ *         }}{@code
+ *       }}{@code ,
+ *       }&#92;{@code "employees}&#92;{@code ": }{{@code
+ *         }&#92;{@code "type}&#92;{@code ": }&#92;{@code "string}&#92;{@code ",
+ *         }&#92;{@code "analyzer}&#92;{@code ": }&#92;{@code "lucene.standard}&#92;{@code "
+ *       }}{@code
+ * }}{@code
  *             """)
  *             .name("test-advanced-search-index")
  *             .searchAnalyzer("lucene.standard")
  *             .analyzers("""
- *  [{
- *  \"name\": \"index_analyzer_test_name\",
- *  \"charFilters\": [{
- * \"type\": \"mapping\",
- * \"mappings\": {\"\\\\\" : \"/\"}
- *    \t}],
- *  \"tokenizer\": {
- *  \"type\": \"nGram\",
- *  \"minGram\": 2,
- *  \"maxGram\": 5
- * \t},
- *  \"tokenFilters\": [{
- * \"type\": \"length\",
- * \"min\": 20,
- * \"max\": 33
- *    \t}]
- *  }]
+ *  [}{{@code
+ *  }&#92;{@code "name}&#92;{@code ": }&#92;{@code "index_analyzer_test_name}&#92;{@code ",
+ *  }&#92;{@code "charFilters}&#92;{@code ": [}{{@code
+ * }&#92;{@code "type}&#92;{@code ": }&#92;{@code "mapping}&#92;{@code ",
+ * }&#92;{@code "mappings}&#92;{@code ": }{&#92;{@code "}&#92;&#92;&#92;&#92;&#92;{@code " : }&#92;{@code "/}&#92;{@code "}}{@code
+ *    }&#92;{@code t}}{@code ],
+ *  }&#92;{@code "tokenizer}&#92;{@code ": }{{@code
+ *  }&#92;{@code "type}&#92;{@code ": }&#92;{@code "nGram}&#92;{@code ",
+ *  }&#92;{@code "minGram}&#92;{@code ": 2,
+ *  }&#92;{@code "maxGram}&#92;{@code ": 5
+ * }&#92;{@code t}}{@code ,
+ *  }&#92;{@code "tokenFilters}&#92;{@code ": [}{{@code
+ * }&#92;{@code "type}&#92;{@code ": }&#92;{@code "length}&#92;{@code ",
+ * }&#92;{@code "min}&#92;{@code ": 20,
+ * }&#92;{@code "max}&#92;{@code ": 33
+ *    }&#92;{@code t}}{@code ]
+ *  }}{@code ]
  *             """)
  *             .synonyms(SearchIndexSynonymArgs.builder()
  *                 .analyzer("lucene.simple")
@@ -247,8 +247,8 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * 
@@ -270,12 +270,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var conf_dynamic = new SearchIndex("conf-dynamic", SearchIndexArgs.builder()
  *             .projectId("<PROJECT_ID>")
  *             .clusterName("<CLUSTER_NAME>")
@@ -284,20 +284,20 @@ import javax.annotation.Nullable;
  *             .name("conf-dynamic")
  *             .type("search")
  *             .mappingsDynamicConfig("""
- * { \"typeSet\": \"type_set_name\" }
+ * }{{@code  }&#92;{@code "typeSet}&#92;{@code ": }&#92;{@code "type_set_name}&#92;{@code " }}{@code
  *             """)
  *             .typeSets(SearchIndexTypeSetArgs.builder()
  *                 .name("type_set_name")
  *                 .types("""
  * [
- *   { \"type\": \"string\" }
+ *   }{{@code  }&#92;{@code "type}&#92;{@code ": }&#92;{@code "string}&#92;{@code " }}{@code
  * ]
  *                 """)
  *                 .build())
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * 

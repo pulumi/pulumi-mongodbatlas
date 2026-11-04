@@ -836,6 +836,38 @@ class StreamProcessor(pulumi.CustomResource):
         __props__.__dict__["workspace_name"] = workspace_name
         return StreamProcessor(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            effective_tier: pulumi.Input[Optional[_builtins.str]] = None,
+            failover_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            instance_name: pulumi.Input[Optional[_builtins.str]] = None,
+            options: pulumi.Input[Optional[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict', 'outputs.StreamProcessorOptions']]] = None,
+            pipeline: pulumi.Input[Optional[_builtins.str]] = None,
+            processor_name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            stats: pulumi.Input[Optional[_builtins.str]] = None,
+            tier: pulumi.Input[Optional[_builtins.str]] = None,
+            timeouts: pulumi.Input[Optional[Union['StreamProcessorTimeoutsArgs', 'StreamProcessorTimeoutsArgsDict', 'outputs.StreamProcessorTimeouts']]] = None,
+            workspace_name: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["deleteOnCreateTimeout"] = delete_on_create_timeout
+        __props__["effectiveTier"] = effective_tier
+        __props__["failoverEnabled"] = failover_enabled
+        __props__["instanceName"] = instance_name
+        __props__["options"] = options
+        __props__["pipeline"] = pipeline
+        __props__["processorName"] = processor_name
+        __props__["projectId"] = project_id
+        __props__["state"] = state
+        __props__["stats"] = stats
+        __props__["tier"] = tier
+        __props__["timeouts"] = timeouts
+        __props__["workspaceName"] = workspace_name
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/streamProcessor:StreamProcessor', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="deleteOnCreateTimeout")
     def delete_on_create_timeout(self) -> pulumi.Output[_builtins.bool]:

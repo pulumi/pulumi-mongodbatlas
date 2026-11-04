@@ -174,22 +174,20 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don&#39;t need to take any action.
      * 
-     * @deprecated
-     * This parameter is deprecated.
+     * @deprecated This parameter is deprecated.
      * 
      */
-    @Deprecated /* This parameter is deprecated. */
+    @Deprecated
     @Import(name="isSlowOperationThresholdingEnabled")
     private @Nullable Output<Boolean> isSlowOperationThresholdingEnabled;
 
     /**
      * @return (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don&#39;t need to take any action.
      * 
-     * @deprecated
-     * This parameter is deprecated.
+     * @deprecated This parameter is deprecated.
      * 
      */
-    @Deprecated /* This parameter is deprecated. */
+    @Deprecated
     public Optional<Output<Boolean>> isSlowOperationThresholdingEnabled() {
         return Optional.ofNullable(this.isSlowOperationThresholdingEnabled);
     }
@@ -277,20 +275,18 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+     * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+    @Deprecated
     @Import(name="teams")
     private @Nullable Output<List<ProjectTeamArgs>> teams;
 
     /**
-     * @deprecated
-     * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+     * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+    @Deprecated
     public Optional<Output<List<ProjectTeamArgs>>> teams() {
         return Optional.ofNullable(this.teams);
     }
@@ -567,11 +563,10 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated.
+         * @deprecated This parameter is deprecated.
          * 
          */
-        @Deprecated /* This parameter is deprecated. */
+        @Deprecated
         public Builder isSlowOperationThresholdingEnabled(@Nullable Output<Boolean> isSlowOperationThresholdingEnabled) {
             $.isSlowOperationThresholdingEnabled = isSlowOperationThresholdingEnabled;
             return this;
@@ -582,11 +577,10 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated.
+         * @deprecated This parameter is deprecated.
          * 
          */
-        @Deprecated /* This parameter is deprecated. */
+        @Deprecated
         public Builder isSlowOperationThresholdingEnabled(Boolean isSlowOperationThresholdingEnabled) {
             return isSlowOperationThresholdingEnabled(Output.of(isSlowOperationThresholdingEnabled));
         }
@@ -712,11 +706,10 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+         * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
          * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+        @Deprecated
         public Builder teams(@Nullable Output<List<ProjectTeamArgs>> teams) {
             $.teams = teams;
             return this;
@@ -725,11 +718,10 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+         * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
          * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+        @Deprecated
         public Builder teams(List<ProjectTeamArgs> teams) {
             return teams(Output.of(teams));
         }
@@ -737,11 +729,10 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+         * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
          * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+        @Deprecated
         public Builder teams(ProjectTeamArgs... teams) {
             return teams(List.of(teams));
         }

@@ -19,7 +19,6 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
         /// For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -49,7 +48,6 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
         /// For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -78,7 +76,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
         /// For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
-        /// 
         /// 
         /// ## Example Usage
         /// 

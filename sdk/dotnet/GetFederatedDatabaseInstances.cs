@@ -20,7 +20,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### S
         /// 
-        /// 
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -50,7 +49,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### S
         /// 
-        /// 
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -79,7 +77,6 @@ namespace Pulumi.Mongodbatlas
         /// ## Example Usage
         /// 
         /// ### S
-        /// 
         /// 
         /// ```csharp
         /// using System.Collections.Generic;

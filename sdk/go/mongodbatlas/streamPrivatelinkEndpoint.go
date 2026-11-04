@@ -448,6 +448,12 @@ func (StreamPrivatelinkEndpointState) ElementType() reflect.Type {
 	return reflect.TypeOf((*streamPrivatelinkEndpointState)(nil)).Elem()
 }
 
+// StreamPrivatelinkEndpointExists checks whether an existing StreamPrivatelinkEndpoint resource with the given ID exists.
+func StreamPrivatelinkEndpointExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *StreamPrivatelinkEndpointState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint", id, state, "", opts...)
+}
+
 type streamPrivatelinkEndpointArgs struct {
 	// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
 	Arn *string `pulumi:"arn"`

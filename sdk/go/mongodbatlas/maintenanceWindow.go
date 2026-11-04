@@ -276,6 +276,12 @@ func (MaintenanceWindowState) ElementType() reflect.Type {
 	return reflect.TypeOf((*maintenanceWindowState)(nil)).Elem()
 }
 
+// MaintenanceWindowExists checks whether an existing MaintenanceWindow resource with the given ID exists.
+func MaintenanceWindowExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MaintenanceWindowState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/maintenanceWindow:MaintenanceWindow", id, state, "", opts...)
+}
+
 type maintenanceWindowArgs struct {
 	// Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `autoDeferOnceEnabled` instead.** <!-- see CLOUDP-375465 for details -->
 	AutoDefer *bool `pulumi:"autoDefer"`
