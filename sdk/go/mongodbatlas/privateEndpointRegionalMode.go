@@ -97,6 +97,12 @@ func (PrivateEndpointRegionalModeState) ElementType() reflect.Type {
 	return reflect.TypeOf((*privateEndpointRegionalModeState)(nil)).Elem()
 }
 
+// PrivateEndpointRegionalModeExists checks whether an existing PrivateEndpointRegionalMode resource with the given ID exists.
+func PrivateEndpointRegionalModeExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PrivateEndpointRegionalModeState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode", id, state, "", opts...)
+}
+
 type privateEndpointRegionalModeArgs struct {
 	// Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:
 	// * More than one private endpoint in more than one region, or

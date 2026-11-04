@@ -183,6 +183,12 @@ func (ClusterOutageSimulationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*clusterOutageSimulationState)(nil)).Elem()
 }
 
+// ClusterOutageSimulationExists checks whether an existing ClusterOutageSimulation resource with the given ID exists.
+func ClusterOutageSimulationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ClusterOutageSimulationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation", id, state, "", opts...)
+}
+
 type clusterOutageSimulationArgs struct {
 	// Name of the Atlas Cluster that is/will undergoing outage simulation.
 	ClusterName string `pulumi:"clusterName"`

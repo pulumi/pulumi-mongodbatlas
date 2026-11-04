@@ -836,6 +836,12 @@ func (StreamConnectionState) ElementType() reflect.Type {
 	return reflect.TypeOf((*streamConnectionState)(nil)).Elem()
 }
 
+// StreamConnectionExists checks whether an existing StreamConnection resource with the given ID exists.
+func StreamConnectionExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *StreamConnectionState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/streamConnection:StreamConnection", id, state, "", opts...)
+}
+
 type streamConnectionArgs struct {
 	Authentication   *StreamConnectionAuthentication `pulumi:"authentication"`
 	Aws              *StreamConnectionAws            `pulumi:"aws"`

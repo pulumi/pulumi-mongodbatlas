@@ -492,6 +492,20 @@ class CustomDbRole(pulumi.CustomResource):
         __props__.__dict__["role_name"] = role_name
         return CustomDbRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            actions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDbRoleActionArgs', 'CustomDbRoleActionArgsDict', 'outputs.CustomDbRoleAction']]]]] = None,
+            inherited_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDbRoleInheritedRoleArgs', 'CustomDbRoleInheritedRoleArgsDict', 'outputs.CustomDbRoleInheritedRole']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            role_name: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["actions"] = actions
+        __props__["inheritedRoles"] = inherited_roles
+        __props__["projectId"] = project_id
+        __props__["roleName"] = role_name
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/customDbRole:CustomDbRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def actions(self) -> pulumi.Output[Optional[Sequence['outputs.CustomDbRoleAction']]]:

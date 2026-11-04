@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -42,7 +41,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -69,7 +67,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
-        /// 
         /// 
         /// ## Example Usage
         /// 

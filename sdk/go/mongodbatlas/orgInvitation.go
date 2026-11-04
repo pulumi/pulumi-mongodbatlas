@@ -232,6 +232,12 @@ func (OrgInvitationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*orgInvitationState)(nil)).Elem()
 }
 
+// OrgInvitationExists checks whether an existing OrgInvitation resource with the given ID exists.
+func OrgInvitationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OrgInvitationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/orgInvitation:OrgInvitation", id, state, "", opts...)
+}
+
 type orgInvitationArgs struct {
 	// Unique 24-hexadecimal digit string that identifies the organization to which you want to invite a user.
 	OrgId string `pulumi:"orgId"`

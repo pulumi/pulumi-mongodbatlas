@@ -462,6 +462,28 @@ class AiModelRateLimit(pulumi.CustomResource):
         __props__.__dict__["tokens_per_minute_limit"] = tokens_per_minute_limit
         return AiModelRateLimit(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cloud: pulumi.Input[Optional[_builtins.str]] = None,
+            endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            geography: pulumi.Input[Optional[_builtins.str]] = None,
+            model_group_name: pulumi.Input[Optional[_builtins.str]] = None,
+            model_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            requests_per_minute_limit: pulumi.Input[Optional[_builtins.int]] = None,
+            tokens_per_minute_limit: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["cloud"] = cloud
+        __props__["endpoint"] = endpoint
+        __props__["geography"] = geography
+        __props__["modelGroupName"] = model_group_name
+        __props__["modelNames"] = model_names
+        __props__["projectId"] = project_id
+        __props__["requestsPerMinuteLimit"] = requests_per_minute_limit
+        __props__["tokensPerMinuteLimit"] = tokens_per_minute_limit
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/aiModelRateLimit:AiModelRateLimit', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def cloud(self) -> pulumi.Output[_builtins.str]:

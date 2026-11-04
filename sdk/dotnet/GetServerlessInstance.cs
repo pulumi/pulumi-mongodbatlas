@@ -17,7 +17,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
         /// &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
         /// For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
-        ///  
         /// 
         /// ## Example Usage
         /// 
@@ -48,7 +47,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
         /// &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
         /// For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
-        ///  
         /// 
         /// ## Example Usage
         /// 
@@ -79,7 +77,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
         /// &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
         /// For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
-        ///  
         /// 
         /// ## Example Usage
         /// 

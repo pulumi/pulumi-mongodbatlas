@@ -273,6 +273,12 @@ func (NetworkContainerState) ElementType() reflect.Type {
 	return reflect.TypeOf((*networkContainerState)(nil)).Elem()
 }
 
+// NetworkContainerExists checks whether an existing NetworkContainer resource with the given ID exists.
+func NetworkContainerExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NetworkContainerState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/networkContainer:NetworkContainer", id, state, "", opts...)
+}
+
 type networkContainerArgs struct {
 	// CIDR block that Atlas uses for the Network Peering containers in your project.  Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3):
 	// * Lower bound: 10.0.0.0 -	Upper bound: 10.255.255.255 -	Prefix: 10/8

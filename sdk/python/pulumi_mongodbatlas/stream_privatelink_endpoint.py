@@ -979,6 +979,42 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
         __props__.__dict__["vendor"] = vendor
         return StreamPrivatelinkEndpoint(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            arn: pulumi.Input[Optional[_builtins.str]] = None,
+            authentication_scheme: pulumi.Input[Optional[_builtins.str]] = None,
+            dns_domain: pulumi.Input[Optional[_builtins.str]] = None,
+            dns_sub_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            error_message: pulumi.Input[Optional[_builtins.str]] = None,
+            interface_endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+            interface_endpoint_name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_account_id: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            service_attachment_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            service_endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            vendor: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["arn"] = arn
+        __props__["authenticationScheme"] = authentication_scheme
+        __props__["dnsDomain"] = dns_domain
+        __props__["dnsSubDomains"] = dns_sub_domains
+        __props__["errorMessage"] = error_message
+        __props__["interfaceEndpointId"] = interface_endpoint_id
+        __props__["interfaceEndpointName"] = interface_endpoint_name
+        __props__["projectId"] = project_id
+        __props__["providerAccountId"] = provider_account_id
+        __props__["providerName"] = provider_name
+        __props__["region"] = region
+        __props__["serviceAttachmentUris"] = service_attachment_uris
+        __props__["serviceEndpointId"] = service_endpoint_id
+        __props__["state"] = state
+        __props__["vendor"] = vendor
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def arn(self) -> pulumi.Output[Optional[_builtins.str]]:

@@ -242,6 +242,12 @@ func (EncryptionAtRestPrivateEndpointState) ElementType() reflect.Type {
 	return reflect.TypeOf((*encryptionAtRestPrivateEndpointState)(nil)).Elem()
 }
 
+// EncryptionAtRestPrivateEndpointExists checks whether an existing EncryptionAtRestPrivateEndpoint resource with the given ID exists.
+func EncryptionAtRestPrivateEndpointExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *EncryptionAtRestPrivateEndpointState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/encryptionAtRestPrivateEndpoint:EncryptionAtRestPrivateEndpoint", id, state, "", opts...)
+}
+
 type encryptionAtRestPrivateEndpointArgs struct {
 	// Label that identifies the cloud provider for the Encryption At Rest private endpoint.
 	CloudProvider string `pulumi:"cloudProvider"`

@@ -239,6 +239,12 @@ func (ThirdPartyIntegrationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*thirdPartyIntegrationState)(nil)).Elem()
 }
 
+// ThirdPartyIntegrationExists checks whether an existing ThirdPartyIntegration resource with the given ID exists.
+func ThirdPartyIntegrationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ThirdPartyIntegrationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration", id, state, "", opts...)
+}
+
 type thirdPartyIntegrationArgs struct {
 	ApiKey                   *string `pulumi:"apiKey"`
 	ChannelName              *string `pulumi:"channelName"`

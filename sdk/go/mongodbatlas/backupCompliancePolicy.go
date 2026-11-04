@@ -335,6 +335,12 @@ func (BackupCompliancePolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*backupCompliancePolicyState)(nil)).Elem()
 }
 
+// BackupCompliancePolicyExists checks whether an existing BackupCompliancePolicy resource with the given ID exists.
+func BackupCompliancePolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BackupCompliancePolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy", id, state, "", opts...)
+}
+
 type backupCompliancePolicyArgs struct {
 	// Email address of a security or legal representative for the Backup Compliance Policy who is authorized to update the Backup Compliance Policy settings.
 	AuthorizedEmail string `pulumi:"authorizedEmail"`

@@ -1312,6 +1312,52 @@ class SearchIndex(pulumi.CustomResource):
         __props__.__dict__["wait_for_index_build_completion"] = wait_for_index_build_completion
         return SearchIndex(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            analyzer: pulumi.Input[Optional[_builtins.str]] = None,
+            analyzers: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            collection_name: pulumi.Input[Optional[_builtins.str]] = None,
+            database: pulumi.Input[Optional[_builtins.str]] = None,
+            fields: pulumi.Input[Optional[_builtins.str]] = None,
+            index_id: pulumi.Input[Optional[_builtins.str]] = None,
+            mappings_dynamic: pulumi.Input[Optional[_builtins.bool]] = None,
+            mappings_dynamic_config: pulumi.Input[Optional[_builtins.str]] = None,
+            mappings_fields: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            num_partitions: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            search_analyzer: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            stored_source: pulumi.Input[Optional[_builtins.str]] = None,
+            synonyms: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict', 'outputs.SearchIndexSynonym']]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            type_sets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict', 'outputs.SearchIndexTypeSet']]]]] = None,
+            wait_for_index_build_completion: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["analyzer"] = analyzer
+        __props__["analyzers"] = analyzers
+        __props__["clusterName"] = cluster_name
+        __props__["collectionName"] = collection_name
+        __props__["database"] = database
+        __props__["fields"] = fields
+        __props__["indexId"] = index_id
+        __props__["mappingsDynamic"] = mappings_dynamic
+        __props__["mappingsDynamicConfig"] = mappings_dynamic_config
+        __props__["mappingsFields"] = mappings_fields
+        __props__["name"] = name
+        __props__["numPartitions"] = num_partitions
+        __props__["projectId"] = project_id
+        __props__["searchAnalyzer"] = search_analyzer
+        __props__["status"] = status
+        __props__["storedSource"] = stored_source
+        __props__["synonyms"] = synonyms
+        __props__["type"] = type
+        __props__["typeSets"] = type_sets
+        __props__["waitForIndexBuildCompletion"] = wait_for_index_build_completion
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/searchIndex:SearchIndex', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def analyzer(self) -> pulumi.Output[Optional[_builtins.str]]:

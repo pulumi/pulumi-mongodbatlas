@@ -14,8 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
         /// 
-        /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -147,8 +145,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
         /// 
-        /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -279,8 +275,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
-        /// 
-        /// 
         /// 
         /// ## Example Usage
         /// 

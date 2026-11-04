@@ -556,6 +556,34 @@ class LdapVerify(pulumi.CustomResource):
         __props__.__dict__["validations"] = validations
         return LdapVerify(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            authz_query_template: pulumi.Input[Optional[_builtins.str]] = None,
+            bind_password: pulumi.Input[Optional[_builtins.str]] = None,
+            bind_username: pulumi.Input[Optional[_builtins.str]] = None,
+            ca_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            hostname: pulumi.Input[Optional[_builtins.str]] = None,
+            links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LdapVerifyLinkArgs', 'LdapVerifyLinkArgsDict', 'outputs.LdapVerifyLink']]]]] = None,
+            port: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            request_id: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            validations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LdapVerifyValidationArgs', 'LdapVerifyValidationArgsDict', 'outputs.LdapVerifyValidation']]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["authzQueryTemplate"] = authz_query_template
+        __props__["bindPassword"] = bind_password
+        __props__["bindUsername"] = bind_username
+        __props__["caCertificate"] = ca_certificate
+        __props__["hostname"] = hostname
+        __props__["links"] = links
+        __props__["port"] = port
+        __props__["projectId"] = project_id
+        __props__["requestId"] = request_id
+        __props__["status"] = status
+        __props__["validations"] = validations
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/ldapVerify:LdapVerify', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="authzQueryTemplate")
     def authz_query_template(self) -> pulumi.Output[_builtins.str]:

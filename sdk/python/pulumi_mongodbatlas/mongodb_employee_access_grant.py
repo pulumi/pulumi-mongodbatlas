@@ -322,6 +322,20 @@ class MongodbEmployeeAccessGrant(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         return MongodbEmployeeAccessGrant(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            expiration_time: pulumi.Input[Optional[_builtins.str]] = None,
+            grant_type: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["clusterName"] = cluster_name
+        __props__["expirationTime"] = expiration_time
+        __props__["grantType"] = grant_type
+        __props__["projectId"] = project_id
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/mongodbEmployeeAccessGrant:MongodbEmployeeAccessGrant', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> pulumi.Output[_builtins.str]:

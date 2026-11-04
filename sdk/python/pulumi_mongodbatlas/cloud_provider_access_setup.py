@@ -502,6 +502,30 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
         __props__.__dict__["role_id"] = role_id
         return CloudProviderAccessSetup(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            aws_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAwsConfigArgs', 'CloudProviderAccessSetupAwsConfigArgsDict', 'outputs.CloudProviderAccessSetupAwsConfig']]]]] = None,
+            azure_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAzureConfigArgs', 'CloudProviderAccessSetupAzureConfigArgsDict', 'outputs.CloudProviderAccessSetupAzureConfig']]]]] = None,
+            created_date: pulumi.Input[Optional[_builtins.str]] = None,
+            delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            gcp_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudProviderAccessSetupGcpConfigArgs', 'CloudProviderAccessSetupGcpConfigArgsDict', 'outputs.CloudProviderAccessSetupGcpConfig']]]]] = None,
+            last_updated_date: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+            role_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["awsConfigs"] = aws_configs
+        __props__["azureConfigs"] = azure_configs
+        __props__["createdDate"] = created_date
+        __props__["deleteOnCreateTimeout"] = delete_on_create_timeout
+        __props__["gcpConfigs"] = gcp_configs
+        __props__["lastUpdatedDate"] = last_updated_date
+        __props__["projectId"] = project_id
+        __props__["providerName"] = provider_name
+        __props__["roleId"] = role_id
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="awsConfigs")
     def aws_configs(self) -> pulumi.Output[Sequence['outputs.CloudProviderAccessSetupAwsConfig']]:

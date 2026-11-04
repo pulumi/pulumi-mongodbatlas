@@ -194,6 +194,12 @@ func (ProjectInvitationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectInvitationState)(nil)).Elem()
 }
 
+// ProjectInvitationExists checks whether an existing ProjectInvitation resource with the given ID exists.
+func ProjectInvitationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ProjectInvitationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/projectInvitation:ProjectInvitation", id, state, "", opts...)
+}
+
 type projectInvitationArgs struct {
 	// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`

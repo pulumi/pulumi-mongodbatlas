@@ -12,19 +12,19 @@ namespace Pulumi.Mongodbatlas
     public static class GetEventTrigger
     {
         /// <summary>
-        /// `mongodbatlas.EventTrigger` describes an Event Trigger. 
+        /// `mongodbatlas.EventTrigger` describes an Event Trigger.
         /// </summary>
         public static Task<GetEventTriggerResult> InvokeAsync(GetEventTriggerArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetEventTriggerResult>("mongodbatlas:index/getEventTrigger:getEventTrigger", args ?? new GetEventTriggerArgs(), options.WithDefaults());
 
         /// <summary>
-        /// `mongodbatlas.EventTrigger` describes an Event Trigger. 
+        /// `mongodbatlas.EventTrigger` describes an Event Trigger.
         /// </summary>
         public static Output<GetEventTriggerResult> Invoke(GetEventTriggerInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetEventTriggerResult>("mongodbatlas:index/getEventTrigger:getEventTrigger", args ?? new GetEventTriggerInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// `mongodbatlas.EventTrigger` describes an Event Trigger. 
+        /// `mongodbatlas.EventTrigger` describes an Event Trigger.
         /// </summary>
         public static Output<GetEventTriggerResult> Invoke(GetEventTriggerInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetEventTriggerResult>("mongodbatlas:index/getEventTrigger:getEventTrigger", args ?? new GetEventTriggerInvokeArgs(), options.WithDefaults());

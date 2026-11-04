@@ -197,6 +197,12 @@ func (SearchDeploymentState) ElementType() reflect.Type {
 	return reflect.TypeOf((*searchDeploymentState)(nil)).Elem()
 }
 
+// SearchDeploymentExists checks whether an existing SearchDeployment resource with the given ID exists.
+func SearchDeploymentExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SearchDeploymentState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/searchDeployment:SearchDeployment", id, state, "", opts...)
+}
+
 type searchDeploymentArgs struct {
 	// Label that identifies the cluster to return the search nodes for.
 	ClusterName string `pulumi:"clusterName"`

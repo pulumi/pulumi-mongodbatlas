@@ -16,11 +16,10 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetProjectsInvokeResult {
     /**
-     * @deprecated
-     * This parameter is deprecated.
+     * @deprecated This parameter is deprecated.
      * 
      */
-    @Deprecated /* This parameter is deprecated. */
+    @Deprecated
     private String id;
     private @Nullable Integer itemsPerPage;
     private @Nullable Integer pageNum;
@@ -29,11 +28,10 @@ public final class GetProjectsInvokeResult {
 
     private GetProjectsInvokeResult() {}
     /**
-     * @deprecated
-     * This parameter is deprecated.
+     * @deprecated This parameter is deprecated.
      * 
      */
-    @Deprecated /* This parameter is deprecated. */
+    @Deprecated
     public String id() {
         return this.id;
     }

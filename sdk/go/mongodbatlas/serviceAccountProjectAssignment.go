@@ -151,6 +151,12 @@ func (ServiceAccountProjectAssignmentState) ElementType() reflect.Type {
 	return reflect.TypeOf((*serviceAccountProjectAssignmentState)(nil)).Elem()
 }
 
+// ServiceAccountProjectAssignmentExists checks whether an existing ServiceAccountProjectAssignment resource with the given ID exists.
+func ServiceAccountProjectAssignmentExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ServiceAccountProjectAssignmentState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/serviceAccountProjectAssignment:ServiceAccountProjectAssignment", id, state, "", opts...)
+}
+
 type serviceAccountProjectAssignmentArgs struct {
 	// The Client ID of the Service Account.
 	ClientId string `pulumi:"clientId"`

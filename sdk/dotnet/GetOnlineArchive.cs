@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.OnlineArchive` describes an Online Archive
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -65,7 +64,7 @@ namespace Pulumi.Mongodbatlas
         /// ### Schedule
         /// 
         /// * `Type`          - Type of schedule. Valid values: `DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`.
-        /// * `StartHour`    - Hour of the day when the when the scheduled window to run one online archive starts.  
+        /// * `StartHour`    - Hour of the day when the when the scheduled window to run one online archive starts.
         /// * `EndHour`      - Hour of the day when the scheduled window to run one online archive ends.
         /// * `StartMinute`   - Minute of the hour when the scheduled window to run one online archive starts.
         /// * `EndMinute`     - Minute of the hour when the scheduled window to run one online archive ends.
@@ -85,7 +84,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.OnlineArchive` describes an Online Archive
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -136,7 +134,7 @@ namespace Pulumi.Mongodbatlas
         /// ### Schedule
         /// 
         /// * `Type`          - Type of schedule. Valid values: `DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`.
-        /// * `StartHour`    - Hour of the day when the when the scheduled window to run one online archive starts.  
+        /// * `StartHour`    - Hour of the day when the when the scheduled window to run one online archive starts.
         /// * `EndHour`      - Hour of the day when the scheduled window to run one online archive ends.
         /// * `StartMinute`   - Minute of the hour when the scheduled window to run one online archive starts.
         /// * `EndMinute`     - Minute of the hour when the scheduled window to run one online archive ends.
@@ -156,7 +154,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.OnlineArchive` describes an Online Archive
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -207,7 +204,7 @@ namespace Pulumi.Mongodbatlas
         /// ### Schedule
         /// 
         /// * `Type`          - Type of schedule. Valid values: `DEFAULT`, `DAILY`, `MONTHLY`, `WEEKLY`.
-        /// * `StartHour`    - Hour of the day when the when the scheduled window to run one online archive starts.  
+        /// * `StartHour`    - Hour of the day when the when the scheduled window to run one online archive starts.
         /// * `EndHour`      - Hour of the day when the scheduled window to run one online archive ends.
         /// * `StartMinute`   - Minute of the hour when the scheduled window to run one online archive starts.
         /// * `EndMinute`     - Minute of the hour when the scheduled window to run one online archive ends.

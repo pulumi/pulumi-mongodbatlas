@@ -21,22 +21,20 @@ public final class GetServerlessInstancePlainArgs extends com.pulumi.resources.I
     /**
      * (Deprecated) Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
+     * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
+    @Deprecated
     @Import(name="autoIndexing")
     private @Nullable Boolean autoIndexing;
 
     /**
      * @return (Deprecated) Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
+     * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
+    @Deprecated
     public Optional<Boolean> autoIndexing() {
         return Optional.ofNullable(this.autoIndexing);
     }
@@ -44,22 +42,20 @@ public final class GetServerlessInstancePlainArgs extends com.pulumi.resources.I
     /**
      * (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
+     * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
+    @Deprecated
     @Import(name="continuousBackupEnabled")
     private @Nullable Boolean continuousBackupEnabled;
 
     /**
      * @return (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
+     * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
+    @Deprecated
     public Optional<Boolean> continuousBackupEnabled() {
         return Optional.ofNullable(this.continuousBackupEnabled);
     }
@@ -150,11 +146,10 @@ public final class GetServerlessInstancePlainArgs extends com.pulumi.resources.I
          * 
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
+         * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
          * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
+        @Deprecated
         public Builder autoIndexing(@Nullable Boolean autoIndexing) {
             $.autoIndexing = autoIndexing;
             return this;
@@ -165,11 +160,10 @@ public final class GetServerlessInstancePlainArgs extends com.pulumi.resources.I
          * 
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
+         * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
          * 
          */
-        @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
+        @Deprecated
         public Builder continuousBackupEnabled(@Nullable Boolean continuousBackupEnabled) {
             $.continuousBackupEnabled = continuousBackupEnabled;
             return this;

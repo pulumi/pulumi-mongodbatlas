@@ -180,6 +180,12 @@ func (FederatedSettingsOrgConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*federatedSettingsOrgConfigState)(nil)).Elem()
 }
 
+// FederatedSettingsOrgConfigExists checks whether an existing FederatedSettingsOrgConfig resource with the given ID exists.
+func FederatedSettingsOrgConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FederatedSettingsOrgConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig", id, state, "", opts...)
+}
+
 type federatedSettingsOrgConfigArgs struct {
 	// The collection of unique ids representing the identity providers that can be used for data access in this organization.
 	DataAccessIdentityProviderIds []string `pulumi:"dataAccessIdentityProviderIds"`

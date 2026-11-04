@@ -220,6 +220,12 @@ func (ServerlessInstanceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*serverlessInstanceState)(nil)).Elem()
 }
 
+// ServerlessInstanceExists checks whether an existing ServerlessInstance resource with the given ID exists.
+func ServerlessInstanceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ServerlessInstanceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/serverlessInstance:ServerlessInstance", id, state, "", opts...)
+}
+
 type serverlessInstanceArgs struct {
 	// Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
 	//

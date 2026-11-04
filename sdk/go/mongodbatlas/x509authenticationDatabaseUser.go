@@ -246,6 +246,12 @@ func (X509AuthenticationDatabaseUserState) ElementType() reflect.Type {
 	return reflect.TypeOf((*x509authenticationDatabaseUserState)(nil)).Elem()
 }
 
+// X509AuthenticationDatabaseUserExists checks whether an existing X509AuthenticationDatabaseUser resource with the given ID exists.
+func X509AuthenticationDatabaseUserExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *X509AuthenticationDatabaseUserState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser", id, state, "", opts...)
+}
+
 type x509authenticationDatabaseUserArgs struct {
 	// PEM string containing one or more customer CAs for database user authentication.
 	CustomerX509Cas *string `pulumi:"customerX509Cas"`

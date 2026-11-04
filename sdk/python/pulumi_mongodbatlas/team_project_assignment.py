@@ -288,6 +288,18 @@ class TeamProjectAssignment(pulumi.CustomResource):
         __props__.__dict__["team_id"] = team_id
         return TeamProjectAssignment(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            role_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            team_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["projectId"] = project_id
+        __props__["roleNames"] = role_names
+        __props__["teamId"] = team_id
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/teamProjectAssignment:TeamProjectAssignment', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:

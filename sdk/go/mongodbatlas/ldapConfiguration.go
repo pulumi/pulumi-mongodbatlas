@@ -242,6 +242,12 @@ func (LdapConfigurationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ldapConfigurationState)(nil)).Elem()
 }
 
+// LdapConfigurationExists checks whether an existing LdapConfiguration resource with the given ID exists.
+func LdapConfigurationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LdapConfigurationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/ldapConfiguration:LdapConfiguration", id, state, "", opts...)
+}
+
 type ldapConfigurationArgs struct {
 	// Specifies whether user authentication with LDAP is enabled.
 	AuthenticationEnabled bool `pulumi:"authenticationEnabled"`

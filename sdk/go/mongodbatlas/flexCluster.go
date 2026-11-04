@@ -159,6 +159,12 @@ func (FlexClusterState) ElementType() reflect.Type {
 	return reflect.TypeOf((*flexClusterState)(nil)).Elem()
 }
 
+// FlexClusterExists checks whether an existing FlexCluster resource with the given ID exists.
+func FlexClusterExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FlexClusterState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/flexCluster:FlexCluster", id, state, "", opts...)
+}
+
 type flexClusterArgs struct {
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`

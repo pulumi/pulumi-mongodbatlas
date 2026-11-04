@@ -798,6 +798,36 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         __props__.__dict__["timestamp"] = timestamp
         return CloudBackupSnapshotRestoreJob(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cancelled: pulumi.Input[Optional[_builtins.bool]] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            delivery_type_config: pulumi.Input[Optional[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict', 'outputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfig']]] = None,
+            delivery_urls: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            expired: pulumi.Input[Optional[_builtins.bool]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+            failed: pulumi.Input[Optional[_builtins.bool]] = None,
+            finished_at: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+            snapshot_restore_job_id: pulumi.Input[Optional[_builtins.str]] = None,
+            timestamp: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["cancelled"] = cancelled
+        __props__["clusterName"] = cluster_name
+        __props__["deliveryTypeConfig"] = delivery_type_config
+        __props__["deliveryUrls"] = delivery_urls
+        __props__["expired"] = expired
+        __props__["expiresAt"] = expires_at
+        __props__["failed"] = failed
+        __props__["finishedAt"] = finished_at
+        __props__["projectId"] = project_id
+        __props__["snapshotId"] = snapshot_id
+        __props__["snapshotRestoreJobId"] = snapshot_restore_job_id
+        __props__["timestamp"] = timestamp
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def cancelled(self) -> pulumi.Output[_builtins.bool]:

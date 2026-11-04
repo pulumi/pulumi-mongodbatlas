@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getFederatedSettings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -39,7 +38,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getFederatedSettings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -63,7 +61,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.getFederatedSettings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
-        /// 
         /// 
         /// ## Example Usage
         /// 

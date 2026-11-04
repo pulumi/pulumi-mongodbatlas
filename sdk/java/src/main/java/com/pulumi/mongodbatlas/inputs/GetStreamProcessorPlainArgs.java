@@ -18,22 +18,20 @@ public final class GetStreamProcessorPlainArgs extends com.pulumi.resources.Invo
     /**
      * Label that identifies the stream processing workspace.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to workspace_name.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Deprecated
     @Import(name="instanceName")
     private @Nullable String instanceName;
 
     /**
      * @return Label that identifies the stream processing workspace.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to workspace_name.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Deprecated
     public Optional<String> instanceName() {
         return Optional.ofNullable(this.instanceName);
     }
@@ -115,11 +113,10 @@ public final class GetStreamProcessorPlainArgs extends com.pulumi.resources.Invo
          * 
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated. Please transition to workspace_name.
+         * @deprecated This parameter is deprecated. Please transition to workspace_name.
          * 
          */
-        @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+        @Deprecated
         public Builder instanceName(@Nullable String instanceName) {
             $.instanceName = instanceName;
             return this;

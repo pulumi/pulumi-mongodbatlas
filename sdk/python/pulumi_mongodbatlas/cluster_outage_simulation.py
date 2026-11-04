@@ -427,6 +427,26 @@ class ClusterOutageSimulation(pulumi.CustomResource):
         __props__.__dict__["state"] = state
         return ClusterOutageSimulation(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            outage_filters: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterOutageSimulationOutageFilterArgs', 'ClusterOutageSimulationOutageFilterArgsDict', 'outputs.ClusterOutageSimulationOutageFilter']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            simulation_id: pulumi.Input[Optional[_builtins.str]] = None,
+            start_request_date: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["clusterName"] = cluster_name
+        __props__["deleteOnCreateTimeout"] = delete_on_create_timeout
+        __props__["outageFilters"] = outage_filters
+        __props__["projectId"] = project_id
+        __props__["simulationId"] = simulation_id
+        __props__["startRequestDate"] = start_request_date
+        __props__["state"] = state
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> pulumi.Output[_builtins.str]:

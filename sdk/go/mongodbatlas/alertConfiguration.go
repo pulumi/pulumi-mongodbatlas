@@ -410,6 +410,12 @@ func (AlertConfigurationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*alertConfigurationState)(nil)).Elem()
 }
 
+// AlertConfigurationExists checks whether an existing AlertConfiguration resource with the given ID exists.
+func AlertConfigurationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AlertConfigurationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/alertConfiguration:AlertConfiguration", id, state, "", opts...)
+}
+
 type alertConfigurationArgs struct {
 	// It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
 	Enabled *bool `pulumi:"enabled"`

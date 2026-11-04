@@ -501,6 +501,32 @@ class ServiceAccount(pulumi.CustomResource):
         __props__.__dict__["without_initial_secret"] = without_initial_secret
         return ServiceAccount(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            secret_expires_after_hours: pulumi.Input[Optional[_builtins.int]] = None,
+            secrets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceAccountSecretArgs', 'ServiceAccountSecretArgsDict', 'outputs.ServiceAccountSecret']]]]] = None,
+            system_managed: pulumi.Input[Optional[_builtins.bool]] = None,
+            without_initial_secret: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["clientId"] = client_id
+        __props__["createdAt"] = created_at
+        __props__["description"] = description
+        __props__["name"] = name
+        __props__["orgId"] = org_id
+        __props__["roles"] = roles
+        __props__["secretExpiresAfterHours"] = secret_expires_after_hours
+        __props__["secrets"] = secrets
+        __props__["systemManaged"] = system_managed
+        __props__["withoutInitialSecret"] = without_initial_secret
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/serviceAccount:ServiceAccount', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Output[_builtins.str]:

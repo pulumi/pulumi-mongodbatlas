@@ -222,6 +222,12 @@ func (StreamWorkspaceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*streamWorkspaceState)(nil)).Elem()
 }
 
+// StreamWorkspaceExists checks whether an existing StreamWorkspace resource with the given ID exists.
+func StreamWorkspaceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *StreamWorkspaceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/streamWorkspace:StreamWorkspace", id, state, "", opts...)
+}
+
 type streamWorkspaceArgs struct {
 	// Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
 	DataProcessRegion StreamWorkspaceDataProcessRegion `pulumi:"dataProcessRegion"`

@@ -123,22 +123,20 @@ public final class CloudBackupSnapshotExportBucketState extends com.pulumi.resou
     /**
      * This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
      * 
-     * @deprecated
-     * This parameter is deprecated.
+     * @deprecated This parameter is deprecated.
      * 
      */
-    @Deprecated /* This parameter is deprecated. */
+    @Deprecated
     @Import(name="tenantId")
     private @Nullable Output<String> tenantId;
 
     /**
      * @return This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
      * 
-     * @deprecated
-     * This parameter is deprecated.
+     * @deprecated This parameter is deprecated.
      * 
      */
-    @Deprecated /* This parameter is deprecated. */
+    @Deprecated
     public Optional<Output<String>> tenantId() {
         return Optional.ofNullable(this.tenantId);
     }
@@ -326,11 +324,10 @@ public final class CloudBackupSnapshotExportBucketState extends com.pulumi.resou
          * 
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated.
+         * @deprecated This parameter is deprecated.
          * 
          */
-        @Deprecated /* This parameter is deprecated. */
+        @Deprecated
         public Builder tenantId(@Nullable Output<String> tenantId) {
             $.tenantId = tenantId;
             return this;
@@ -341,11 +338,10 @@ public final class CloudBackupSnapshotExportBucketState extends com.pulumi.resou
          * 
          * @return builder
          * 
-         * @deprecated
-         * This parameter is deprecated.
+         * @deprecated This parameter is deprecated.
          * 
          */
-        @Deprecated /* This parameter is deprecated. */
+        @Deprecated
         public Builder tenantId(String tenantId) {
             return tenantId(Output.of(tenantId));
         }

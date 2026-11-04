@@ -491,6 +491,24 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         __props__.__dict__["username"] = username
         return X509AuthenticationDatabaseUser(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            certificates: pulumi.Input[Optional[Sequence[pulumi.Input[Union['X509AuthenticationDatabaseUserCertificateArgs', 'X509AuthenticationDatabaseUserCertificateArgsDict', 'outputs.X509AuthenticationDatabaseUserCertificate']]]]] = None,
+            current_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            customer_x509_cas: pulumi.Input[Optional[_builtins.str]] = None,
+            months_until_expiration: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["certificates"] = certificates
+        __props__["currentCertificate"] = current_certificate
+        __props__["customerX509Cas"] = customer_x509_cas
+        __props__["monthsUntilExpiration"] = months_until_expiration
+        __props__["projectId"] = project_id
+        __props__["username"] = username
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def certificates(self) -> pulumi.Output[Sequence['outputs.X509AuthenticationDatabaseUserCertificate']]:

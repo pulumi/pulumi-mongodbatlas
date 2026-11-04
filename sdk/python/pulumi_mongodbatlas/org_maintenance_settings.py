@@ -275,6 +275,16 @@ class OrgMaintenanceSettings(pulumi.CustomResource):
         __props__.__dict__["wave_assignment_mode"] = wave_assignment_mode
         return OrgMaintenanceSettings(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            wave_assignment_mode: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["orgId"] = org_id
+        __props__["waveAssignmentMode"] = wave_assignment_mode
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/orgMaintenanceSettings:OrgMaintenanceSettings', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="orgId")
     def org_id(self) -> pulumi.Output[_builtins.str]:

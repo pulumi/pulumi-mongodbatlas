@@ -1166,6 +1166,56 @@ class EventTrigger(pulumi.CustomResource):
         __props__.__dict__["unordered"] = unordered
         return EventTrigger(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            app_id: pulumi.Input[Optional[_builtins.str]] = None,
+            config_collection: pulumi.Input[Optional[_builtins.str]] = None,
+            config_database: pulumi.Input[Optional[_builtins.str]] = None,
+            config_full_document: pulumi.Input[Optional[_builtins.bool]] = None,
+            config_full_document_before: pulumi.Input[Optional[_builtins.bool]] = None,
+            config_match: pulumi.Input[Optional[_builtins.str]] = None,
+            config_operation_type: pulumi.Input[Optional[_builtins.str]] = None,
+            config_operation_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            config_project: pulumi.Input[Optional[_builtins.str]] = None,
+            config_providers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            config_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+            config_schedule_type: pulumi.Input[Optional[_builtins.str]] = None,
+            config_service_id: pulumi.Input[Optional[_builtins.str]] = None,
+            disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            event_processors: pulumi.Input[Optional[Union['EventTriggerEventProcessorsArgs', 'EventTriggerEventProcessorsArgsDict', 'outputs.EventTriggerEventProcessors']]] = None,
+            function_id: pulumi.Input[Optional[_builtins.str]] = None,
+            function_name: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            trigger_id: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            unordered: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["appId"] = app_id
+        __props__["configCollection"] = config_collection
+        __props__["configDatabase"] = config_database
+        __props__["configFullDocument"] = config_full_document
+        __props__["configFullDocumentBefore"] = config_full_document_before
+        __props__["configMatch"] = config_match
+        __props__["configOperationType"] = config_operation_type
+        __props__["configOperationTypes"] = config_operation_types
+        __props__["configProject"] = config_project
+        __props__["configProviders"] = config_providers
+        __props__["configSchedule"] = config_schedule
+        __props__["configScheduleType"] = config_schedule_type
+        __props__["configServiceId"] = config_service_id
+        __props__["disabled"] = disabled
+        __props__["eventProcessors"] = event_processors
+        __props__["functionId"] = function_id
+        __props__["functionName"] = function_name
+        __props__["name"] = name
+        __props__["projectId"] = project_id
+        __props__["triggerId"] = trigger_id
+        __props__["type"] = type
+        __props__["unordered"] = unordered
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/eventTrigger:EventTrigger', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="appId")
     def app_id(self) -> pulumi.Output[_builtins.str]:

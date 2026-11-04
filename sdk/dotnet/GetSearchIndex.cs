@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.SearchIndex` describes a single search indexes. This represents a single search index that have been created.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -41,7 +40,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.SearchIndex` describes a single search indexes. This represents a single search index that have been created.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -67,7 +65,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.SearchIndex` describes a single search indexes. This represents a single search index that have been created.
-        /// 
         /// 
         /// ## Example Usage
         /// 

@@ -483,6 +483,28 @@ class SearchDeployment(pulumi.CustomResource):
         __props__.__dict__["timeouts"] = timeouts
         return SearchDeployment(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            encryption_at_rest_provider: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            skip_wait_on_update: pulumi.Input[Optional[_builtins.bool]] = None,
+            specs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict', 'outputs.SearchDeploymentSpec']]]]] = None,
+            state_name: pulumi.Input[Optional[_builtins.str]] = None,
+            timeouts: pulumi.Input[Optional[Union['SearchDeploymentTimeoutsArgs', 'SearchDeploymentTimeoutsArgsDict', 'outputs.SearchDeploymentTimeouts']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["clusterName"] = cluster_name
+        __props__["deleteOnCreateTimeout"] = delete_on_create_timeout
+        __props__["encryptionAtRestProvider"] = encryption_at_rest_provider
+        __props__["projectId"] = project_id
+        __props__["skipWaitOnUpdate"] = skip_wait_on_update
+        __props__["specs"] = specs
+        __props__["stateName"] = state_name
+        __props__["timeouts"] = timeouts
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/searchDeployment:SearchDeployment', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> pulumi.Output[_builtins.str]:

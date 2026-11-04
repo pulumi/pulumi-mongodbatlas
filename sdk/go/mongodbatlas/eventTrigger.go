@@ -395,6 +395,12 @@ func (EventTriggerState) ElementType() reflect.Type {
 	return reflect.TypeOf((*eventTriggerState)(nil)).Elem()
 }
 
+// EventTriggerExists checks whether an existing EventTrigger resource with the given ID exists.
+func EventTriggerExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *EventTriggerState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/eventTrigger:EventTrigger", id, state, "", opts...)
+}
+
 type eventTriggerArgs struct {
 	// The ObjectID of your application.
 	// * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids

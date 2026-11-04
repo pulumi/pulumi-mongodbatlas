@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.Auditing` describes a Auditing.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -47,7 +46,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.Auditing` describes a Auditing.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -79,7 +77,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.Auditing` describes a Auditing.
-        /// 
         /// 
         /// ## Example Usage
         /// 

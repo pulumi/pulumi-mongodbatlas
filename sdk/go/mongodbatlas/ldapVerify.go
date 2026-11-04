@@ -218,6 +218,12 @@ func (LdapVerifyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ldapVerifyState)(nil)).Elem()
 }
 
+// LdapVerifyExists checks whether an existing LdapVerify resource with the given ID exists.
+func LdapVerifyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LdapVerifyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/ldapVerify:LdapVerify", id, state, "", opts...)
+}
+
 type ldapVerifyArgs struct {
 	// An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
 	AuthzQueryTemplate *string `pulumi:"authzQueryTemplate"`

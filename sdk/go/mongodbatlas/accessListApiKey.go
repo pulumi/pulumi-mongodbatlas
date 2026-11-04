@@ -169,6 +169,12 @@ func (AccessListApiKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*accessListApiKeyState)(nil)).Elem()
 }
 
+// AccessListApiKeyExists checks whether an existing AccessListApiKey resource with the given ID exists.
+func AccessListApiKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AccessListApiKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/accessListApiKey:AccessListApiKey", id, state, "", opts...)
+}
+
 type accessListApiKeyArgs struct {
 	// Unique identifier for the Organization API Key for which you want to create a new access list entry.
 	//

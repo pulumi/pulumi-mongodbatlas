@@ -45,12 +45,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var test = new EventTrigger("test", EventTriggerArgs.builder()
  *             .projectId("PROJECT ID")
  *             .appId("APPLICATION ID")
@@ -65,13 +65,13 @@ import javax.annotation.Nullable;
  *             .configCollection("COLLECTION NAME")
  *             .configServiceId("SERVICE ID")
  *             .configMatch("""
- * {
- *   \"updateDescription.updatedFields\": {
- *     \"status\": \"blocked\"
- *   }
- * }
+ * }{{@code
+ *   }&#92;{@code "updateDescription.updatedFields}&#92;{@code ": }{{@code
+ *     }&#92;{@code "status}&#92;{@code ": }&#92;{@code "blocked}&#92;{@code "
+ *   }}{@code
+ * }}{@code
  *             """)
- *             .configProject("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}")
+ *             .configProject("}{&#92;{@code "updateDescription.updatedFields}&#92;{@code ":}{&#92;{@code "status}&#92;{@code ":}&#92;{@code "blocked}&#92;{@code "}}}{@code ")
  *             .configFullDocument(false)
  *             .configFullDocumentBefore(false)
  *             .eventProcessors(EventTriggerEventProcessorsArgs.builder()
@@ -82,8 +82,8 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * 
@@ -108,12 +108,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var test = new EventTrigger("test", EventTriggerArgs.builder()
  *             .projectId("PROJECT ID")
  *             .appId("APPLICATION ID")
@@ -129,8 +129,8 @@ import javax.annotation.Nullable;
  *             .configDatabase("DATABASE NAME")
  *             .configCollection("COLLECTION NAME")
  *             .configServiceId("1")
- *             .configMatch("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}")
- *             .configProject("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}")
+ *             .configMatch("}{&#92;{@code "updateDescription.updatedFields}&#92;{@code ":}{&#92;{@code "status}&#92;{@code ":}&#92;{@code "blocked}&#92;{@code "}}}{@code ")
+ *             .configProject("}{&#92;{@code "updateDescription.updatedFields}&#92;{@code ":}{&#92;{@code "status}&#92;{@code ":}&#92;{@code "blocked}&#92;{@code "}}}{@code ")
  *             .configFullDocument(false)
  *             .configFullDocumentBefore(false)
  *             .configSchedule("*")
@@ -142,8 +142,8 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * 

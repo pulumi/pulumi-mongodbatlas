@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -50,7 +49,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -85,7 +83,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
-        /// 
         /// 
         /// ## Example Usage
         /// 

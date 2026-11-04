@@ -2859,6 +2859,84 @@ class AdvancedCluster(pulumi.CustomResource):
         __props__.__dict__["version_release_system"] = version_release_system
         return AdvancedCluster(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            accept_data_risks_and_force_replica_set_reconfig: pulumi.Input[Optional[_builtins.str]] = None,
+            adaptive_capacity: pulumi.Input[Optional[_builtins.str]] = None,
+            advanced_configuration: pulumi.Input[Optional[Union['AdvancedClusterAdvancedConfigurationArgs', 'AdvancedClusterAdvancedConfigurationArgsDict', 'outputs.AdvancedClusterAdvancedConfiguration']]] = None,
+            backup_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            bi_connector_config: pulumi.Input[Optional[Union['AdvancedClusterBiConnectorConfigArgs', 'AdvancedClusterBiConnectorConfigArgsDict', 'outputs.AdvancedClusterBiConnectorConfig']]] = None,
+            cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_type: pulumi.Input[Optional[_builtins.str]] = None,
+            config_server_management_mode: pulumi.Input[Optional[_builtins.str]] = None,
+            config_server_type: pulumi.Input[Optional[_builtins.str]] = None,
+            connection_strings: pulumi.Input[Optional[Union['AdvancedClusterConnectionStringsArgs', 'AdvancedClusterConnectionStringsArgsDict', 'outputs.AdvancedClusterConnectionStrings']]] = None,
+            create_date: pulumi.Input[Optional[_builtins.str]] = None,
+            database_edition: pulumi.Input[Optional[_builtins.str]] = None,
+            delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            effective_database_edition: pulumi.Input[Optional[_builtins.str]] = None,
+            encryption_at_rest_provider: pulumi.Input[Optional[_builtins.str]] = None,
+            global_cluster_self_managed_sharding: pulumi.Input[Optional[_builtins.bool]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            mongo_db_major_version: pulumi.Input[Optional[_builtins.str]] = None,
+            mongo_db_version: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            paused: pulumi.Input[Optional[_builtins.bool]] = None,
+            pinned_fcv: pulumi.Input[Optional[Union['AdvancedClusterPinnedFcvArgs', 'AdvancedClusterPinnedFcvArgsDict', 'outputs.AdvancedClusterPinnedFcv']]] = None,
+            pit_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            redact_client_log_data: pulumi.Input[Optional[_builtins.bool]] = None,
+            replica_set_scaling_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+            replication_specs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict', 'outputs.AdvancedClusterReplicationSpec']]]]] = None,
+            retain_backups_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            root_cert_type: pulumi.Input[Optional[_builtins.str]] = None,
+            state_name: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            termination_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            timeouts: pulumi.Input[Optional[Union['AdvancedClusterTimeoutsArgs', 'AdvancedClusterTimeoutsArgsDict', 'outputs.AdvancedClusterTimeouts']]] = None,
+            use_aws_time_based_snapshot_copy_for_fast_initial_sync: pulumi.Input[Optional[_builtins.bool]] = None,
+            use_effective_fields: pulumi.Input[Optional[_builtins.bool]] = None,
+            version_release_system: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["acceptDataRisksAndForceReplicaSetReconfig"] = accept_data_risks_and_force_replica_set_reconfig
+        __props__["adaptiveCapacity"] = adaptive_capacity
+        __props__["advancedConfiguration"] = advanced_configuration
+        __props__["backupEnabled"] = backup_enabled
+        __props__["biConnectorConfig"] = bi_connector_config
+        __props__["clusterId"] = cluster_id
+        __props__["clusterType"] = cluster_type
+        __props__["configServerManagementMode"] = config_server_management_mode
+        __props__["configServerType"] = config_server_type
+        __props__["connectionStrings"] = connection_strings
+        __props__["createDate"] = create_date
+        __props__["databaseEdition"] = database_edition
+        __props__["deleteOnCreateTimeout"] = delete_on_create_timeout
+        __props__["effectiveDatabaseEdition"] = effective_database_edition
+        __props__["encryptionAtRestProvider"] = encryption_at_rest_provider
+        __props__["globalClusterSelfManagedSharding"] = global_cluster_self_managed_sharding
+        __props__["labels"] = labels
+        __props__["mongoDbMajorVersion"] = mongo_db_major_version
+        __props__["mongoDbVersion"] = mongo_db_version
+        __props__["name"] = name
+        __props__["paused"] = paused
+        __props__["pinnedFcv"] = pinned_fcv
+        __props__["pitEnabled"] = pit_enabled
+        __props__["projectId"] = project_id
+        __props__["redactClientLogData"] = redact_client_log_data
+        __props__["replicaSetScalingStrategy"] = replica_set_scaling_strategy
+        __props__["replicationSpecs"] = replication_specs
+        __props__["retainBackupsEnabled"] = retain_backups_enabled
+        __props__["rootCertType"] = root_cert_type
+        __props__["stateName"] = state_name
+        __props__["tags"] = tags
+        __props__["terminationProtectionEnabled"] = termination_protection_enabled
+        __props__["timeouts"] = timeouts
+        __props__["useAwsTimeBasedSnapshotCopyForFastInitialSync"] = use_aws_time_based_snapshot_copy_for_fast_initial_sync
+        __props__["useEffectiveFields"] = use_effective_fields
+        __props__["versionReleaseSystem"] = version_release_system
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/advancedCluster:AdvancedCluster', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="acceptDataRisksAndForceReplicaSetReconfig")
     def accept_data_risks_and_force_replica_set_reconfig(self) -> pulumi.Output[Optional[_builtins.str]]:

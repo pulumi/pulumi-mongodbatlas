@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -81,7 +80,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -147,7 +145,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
-        /// 
         /// 
         /// ## Example Usage
         /// 

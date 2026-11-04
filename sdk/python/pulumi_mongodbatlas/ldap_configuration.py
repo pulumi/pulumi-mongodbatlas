@@ -627,6 +627,32 @@ class LdapConfiguration(pulumi.CustomResource):
         __props__.__dict__["user_to_dn_mappings"] = user_to_dn_mappings
         return LdapConfiguration(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            authentication_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            authorization_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            authz_query_template: pulumi.Input[Optional[_builtins.str]] = None,
+            bind_password: pulumi.Input[Optional[_builtins.str]] = None,
+            bind_username: pulumi.Input[Optional[_builtins.str]] = None,
+            ca_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            hostname: pulumi.Input[Optional[_builtins.str]] = None,
+            port: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            user_to_dn_mappings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LdapConfigurationUserToDnMappingArgs', 'LdapConfigurationUserToDnMappingArgsDict', 'outputs.LdapConfigurationUserToDnMapping']]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["authenticationEnabled"] = authentication_enabled
+        __props__["authorizationEnabled"] = authorization_enabled
+        __props__["authzQueryTemplate"] = authz_query_template
+        __props__["bindPassword"] = bind_password
+        __props__["bindUsername"] = bind_username
+        __props__["caCertificate"] = ca_certificate
+        __props__["hostname"] = hostname
+        __props__["port"] = port
+        __props__["projectId"] = project_id
+        __props__["userToDnMappings"] = user_to_dn_mappings
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/ldapConfiguration:LdapConfiguration', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="authenticationEnabled")
     def authentication_enabled(self) -> pulumi.Output[_builtins.bool]:

@@ -41,7 +41,6 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// 
         /// ### With AZURE
         /// ```csharp
         /// using System.Collections.Generic;
@@ -75,7 +74,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// 
         /// 
         /// ### With GCP
         /// 
@@ -136,7 +134,6 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// 
         /// ### With AZURE
         /// ```csharp
         /// using System.Collections.Generic;
@@ -170,7 +167,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// 
         /// 
         /// ### With GCP
         /// 
@@ -231,7 +227,6 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// 
         /// ### With AZURE
         /// ```csharp
         /// using System.Collections.Generic;
@@ -265,7 +260,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// 
         /// 
         /// ### With GCP
         /// 

@@ -373,6 +373,24 @@ class ApiKey(pulumi.CustomResource):
         __props__.__dict__["role_names"] = role_names
         return ApiKey(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            api_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            public_key: pulumi.Input[Optional[_builtins.str]] = None,
+            role_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["apiKeyId"] = api_key_id
+        __props__["description"] = description
+        __props__["orgId"] = org_id
+        __props__["privateKey"] = private_key
+        __props__["publicKey"] = public_key
+        __props__["roleNames"] = role_names
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/apiKey:ApiKey', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="apiKeyId")
     def api_key_id(self) -> pulumi.Output[_builtins.str]:

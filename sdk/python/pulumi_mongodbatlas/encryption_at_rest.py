@@ -586,6 +586,22 @@ class EncryptionAtRest(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         return EncryptionAtRest(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            aws_kms_config: pulumi.Input[Optional[Union['EncryptionAtRestAwsKmsConfigArgs', 'EncryptionAtRestAwsKmsConfigArgsDict', 'outputs.EncryptionAtRestAwsKmsConfig']]] = None,
+            azure_key_vault_config: pulumi.Input[Optional[Union['EncryptionAtRestAzureKeyVaultConfigArgs', 'EncryptionAtRestAzureKeyVaultConfigArgsDict', 'outputs.EncryptionAtRestAzureKeyVaultConfig']]] = None,
+            enabled_for_search_nodes: pulumi.Input[Optional[_builtins.bool]] = None,
+            google_cloud_kms_config: pulumi.Input[Optional[Union['EncryptionAtRestGoogleCloudKmsConfigArgs', 'EncryptionAtRestGoogleCloudKmsConfigArgsDict', 'outputs.EncryptionAtRestGoogleCloudKmsConfig']]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["awsKmsConfig"] = aws_kms_config
+        __props__["azureKeyVaultConfig"] = azure_key_vault_config
+        __props__["enabledForSearchNodes"] = enabled_for_search_nodes
+        __props__["googleCloudKmsConfig"] = google_cloud_kms_config
+        __props__["projectId"] = project_id
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/encryptionAtRest:EncryptionAtRest', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="awsKmsConfig")
     def aws_kms_config(self) -> pulumi.Output[Optional['outputs.EncryptionAtRestAwsKmsConfig']]:

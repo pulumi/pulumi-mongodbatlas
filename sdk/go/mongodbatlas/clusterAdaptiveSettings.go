@@ -142,6 +142,12 @@ func (ClusterAdaptiveSettingsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*clusterAdaptiveSettingsState)(nil)).Elem()
 }
 
+// ClusterAdaptiveSettingsExists checks whether an existing ClusterAdaptiveSettings resource with the given ID exists.
+func ClusterAdaptiveSettingsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ClusterAdaptiveSettingsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/clusterAdaptiveSettings:ClusterAdaptiveSettings", id, state, "", opts...)
+}
+
 type clusterAdaptiveSettingsArgs struct {
 	// JSON-encoded map of customer-specified Adaptive Settings overrides, applied on a best-effort basis. Use `jsonencode` to configure this attribute. Each supported entry that you specify takes precedence over the corresponding Atlas-managed default.
 	AdaptiveSettingsOverrides *string `pulumi:"adaptiveSettingsOverrides"`

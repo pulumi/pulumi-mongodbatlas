@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getOnlineArchives` Describes the list of all the online archives for a cluster
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -38,7 +37,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// * `DbName` - Name of the database that contains the collection.
         /// * `CollName` -  Name of the collection.
-        /// * `CollectionType` - Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD". 
+        /// * `CollectionType` - Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
         /// * `Criteria` - Criteria to use for archiving data. See criteria.
         /// * `DataExpirationRule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
         /// * `DataProcessRegion` - Settings to configure the region where you wish to store your archived data. See data process region.
@@ -64,7 +63,7 @@ namespace Pulumi.Mongodbatlas
         /// ### Schedule
         /// 
         /// * `Type` - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
-        /// * `StartHour` - Hour of the day when the when the scheduled window to run one online archive starts.  
+        /// * `StartHour` - Hour of the day when the when the scheduled window to run one online archive starts.
         /// * `EndHour` - Hour of the day when the scheduled window to run one online archive ends.
         /// * `StartMinute` - Minute of the hour when the scheduled window to run one online archive starts.
         /// * `EndMinute` - Minute of the hour when the scheduled window to run one online archive ends.
@@ -82,7 +81,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getOnlineArchives` Describes the list of all the online archives for a cluster
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -106,7 +104,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// * `DbName` - Name of the database that contains the collection.
         /// * `CollName` -  Name of the collection.
-        /// * `CollectionType` - Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD". 
+        /// * `CollectionType` - Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
         /// * `Criteria` - Criteria to use for archiving data. See criteria.
         /// * `DataExpirationRule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
         /// * `DataProcessRegion` - Settings to configure the region where you wish to store your archived data. See data process region.
@@ -132,7 +130,7 @@ namespace Pulumi.Mongodbatlas
         /// ### Schedule
         /// 
         /// * `Type` - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
-        /// * `StartHour` - Hour of the day when the when the scheduled window to run one online archive starts.  
+        /// * `StartHour` - Hour of the day when the when the scheduled window to run one online archive starts.
         /// * `EndHour` - Hour of the day when the scheduled window to run one online archive ends.
         /// * `StartMinute` - Minute of the hour when the scheduled window to run one online archive starts.
         /// * `EndMinute` - Minute of the hour when the scheduled window to run one online archive ends.
@@ -150,7 +148,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getOnlineArchives` Describes the list of all the online archives for a cluster
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -174,7 +171,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// * `DbName` - Name of the database that contains the collection.
         /// * `CollName` -  Name of the collection.
-        /// * `CollectionType` - Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD". 
+        /// * `CollectionType` - Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
         /// * `Criteria` - Criteria to use for archiving data. See criteria.
         /// * `DataExpirationRule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
         /// * `DataProcessRegion` - Settings to configure the region where you wish to store your archived data. See data process region.
@@ -200,7 +197,7 @@ namespace Pulumi.Mongodbatlas
         /// ### Schedule
         /// 
         /// * `Type` - Type of schedule (`DAILY`, `MONTHLY`, `WEEKLY`).
-        /// * `StartHour` - Hour of the day when the when the scheduled window to run one online archive starts.  
+        /// * `StartHour` - Hour of the day when the when the scheduled window to run one online archive starts.
         /// * `EndHour` - Hour of the day when the scheduled window to run one online archive ends.
         /// * `StartMinute` - Minute of the hour when the scheduled window to run one online archive starts.
         /// * `EndMinute` - Minute of the hour when the scheduled window to run one online archive ends.

@@ -159,6 +159,12 @@ func (McpConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*mcpConfigState)(nil)).Elem()
 }
 
+// McpConfigExists checks whether an existing McpConfig resource with the given ID exists.
+func McpConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *McpConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/mcpConfig:McpConfig", id, state, "", opts...)
+}
+
 type mcpConfigArgs struct {
 	// List of IP access list entries that define allowed source addresses for this MCP configuration.
 	IpAccessLists []McpConfigIpAccessList `pulumi:"ipAccessLists"`

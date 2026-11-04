@@ -465,6 +465,12 @@ func (LogIntegrationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*logIntegrationState)(nil)).Elem()
 }
 
+// LogIntegrationExists checks whether an existing LogIntegration resource with the given ID exists.
+func LogIntegrationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LogIntegrationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/logIntegration:LogIntegration", id, state, "", opts...)
+}
+
 type logIntegrationArgs struct {
 	// Required for type: DATADOG_LOG_EXPORT. API key for authentication.
 	ApiKey *string `pulumi:"apiKey"`

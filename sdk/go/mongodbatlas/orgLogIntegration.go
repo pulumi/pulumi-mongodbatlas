@@ -155,6 +155,12 @@ func (OrgLogIntegrationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*orgLogIntegrationState)(nil)).Elem()
 }
 
+// OrgLogIntegrationExists checks whether an existing OrgLogIntegration resource with the given ID exists.
+func OrgLogIntegrationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OrgLogIntegrationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/orgLogIntegration:OrgLogIntegration", id, state, "", opts...)
+}
+
 type orgLogIntegrationArgs struct {
 	// Array of log types exported by this integration.
 	LogTypes []string `pulumi:"logTypes"`

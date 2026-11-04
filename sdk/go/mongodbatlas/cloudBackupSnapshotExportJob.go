@@ -290,6 +290,12 @@ func (CloudBackupSnapshotExportJobState) ElementType() reflect.Type {
 	return reflect.TypeOf((*cloudBackupSnapshotExportJobState)(nil)).Elem()
 }
 
+// CloudBackupSnapshotExportJobExists checks whether an existing CloudBackupSnapshotExportJob resource with the given ID exists.
+func CloudBackupSnapshotExportJobExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CloudBackupSnapshotExportJobState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/cloudBackupSnapshotExportJob:CloudBackupSnapshotExportJob", id, state, "", opts...)
+}
+
 type cloudBackupSnapshotExportJobArgs struct {
 	// Name of the Atlas cluster whose snapshot you want to export.
 	ClusterName string `pulumi:"clusterName"`

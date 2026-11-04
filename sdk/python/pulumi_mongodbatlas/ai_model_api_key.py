@@ -499,6 +499,36 @@ class AiModelApiKey(pulumi.CustomResource):
         __props__.__dict__["status"] = status
         return AiModelApiKey(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            api_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            cloud: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            created_by: pulumi.Input[Optional[_builtins.str]] = None,
+            endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            geography: pulumi.Input[Optional[_builtins.str]] = None,
+            last_used_at: pulumi.Input[Optional[_builtins.str]] = None,
+            masked_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            secret: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["apiKeyId"] = api_key_id
+        __props__["cloud"] = cloud
+        __props__["createdAt"] = created_at
+        __props__["createdBy"] = created_by
+        __props__["endpoint"] = endpoint
+        __props__["geography"] = geography
+        __props__["lastUsedAt"] = last_used_at
+        __props__["maskedSecret"] = masked_secret
+        __props__["name"] = name
+        __props__["projectId"] = project_id
+        __props__["secret"] = secret
+        __props__["status"] = status
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/aiModelApiKey:AiModelApiKey', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="apiKeyId")
     def api_key_id(self) -> pulumi.Output[_builtins.str]:

@@ -310,6 +310,12 @@ func (EncryptionAtRestState) ElementType() reflect.Type {
 	return reflect.TypeOf((*encryptionAtRestState)(nil)).Elem()
 }
 
+// EncryptionAtRestExists checks whether an existing EncryptionAtRest resource with the given ID exists.
+func EncryptionAtRestExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *EncryptionAtRestState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/encryptionAtRest:EncryptionAtRest", id, state, "", opts...)
+}
+
 type encryptionAtRestArgs struct {
 	// Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
 	AwsKmsConfig *EncryptionAtRestAwsKmsConfig `pulumi:"awsKmsConfig"`

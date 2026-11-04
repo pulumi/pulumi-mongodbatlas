@@ -517,6 +517,12 @@ func (PrivateLinkEndpointServiceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*privateLinkEndpointServiceState)(nil)).Elem()
 }
 
+// PrivateLinkEndpointServiceExists checks whether an existing PrivateLinkEndpointService resource with the given ID exists.
+func PrivateLinkEndpointServiceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PrivateLinkEndpointServiceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService", id, state, "", opts...)
+}
+
 type privateLinkEndpointServiceArgs struct {
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`

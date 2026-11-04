@@ -187,6 +187,12 @@ func (ProjectApiKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectApiKeyState)(nil)).Elem()
 }
 
+// ProjectApiKeyExists checks whether an existing ProjectApiKey resource with the given ID exists.
+func ProjectApiKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ProjectApiKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/projectApiKey:ProjectApiKey", id, state, "", opts...)
+}
+
 type projectApiKeyArgs struct {
 	// Description of this Project API key.
 	//

@@ -199,6 +199,12 @@ func (CloudBackupSnapshotExportBucketState) ElementType() reflect.Type {
 	return reflect.TypeOf((*cloudBackupSnapshotExportBucketState)(nil)).Elem()
 }
 
+// CloudBackupSnapshotExportBucketExists checks whether an existing CloudBackupSnapshotExportBucket resource with the given ID exists.
+func CloudBackupSnapshotExportBucketExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CloudBackupSnapshotExportBucketState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket", id, state, "", opts...)
+}
+
 type cloudBackupSnapshotExportBucketArgs struct {
 	// Name of the bucket that the provided role ID is authorized to access.
 	BucketName string `pulumi:"bucketName"`

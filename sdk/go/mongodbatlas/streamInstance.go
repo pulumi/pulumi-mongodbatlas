@@ -150,6 +150,12 @@ func (StreamInstanceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*streamInstanceState)(nil)).Elem()
 }
 
+// StreamInstanceExists checks whether an existing StreamInstance resource with the given ID exists.
+func StreamInstanceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *StreamInstanceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/streamInstance:StreamInstance", id, state, "", opts...)
+}
+
 type streamInstanceArgs struct {
 	// Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
 	DataProcessRegion StreamInstanceDataProcessRegion `pulumi:"dataProcessRegion"`

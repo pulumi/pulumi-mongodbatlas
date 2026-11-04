@@ -307,6 +307,20 @@ class ClusterAdaptiveSettings(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         return ClusterAdaptiveSettings(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            adaptive_settings_overrides: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            effective_adaptive_settings: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["adaptiveSettingsOverrides"] = adaptive_settings_overrides
+        __props__["clusterName"] = cluster_name
+        __props__["effectiveAdaptiveSettings"] = effective_adaptive_settings
+        __props__["projectId"] = project_id
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/clusterAdaptiveSettings:ClusterAdaptiveSettings', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="adaptiveSettingsOverrides")
     def adaptive_settings_overrides(self) -> pulumi.Output[Optional[_builtins.str]]:

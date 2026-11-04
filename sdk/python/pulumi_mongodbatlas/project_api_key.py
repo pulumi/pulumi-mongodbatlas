@@ -352,6 +352,22 @@ class ProjectApiKey(pulumi.CustomResource):
         __props__.__dict__["public_key"] = public_key
         return ProjectApiKey(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            api_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            project_assignments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectApiKeyProjectAssignmentArgs', 'ProjectApiKeyProjectAssignmentArgsDict', 'outputs.ProjectApiKeyProjectAssignment']]]]] = None,
+            public_key: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["apiKeyId"] = api_key_id
+        __props__["description"] = description
+        __props__["privateKey"] = private_key
+        __props__["projectAssignments"] = project_assignments
+        __props__["publicKey"] = public_key
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/projectApiKey:ProjectApiKey', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="apiKeyId")
     def api_key_id(self) -> pulumi.Output[_builtins.str]:

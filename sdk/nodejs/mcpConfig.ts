@@ -55,6 +55,17 @@ export class McpConfig extends pulumi.CustomResource {
         return new McpConfig(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing McpConfig resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: McpConfigState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("mongodbatlas:index/mcpConfig:McpConfig", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'mongodbatlas:index/mcpConfig:McpConfig';
 

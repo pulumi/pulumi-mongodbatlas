@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters, including Flex clusters, for a project_id.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -275,7 +274,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters, including Flex clusters, for a project_id.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -535,7 +533,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters, including Flex clusters, for a project_id.
-        /// 
         /// 
         /// ## Example Usage
         /// 

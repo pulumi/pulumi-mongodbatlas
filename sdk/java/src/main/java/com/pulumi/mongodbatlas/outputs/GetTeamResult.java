@@ -31,11 +31,10 @@ public final class GetTeamResult {
     /**
      * @return **(DEPRECATED)** The users who are part of the team. This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+     * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+    @Deprecated
     private List<String> usernames;
     /**
      * @return Returns a list of all pending and active MongoDB Cloud users associated with the specified team.
@@ -71,11 +70,10 @@ public final class GetTeamResult {
     /**
      * @return **(DEPRECATED)** The users who are part of the team. This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
      * 
-     * @deprecated
-     * This parameter is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+     * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      * 
      */
-    @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+    @Deprecated
     public List<String> usernames() {
         return this.usernames;
     }

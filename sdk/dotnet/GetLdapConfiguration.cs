@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -55,7 +54,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -95,7 +93,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
-        /// 
         /// 
         /// ## Example Usage
         /// 

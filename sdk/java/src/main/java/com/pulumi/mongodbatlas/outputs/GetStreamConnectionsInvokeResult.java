@@ -16,18 +16,16 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetStreamConnectionsInvokeResult {
     /**
-     * @deprecated
-     * This parameter is deprecated.
+     * @deprecated This parameter is deprecated.
      * 
      */
-    @Deprecated /* This parameter is deprecated. */
+    @Deprecated
     private String id;
     /**
-     * @deprecated
-     * This parameter is deprecated. Please transition to workspace_name.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Deprecated
     private @Nullable String instanceName;
     private @Nullable Integer itemsPerPage;
     private @Nullable Integer pageNum;
@@ -54,20 +52,18 @@ public final class GetStreamConnectionsInvokeResult {
 
     private GetStreamConnectionsInvokeResult() {}
     /**
-     * @deprecated
-     * This parameter is deprecated.
+     * @deprecated This parameter is deprecated.
      * 
      */
-    @Deprecated /* This parameter is deprecated. */
+    @Deprecated
     public String id() {
         return this.id;
     }
     /**
-     * @deprecated
-     * This parameter is deprecated. Please transition to workspace_name.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Deprecated
     public Optional<String> instanceName() {
         return Optional.ofNullable(this.instanceName);
     }

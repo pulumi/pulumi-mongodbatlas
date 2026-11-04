@@ -79,11 +79,10 @@ public final class GetStreamConnectionsResult {
     /**
      * @return Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to workspace_name.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Deprecated
     private String instanceName;
     /**
      * @return Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
@@ -219,11 +218,10 @@ public final class GetStreamConnectionsResult {
     /**
      * @return Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to workspace_name.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Deprecated
     public String instanceName() {
         return this.instanceName;
     }

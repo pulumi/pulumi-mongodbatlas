@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getProjectIpAccessLists` returns all IP Access List entries for a project. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -53,7 +52,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getProjectIpAccessLists` returns all IP Access List entries for a project. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -91,7 +89,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.getProjectIpAccessLists` returns all IP Access List entries for a project. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
-        /// 
         /// 
         /// ## Example Usage
         /// 

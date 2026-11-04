@@ -176,6 +176,12 @@ func (McpConfigSecretState) ElementType() reflect.Type {
 	return reflect.TypeOf((*mcpConfigSecretState)(nil)).Elem()
 }
 
+// McpConfigSecretExists checks whether an existing McpConfigSecret resource with the given ID exists.
+func McpConfigSecretExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *McpConfigSecretState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/mcpConfigSecret:McpConfigSecret", id, state, "", opts...)
+}
+
 type mcpConfigSecretArgs struct {
 	// Unique identifier of the MCP configuration.
 	McpConfigId string `pulumi:"mcpConfigId"`

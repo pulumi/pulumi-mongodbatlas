@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -149,7 +148,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -283,7 +281,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
-        /// 
         /// 
         /// ## Example Usage
         /// 

@@ -461,6 +461,28 @@ class PushBasedLogExport(pulumi.CustomResource):
         __props__.__dict__["timeouts"] = timeouts
         return PushBasedLogExport(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bucket_name: pulumi.Input[Optional[_builtins.str]] = None,
+            create_date: pulumi.Input[Optional[_builtins.str]] = None,
+            delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            iam_role_id: pulumi.Input[Optional[_builtins.str]] = None,
+            prefix_path: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            timeouts: pulumi.Input[Optional[Union['PushBasedLogExportTimeoutsArgs', 'PushBasedLogExportTimeoutsArgsDict', 'outputs.PushBasedLogExportTimeouts']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["bucketName"] = bucket_name
+        __props__["createDate"] = create_date
+        __props__["deleteOnCreateTimeout"] = delete_on_create_timeout
+        __props__["iamRoleId"] = iam_role_id
+        __props__["prefixPath"] = prefix_path
+        __props__["projectId"] = project_id
+        __props__["state"] = state
+        __props__["timeouts"] = timeouts
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/pushBasedLogExport:PushBasedLogExport', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> pulumi.Output[_builtins.str]:

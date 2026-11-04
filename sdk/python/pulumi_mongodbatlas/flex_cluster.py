@@ -581,6 +581,40 @@ class FlexCluster(pulumi.CustomResource):
         __props__.__dict__["version_release_system"] = version_release_system
         return FlexCluster(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backup_settings: pulumi.Input[Optional[Union['FlexClusterBackupSettingsArgs', 'FlexClusterBackupSettingsArgsDict', 'outputs.FlexClusterBackupSettings']]] = None,
+            cluster_type: pulumi.Input[Optional[_builtins.str]] = None,
+            connection_strings: pulumi.Input[Optional[Union['FlexClusterConnectionStringsArgs', 'FlexClusterConnectionStringsArgsDict', 'outputs.FlexClusterConnectionStrings']]] = None,
+            create_date: pulumi.Input[Optional[_builtins.str]] = None,
+            delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            mongo_db_version: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_settings: pulumi.Input[Optional[Union['FlexClusterProviderSettingsArgs', 'FlexClusterProviderSettingsArgsDict', 'outputs.FlexClusterProviderSettings']]] = None,
+            state_name: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            termination_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            timeouts: pulumi.Input[Optional[Union['FlexClusterTimeoutsArgs', 'FlexClusterTimeoutsArgsDict', 'outputs.FlexClusterTimeouts']]] = None,
+            version_release_system: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backupSettings"] = backup_settings
+        __props__["clusterType"] = cluster_type
+        __props__["connectionStrings"] = connection_strings
+        __props__["createDate"] = create_date
+        __props__["deleteOnCreateTimeout"] = delete_on_create_timeout
+        __props__["mongoDbVersion"] = mongo_db_version
+        __props__["name"] = name
+        __props__["projectId"] = project_id
+        __props__["providerSettings"] = provider_settings
+        __props__["stateName"] = state_name
+        __props__["tags"] = tags
+        __props__["terminationProtectionEnabled"] = termination_protection_enabled
+        __props__["timeouts"] = timeouts
+        __props__["versionReleaseSystem"] = version_release_system
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/flexCluster:FlexCluster', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="backupSettings")
     def backup_settings(self) -> pulumi.Output['outputs.FlexClusterBackupSettings']:

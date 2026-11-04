@@ -436,6 +436,12 @@ func (CloudBackupSnapshotRestoreJobState) ElementType() reflect.Type {
 	return reflect.TypeOf((*cloudBackupSnapshotRestoreJobState)(nil)).Elem()
 }
 
+// CloudBackupSnapshotRestoreJobExists checks whether an existing CloudBackupSnapshotRestoreJob resource with the given ID exists.
+func CloudBackupSnapshotRestoreJobExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CloudBackupSnapshotRestoreJobState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob", id, state, "", opts...)
+}
+
 type cloudBackupSnapshotRestoreJobArgs struct {
 	// The name of the Atlas cluster whose snapshot you want to restore.
 	ClusterName string `pulumi:"clusterName"`

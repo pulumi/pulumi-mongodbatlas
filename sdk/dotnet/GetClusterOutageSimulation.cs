@@ -14,15 +14,13 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/
         /// 
-        /// Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes. This operation is supported via Terraform Provider. 
+        /// Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes. This operation is supported via Terraform Provider.
         /// 
-        /// Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead. 
-        /// 
+        /// Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead.
         /// 
         /// ## Example Usage
         /// 
         /// ### S
-        /// 
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -47,15 +45,13 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/
         /// 
-        /// Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes. This operation is supported via Terraform Provider. 
+        /// Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes. This operation is supported via Terraform Provider.
         /// 
-        /// Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead. 
-        /// 
+        /// Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead.
         /// 
         /// ## Example Usage
         /// 
         /// ### S
-        /// 
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -80,15 +76,13 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/
         /// 
-        /// Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes. This operation is supported via Terraform Provider. 
+        /// Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes. This operation is supported via Terraform Provider.
         /// 
-        /// Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead. 
-        /// 
+        /// Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead.
         /// 
         /// ## Example Usage
         /// 
         /// ### S
-        /// 
         /// 
         /// ```csharp
         /// using System.Collections.Generic;

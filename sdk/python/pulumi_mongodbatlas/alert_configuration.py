@@ -795,6 +795,34 @@ class AlertConfiguration(pulumi.CustomResource):
         __props__.__dict__["updated"] = updated
         return AlertConfiguration(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            alert_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+            created: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            event_type: pulumi.Input[Optional[_builtins.str]] = None,
+            matchers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AlertConfigurationMatcherArgs', 'AlertConfigurationMatcherArgsDict', 'outputs.AlertConfigurationMatcher']]]]] = None,
+            metric_threshold_config: pulumi.Input[Optional[Union['AlertConfigurationMetricThresholdConfigArgs', 'AlertConfigurationMetricThresholdConfigArgsDict', 'outputs.AlertConfigurationMetricThresholdConfig']]] = None,
+            notifications: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AlertConfigurationNotificationArgs', 'AlertConfigurationNotificationArgsDict', 'outputs.AlertConfigurationNotification']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            severity_override: pulumi.Input[Optional[_builtins.str]] = None,
+            threshold_config: pulumi.Input[Optional[Union['AlertConfigurationThresholdConfigArgs', 'AlertConfigurationThresholdConfigArgsDict', 'outputs.AlertConfigurationThresholdConfig']]] = None,
+            updated: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["alertConfigurationId"] = alert_configuration_id
+        __props__["created"] = created
+        __props__["enabled"] = enabled
+        __props__["eventType"] = event_type
+        __props__["matchers"] = matchers
+        __props__["metricThresholdConfig"] = metric_threshold_config
+        __props__["notifications"] = notifications
+        __props__["projectId"] = project_id
+        __props__["severityOverride"] = severity_override
+        __props__["thresholdConfig"] = threshold_config
+        __props__["updated"] = updated
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/alertConfiguration:AlertConfiguration', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="alertConfigurationId")
     def alert_configuration_id(self) -> pulumi.Output[_builtins.str]:

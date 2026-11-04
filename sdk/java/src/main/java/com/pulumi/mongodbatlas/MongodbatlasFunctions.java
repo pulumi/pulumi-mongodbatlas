@@ -17823,7 +17823,7 @@ public final class MongodbatlasFunctions {
      *             .projectId(atlasProjectId)
      *             .googleCloudKmsConfig(EncryptionAtRestGoogleCloudKmsConfigArgs.builder()
      *                 .enabled(true)
-     *                 .serviceAccountKey("}{{@code \"type\": \"service_account\",\"project_id\": \"my-project-common-0\",\"private_key_id\": \"e120598ea4f88249469fcdd75a9a785c1bb3\",\"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\n-----END PRIVATE KEY-----\\n\",\"client_email\": \"my-email-kms-0}{@literal @}{@code my-project-common-0.iam.gserviceaccount.com\",\"client_id\": \"10180967717292066\",\"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\"token_uri\": \"https://accounts.google.com/o/oauth2/token\",\"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\"}}{@code ")
+     *                 .serviceAccountKey("}{&#92;{@code "type}&#92;{@code ": }&#92;{@code "service_account}&#92;{@code ",}&#92;{@code "project_id}&#92;{@code ": }&#92;{@code "my-project-common-0}&#92;{@code ",}&#92;{@code "private_key_id}&#92;{@code ": }&#92;{@code "e120598ea4f88249469fcdd75a9a785c1bb3}&#92;{@code ",}&#92;{@code "private_key}&#92;{@code ": }&#92;{@code "-----BEGIN PRIVATE KEY-----}&#92;&#92;{@code nMIIEuwIBA(truncated)SfecnS0mT94D9}&#92;&#92;{@code n-----END PRIVATE KEY-----}&#92;&#92;{@code n}&#92;{@code ",}&#92;{@code "client_email}&#92;{@code ": }&#92;{@code "my-email-kms-0}{@literal @}{@code my-project-common-0.iam.gserviceaccount.com}&#92;{@code ",}&#92;{@code "client_id}&#92;{@code ": }&#92;{@code "10180967717292066}&#92;{@code ",}&#92;{@code "auth_uri}&#92;{@code ": }&#92;{@code "https://accounts.google.com/o/oauth2/auth}&#92;{@code ",}&#92;{@code "token_uri}&#92;{@code ": }&#92;{@code "https://accounts.google.com/o/oauth2/token}&#92;{@code ",}&#92;{@code "auth_provider_x509_cert_url}&#92;{@code ": }&#92;{@code "https://www.googleapis.com/oauth2/v1/certs}&#92;{@code ",}&#92;{@code "client_x509_cert_url}&#92;{@code ": }&#92;{@code "https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com}&#92;{@code "}}{@code ")
      *                 .keyVersionResourceId("projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1")
      *                 .build())
      *             .build());
@@ -18029,7 +18029,7 @@ public final class MongodbatlasFunctions {
      *             .projectId(atlasProjectId)
      *             .googleCloudKmsConfig(EncryptionAtRestGoogleCloudKmsConfigArgs.builder()
      *                 .enabled(true)
-     *                 .serviceAccountKey("}{{@code \"type\": \"service_account\",\"project_id\": \"my-project-common-0\",\"private_key_id\": \"e120598ea4f88249469fcdd75a9a785c1bb3\",\"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\n-----END PRIVATE KEY-----\\n\",\"client_email\": \"my-email-kms-0}{@literal @}{@code my-project-common-0.iam.gserviceaccount.com\",\"client_id\": \"10180967717292066\",\"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\"token_uri\": \"https://accounts.google.com/o/oauth2/token\",\"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\"}}{@code ")
+     *                 .serviceAccountKey("}{&#92;{@code "type}&#92;{@code ": }&#92;{@code "service_account}&#92;{@code ",}&#92;{@code "project_id}&#92;{@code ": }&#92;{@code "my-project-common-0}&#92;{@code ",}&#92;{@code "private_key_id}&#92;{@code ": }&#92;{@code "e120598ea4f88249469fcdd75a9a785c1bb3}&#92;{@code ",}&#92;{@code "private_key}&#92;{@code ": }&#92;{@code "-----BEGIN PRIVATE KEY-----}&#92;&#92;{@code nMIIEuwIBA(truncated)SfecnS0mT94D9}&#92;&#92;{@code n-----END PRIVATE KEY-----}&#92;&#92;{@code n}&#92;{@code ",}&#92;{@code "client_email}&#92;{@code ": }&#92;{@code "my-email-kms-0}{@literal @}{@code my-project-common-0.iam.gserviceaccount.com}&#92;{@code ",}&#92;{@code "client_id}&#92;{@code ": }&#92;{@code "10180967717292066}&#92;{@code ",}&#92;{@code "auth_uri}&#92;{@code ": }&#92;{@code "https://accounts.google.com/o/oauth2/auth}&#92;{@code ",}&#92;{@code "token_uri}&#92;{@code ": }&#92;{@code "https://accounts.google.com/o/oauth2/token}&#92;{@code ",}&#92;{@code "auth_provider_x509_cert_url}&#92;{@code ": }&#92;{@code "https://www.googleapis.com/oauth2/v1/certs}&#92;{@code ",}&#92;{@code "client_x509_cert_url}&#92;{@code ": }&#92;{@code "https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com}&#92;{@code "}}{@code ")
      *                 .keyVersionResourceId("projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1")
      *                 .build())
      *             .build());
@@ -18235,7 +18235,7 @@ public final class MongodbatlasFunctions {
      *             .projectId(atlasProjectId)
      *             .googleCloudKmsConfig(EncryptionAtRestGoogleCloudKmsConfigArgs.builder()
      *                 .enabled(true)
-     *                 .serviceAccountKey("}{{@code \"type\": \"service_account\",\"project_id\": \"my-project-common-0\",\"private_key_id\": \"e120598ea4f88249469fcdd75a9a785c1bb3\",\"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\n-----END PRIVATE KEY-----\\n\",\"client_email\": \"my-email-kms-0}{@literal @}{@code my-project-common-0.iam.gserviceaccount.com\",\"client_id\": \"10180967717292066\",\"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\"token_uri\": \"https://accounts.google.com/o/oauth2/token\",\"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\"}}{@code ")
+     *                 .serviceAccountKey("}{&#92;{@code "type}&#92;{@code ": }&#92;{@code "service_account}&#92;{@code ",}&#92;{@code "project_id}&#92;{@code ": }&#92;{@code "my-project-common-0}&#92;{@code ",}&#92;{@code "private_key_id}&#92;{@code ": }&#92;{@code "e120598ea4f88249469fcdd75a9a785c1bb3}&#92;{@code ",}&#92;{@code "private_key}&#92;{@code ": }&#92;{@code "-----BEGIN PRIVATE KEY-----}&#92;&#92;{@code nMIIEuwIBA(truncated)SfecnS0mT94D9}&#92;&#92;{@code n-----END PRIVATE KEY-----}&#92;&#92;{@code n}&#92;{@code ",}&#92;{@code "client_email}&#92;{@code ": }&#92;{@code "my-email-kms-0}{@literal @}{@code my-project-common-0.iam.gserviceaccount.com}&#92;{@code ",}&#92;{@code "client_id}&#92;{@code ": }&#92;{@code "10180967717292066}&#92;{@code ",}&#92;{@code "auth_uri}&#92;{@code ": }&#92;{@code "https://accounts.google.com/o/oauth2/auth}&#92;{@code ",}&#92;{@code "token_uri}&#92;{@code ": }&#92;{@code "https://accounts.google.com/o/oauth2/token}&#92;{@code ",}&#92;{@code "auth_provider_x509_cert_url}&#92;{@code ": }&#92;{@code "https://www.googleapis.com/oauth2/v1/certs}&#92;{@code ",}&#92;{@code "client_x509_cert_url}&#92;{@code ": }&#92;{@code "https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com}&#92;{@code "}}{@code ")
      *                 .keyVersionResourceId("projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1")
      *                 .build())
      *             .build());
@@ -18441,7 +18441,7 @@ public final class MongodbatlasFunctions {
      *             .projectId(atlasProjectId)
      *             .googleCloudKmsConfig(EncryptionAtRestGoogleCloudKmsConfigArgs.builder()
      *                 .enabled(true)
-     *                 .serviceAccountKey("}{{@code \"type\": \"service_account\",\"project_id\": \"my-project-common-0\",\"private_key_id\": \"e120598ea4f88249469fcdd75a9a785c1bb3\",\"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\n-----END PRIVATE KEY-----\\n\",\"client_email\": \"my-email-kms-0}{@literal @}{@code my-project-common-0.iam.gserviceaccount.com\",\"client_id\": \"10180967717292066\",\"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\"token_uri\": \"https://accounts.google.com/o/oauth2/token\",\"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\"}}{@code ")
+     *                 .serviceAccountKey("}{&#92;{@code "type}&#92;{@code ": }&#92;{@code "service_account}&#92;{@code ",}&#92;{@code "project_id}&#92;{@code ": }&#92;{@code "my-project-common-0}&#92;{@code ",}&#92;{@code "private_key_id}&#92;{@code ": }&#92;{@code "e120598ea4f88249469fcdd75a9a785c1bb3}&#92;{@code ",}&#92;{@code "private_key}&#92;{@code ": }&#92;{@code "-----BEGIN PRIVATE KEY-----}&#92;&#92;{@code nMIIEuwIBA(truncated)SfecnS0mT94D9}&#92;&#92;{@code n-----END PRIVATE KEY-----}&#92;&#92;{@code n}&#92;{@code ",}&#92;{@code "client_email}&#92;{@code ": }&#92;{@code "my-email-kms-0}{@literal @}{@code my-project-common-0.iam.gserviceaccount.com}&#92;{@code ",}&#92;{@code "client_id}&#92;{@code ": }&#92;{@code "10180967717292066}&#92;{@code ",}&#92;{@code "auth_uri}&#92;{@code ": }&#92;{@code "https://accounts.google.com/o/oauth2/auth}&#92;{@code ",}&#92;{@code "token_uri}&#92;{@code ": }&#92;{@code "https://accounts.google.com/o/oauth2/token}&#92;{@code ",}&#92;{@code "auth_provider_x509_cert_url}&#92;{@code ": }&#92;{@code "https://www.googleapis.com/oauth2/v1/certs}&#92;{@code ",}&#92;{@code "client_x509_cert_url}&#92;{@code ": }&#92;{@code "https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com}&#92;{@code "}}{@code ")
      *                 .keyVersionResourceId("projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1")
      *                 .build())
      *             .build());
@@ -18647,7 +18647,7 @@ public final class MongodbatlasFunctions {
      *             .projectId(atlasProjectId)
      *             .googleCloudKmsConfig(EncryptionAtRestGoogleCloudKmsConfigArgs.builder()
      *                 .enabled(true)
-     *                 .serviceAccountKey("}{{@code \"type\": \"service_account\",\"project_id\": \"my-project-common-0\",\"private_key_id\": \"e120598ea4f88249469fcdd75a9a785c1bb3\",\"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMIIEuwIBA(truncated)SfecnS0mT94D9\\n-----END PRIVATE KEY-----\\n\",\"client_email\": \"my-email-kms-0}{@literal @}{@code my-project-common-0.iam.gserviceaccount.com\",\"client_id\": \"10180967717292066\",\"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\"token_uri\": \"https://accounts.google.com/o/oauth2/token\",\"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com\"}}{@code ")
+     *                 .serviceAccountKey("}{&#92;{@code "type}&#92;{@code ": }&#92;{@code "service_account}&#92;{@code ",}&#92;{@code "project_id}&#92;{@code ": }&#92;{@code "my-project-common-0}&#92;{@code ",}&#92;{@code "private_key_id}&#92;{@code ": }&#92;{@code "e120598ea4f88249469fcdd75a9a785c1bb3}&#92;{@code ",}&#92;{@code "private_key}&#92;{@code ": }&#92;{@code "-----BEGIN PRIVATE KEY-----}&#92;&#92;{@code nMIIEuwIBA(truncated)SfecnS0mT94D9}&#92;&#92;{@code n-----END PRIVATE KEY-----}&#92;&#92;{@code n}&#92;{@code ",}&#92;{@code "client_email}&#92;{@code ": }&#92;{@code "my-email-kms-0}{@literal @}{@code my-project-common-0.iam.gserviceaccount.com}&#92;{@code ",}&#92;{@code "client_id}&#92;{@code ": }&#92;{@code "10180967717292066}&#92;{@code ",}&#92;{@code "auth_uri}&#92;{@code ": }&#92;{@code "https://accounts.google.com/o/oauth2/auth}&#92;{@code ",}&#92;{@code "token_uri}&#92;{@code ": }&#92;{@code "https://accounts.google.com/o/oauth2/token}&#92;{@code ",}&#92;{@code "auth_provider_x509_cert_url}&#92;{@code ": }&#92;{@code "https://www.googleapis.com/oauth2/v1/certs}&#92;{@code ",}&#92;{@code "client_x509_cert_url}&#92;{@code ": }&#92;{@code "https://www.googleapis.com/robot/v1/metadata/x509/my-email-kms-0%40my-project-common-0.iam.gserviceaccount.com}&#92;{@code "}}{@code ")
      *                 .keyVersionResourceId("projects/my-project-common-0/locations/us-east4/keyRings/my-key-ring-0/cryptoKeys/my-key-0/cryptoKeyVersions/1")
      *                 .build())
      *             .build());
@@ -46370,12 +46370,12 @@ public final class MongodbatlasFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
      *             .projectId(projectId)
      *             .instanceName("InstanceName")
@@ -46425,16 +46425,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("sampleProcessorName")
-     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
      *                 var example-sampleConnectionName = values.t1;
      *                 var example-clusterConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "sample}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "solar}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "_ts}&#92;{@code "}}}}{@code
      * ]
      * ", example_sampleConnectionName,example_clusterConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("STARTED")
      *             .tier("SP30")
      *             .build());
@@ -46443,16 +46443,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("clusterProcessorName")
-     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> }{{@code
      *                 var example-clusterConnectionName = values.t1;
      *                 var example-kafkaConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_from_cluster}&#92;{@code "}}}{@code
      * ]
      * ", example_clusterConnectionName,example_kafkaConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("CREATED")
      *             .build());
      * 
@@ -46460,16 +46460,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
-     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
      *                 var example-kafkaConnectionName = values.t1;
      *                 var example-clusterConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "kafka}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "ts}&#92;{@code "}}}}{@code
      * ]
      * ", example_kafkaConnectionName,example_clusterConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("CREATED")
      *             .tier("SP10")
      *             .options(StreamProcessorOptionsArgs.builder()
@@ -46498,8 +46498,8 @@ public final class MongodbatlasFunctions {
      * 
      *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
      *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -46543,12 +46543,12 @@ public final class MongodbatlasFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
      *             .projectId(projectId)
      *             .instanceName("InstanceName")
@@ -46598,16 +46598,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("sampleProcessorName")
-     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
      *                 var example-sampleConnectionName = values.t1;
      *                 var example-clusterConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "sample}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "solar}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "_ts}&#92;{@code "}}}}{@code
      * ]
      * ", example_sampleConnectionName,example_clusterConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("STARTED")
      *             .tier("SP30")
      *             .build());
@@ -46616,16 +46616,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("clusterProcessorName")
-     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> }{{@code
      *                 var example-clusterConnectionName = values.t1;
      *                 var example-kafkaConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_from_cluster}&#92;{@code "}}}{@code
      * ]
      * ", example_clusterConnectionName,example_kafkaConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("CREATED")
      *             .build());
      * 
@@ -46633,16 +46633,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
-     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
      *                 var example-kafkaConnectionName = values.t1;
      *                 var example-clusterConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "kafka}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "ts}&#92;{@code "}}}}{@code
      * ]
      * ", example_kafkaConnectionName,example_clusterConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("CREATED")
      *             .tier("SP10")
      *             .options(StreamProcessorOptionsArgs.builder()
@@ -46671,8 +46671,8 @@ public final class MongodbatlasFunctions {
      * 
      *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
      *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -46716,12 +46716,12 @@ public final class MongodbatlasFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
      *             .projectId(projectId)
      *             .instanceName("InstanceName")
@@ -46771,16 +46771,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("sampleProcessorName")
-     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
      *                 var example-sampleConnectionName = values.t1;
      *                 var example-clusterConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "sample}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "solar}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "_ts}&#92;{@code "}}}}{@code
      * ]
      * ", example_sampleConnectionName,example_clusterConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("STARTED")
      *             .tier("SP30")
      *             .build());
@@ -46789,16 +46789,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("clusterProcessorName")
-     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> }{{@code
      *                 var example-clusterConnectionName = values.t1;
      *                 var example-kafkaConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_from_cluster}&#92;{@code "}}}{@code
      * ]
      * ", example_clusterConnectionName,example_kafkaConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("CREATED")
      *             .build());
      * 
@@ -46806,16 +46806,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
-     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
      *                 var example-kafkaConnectionName = values.t1;
      *                 var example-clusterConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "kafka}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "ts}&#92;{@code "}}}}{@code
      * ]
      * ", example_kafkaConnectionName,example_clusterConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("CREATED")
      *             .tier("SP10")
      *             .options(StreamProcessorOptionsArgs.builder()
@@ -46844,8 +46844,8 @@ public final class MongodbatlasFunctions {
      * 
      *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
      *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -46889,12 +46889,12 @@ public final class MongodbatlasFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
      *             .projectId(projectId)
      *             .instanceName("InstanceName")
@@ -46944,16 +46944,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("sampleProcessorName")
-     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
      *                 var example-sampleConnectionName = values.t1;
      *                 var example-clusterConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "sample}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "solar}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "_ts}&#92;{@code "}}}}{@code
      * ]
      * ", example_sampleConnectionName,example_clusterConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("STARTED")
      *             .tier("SP30")
      *             .build());
@@ -46962,16 +46962,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("clusterProcessorName")
-     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> }{{@code
      *                 var example-clusterConnectionName = values.t1;
      *                 var example-kafkaConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_from_cluster}&#92;{@code "}}}{@code
      * ]
      * ", example_clusterConnectionName,example_kafkaConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("CREATED")
      *             .build());
      * 
@@ -46979,16 +46979,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
-     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
      *                 var example-kafkaConnectionName = values.t1;
      *                 var example-clusterConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "kafka}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "ts}&#92;{@code "}}}}{@code
      * ]
      * ", example_kafkaConnectionName,example_clusterConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("CREATED")
      *             .tier("SP10")
      *             .options(StreamProcessorOptionsArgs.builder()
@@ -47017,8 +47017,8 @@ public final class MongodbatlasFunctions {
      * 
      *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
      *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -47062,12 +47062,12 @@ public final class MongodbatlasFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
      *             .projectId(projectId)
      *             .instanceName("InstanceName")
@@ -47117,16 +47117,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("sampleProcessorName")
-     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
      *                 var example-sampleConnectionName = values.t1;
      *                 var example-clusterConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "sample}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "solar}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "_ts}&#92;{@code "}}}}{@code
      * ]
      * ", example_sampleConnectionName,example_clusterConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("STARTED")
      *             .tier("SP30")
      *             .build());
@@ -47135,16 +47135,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("clusterProcessorName")
-     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> }{{@code
      *                 var example-clusterConnectionName = values.t1;
      *                 var example-kafkaConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_from_cluster}&#92;{@code "}}}{@code
      * ]
      * ", example_clusterConnectionName,example_kafkaConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("CREATED")
      *             .build());
      * 
@@ -47152,16 +47152,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
-     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
      *                 var example-kafkaConnectionName = values.t1;
      *                 var example-clusterConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "kafka}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "ts}&#92;{@code "}}}}{@code
      * ]
      * ", example_kafkaConnectionName,example_clusterConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("CREATED")
      *             .tier("SP10")
      *             .options(StreamProcessorOptionsArgs.builder()
@@ -47190,8 +47190,8 @@ public final class MongodbatlasFunctions {
      * 
      *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
      *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -47235,12 +47235,12 @@ public final class MongodbatlasFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
      *             .projectId(projectId)
      *             .instanceName("InstanceName")
@@ -47290,16 +47290,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("sampleProcessorName")
-     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
      *                 var example-sampleConnectionName = values.t1;
      *                 var example-clusterConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "sample}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "solar}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "_ts}&#92;{@code "}}}}{@code
      * ]
      * ", example_sampleConnectionName,example_clusterConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("STARTED")
      *             .tier("SP30")
      *             .build());
@@ -47308,16 +47308,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("clusterProcessorName")
-     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> }{{@code
      *                 var example-clusterConnectionName = values.t1;
      *                 var example-kafkaConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_from_cluster}&#92;{@code "}}}{@code
      * ]
      * ", example_clusterConnectionName,example_kafkaConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("CREATED")
      *             .build());
      * 
@@ -47325,16 +47325,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
-     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
      *                 var example-kafkaConnectionName = values.t1;
      *                 var example-clusterConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "kafka}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "ts}&#92;{@code "}}}}{@code
      * ]
      * ", example_kafkaConnectionName,example_clusterConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("CREATED")
      *             .tier("SP10")
      *             .options(StreamProcessorOptionsArgs.builder()
@@ -47363,8 +47363,8 @@ public final class MongodbatlasFunctions {
      * 
      *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
      *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -47408,12 +47408,12 @@ public final class MongodbatlasFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
      *             .projectId(projectId)
      *             .instanceName("InstanceName")
@@ -47463,16 +47463,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("sampleProcessorName")
-     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
      *                 var example-sampleConnectionName = values.t1;
      *                 var example-clusterConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "sample}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "solar}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "_ts}&#92;{@code "}}}}{@code
      * ]
      * ", example_sampleConnectionName,example_clusterConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("STARTED")
      *             .tier("SP30")
      *             .build());
@@ -47481,16 +47481,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("clusterProcessorName")
-     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> }{{@code
      *                 var example-clusterConnectionName = values.t1;
      *                 var example-kafkaConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_from_cluster}&#92;{@code "}}}{@code
      * ]
      * ", example_clusterConnectionName,example_kafkaConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("CREATED")
      *             .build());
      * 
@@ -47498,16 +47498,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
-     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
      *                 var example-kafkaConnectionName = values.t1;
      *                 var example-clusterConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "kafka}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "ts}&#92;{@code "}}}}{@code
      * ]
      * ", example_kafkaConnectionName,example_clusterConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("CREATED")
      *             .tier("SP10")
      *             .options(StreamProcessorOptionsArgs.builder()
@@ -47536,8 +47536,8 @@ public final class MongodbatlasFunctions {
      * 
      *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
      *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -47581,12 +47581,12 @@ public final class MongodbatlasFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
      *             .projectId(projectId)
      *             .instanceName("InstanceName")
@@ -47636,16 +47636,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("sampleProcessorName")
-     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
      *                 var example-sampleConnectionName = values.t1;
      *                 var example-clusterConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "sample}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "solar}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "_ts}&#92;{@code "}}}}{@code
      * ]
      * ", example_sampleConnectionName,example_clusterConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("STARTED")
      *             .tier("SP30")
      *             .build());
@@ -47654,16 +47654,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("clusterProcessorName")
-     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> }{{@code
      *                 var example-clusterConnectionName = values.t1;
      *                 var example-kafkaConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_from_cluster}&#92;{@code "}}}{@code
      * ]
      * ", example_clusterConnectionName,example_kafkaConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("CREATED")
      *             .build());
      * 
@@ -47671,16 +47671,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
-     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
      *                 var example-kafkaConnectionName = values.t1;
      *                 var example-clusterConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "kafka}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "ts}&#92;{@code "}}}}{@code
      * ]
      * ", example_kafkaConnectionName,example_clusterConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("CREATED")
      *             .tier("SP10")
      *             .options(StreamProcessorOptionsArgs.builder()
@@ -47709,8 +47709,8 @@ public final class MongodbatlasFunctions {
      * 
      *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
      *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -47754,12 +47754,12 @@ public final class MongodbatlasFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
      *             .projectId(projectId)
      *             .instanceName("InstanceName")
@@ -47809,16 +47809,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("sampleProcessorName")
-     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
      *                 var example-sampleConnectionName = values.t1;
      *                 var example-clusterConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "sample}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "solar}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "_ts}&#92;{@code "}}}}{@code
      * ]
      * ", example_sampleConnectionName,example_clusterConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("STARTED")
      *             .tier("SP30")
      *             .build());
@@ -47827,16 +47827,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("clusterProcessorName")
-     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> }{{@code
      *                 var example-clusterConnectionName = values.t1;
      *                 var example-kafkaConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_from_cluster}&#92;{@code "}}}{@code
      * ]
      * ", example_clusterConnectionName,example_kafkaConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("CREATED")
      *             .build());
      * 
@@ -47844,16 +47844,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
-     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
      *                 var example-kafkaConnectionName = values.t1;
      *                 var example-clusterConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "kafka}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "ts}&#92;{@code "}}}}{@code
      * ]
      * ", example_kafkaConnectionName,example_clusterConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("CREATED")
      *             .tier("SP10")
      *             .options(StreamProcessorOptionsArgs.builder()
@@ -47882,8 +47882,8 @@ public final class MongodbatlasFunctions {
      * 
      *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
      *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -47927,12 +47927,12 @@ public final class MongodbatlasFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var example = new StreamInstance("example", StreamInstanceArgs.builder()
      *             .projectId(projectId)
      *             .instanceName("InstanceName")
@@ -47982,16 +47982,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("sampleProcessorName")
-     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
      *                 var example-sampleConnectionName = values.t1;
      *                 var example-clusterConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "sample}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "solar}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "_ts}&#92;{@code "}}}}{@code
      * ]
      * ", example_sampleConnectionName,example_clusterConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("STARTED")
      *             .tier("SP30")
      *             .build());
@@ -48000,16 +48000,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("clusterProcessorName")
-     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> }{{@code
      *                 var example-clusterConnectionName = values.t1;
      *                 var example-kafkaConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_from_cluster}&#92;{@code "}}}{@code
      * ]
      * ", example_clusterConnectionName,example_kafkaConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("CREATED")
      *             .build());
      * 
@@ -48017,16 +48017,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
-     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> }{{@code
      *                 var example-kafkaConnectionName = values.t1;
      *                 var example-clusterConnectionName = values.t2;
      *                 return """
      * [
-     *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
-     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+     *   }{&#92;{@code "$source}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "topic}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code "}}}{@code ,
+     *   }{&#92;{@code "$emit}&#92;{@code ": }{&#92;{@code "connectionName}&#92;{@code ": }&#92;{@code "%s}&#92;{@code ", }&#92;{@code "db}&#92;{@code ": }&#92;{@code "kafka}&#92;{@code ", }&#92;{@code "coll}&#92;{@code ": }&#92;{@code "topic_source}&#92;{@code ", }&#92;{@code "timeseries}&#92;{@code ": }{&#92;{@code "timeField}&#92;{@code ": }&#92;{@code "ts}&#92;{@code "}}}}{@code
      * ]
      * ", example_kafkaConnectionName,example_clusterConnectionName);
-     *             }))
+     *             }}{@code ))
      *             .state("CREATED")
      *             .tier("SP10")
      *             .options(StreamProcessorOptionsArgs.builder()
@@ -48055,8 +48055,8 @@ public final class MongodbatlasFunctions {
      * 
      *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
      *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -49885,12 +49885,12 @@ public final class MongodbatlasFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .customerX509Cas("""
@@ -49909,7 +49909,7 @@ public final class MongodbatlasFunctions {
      * SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
      * 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
      * iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
-     * -----END CERTIFICATE-----\"
+     * -----END CERTIFICATE-----}&#92;{@code "
      *             """)
      *             .build());
      * 
@@ -49917,8 +49917,8 @@ public final class MongodbatlasFunctions {
      *             .projectId(testX509AuthenticationDatabaseUser.projectId())
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -50012,12 +50012,12 @@ public final class MongodbatlasFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .customerX509Cas("""
@@ -50036,7 +50036,7 @@ public final class MongodbatlasFunctions {
      * SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
      * 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
      * iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
-     * -----END CERTIFICATE-----\"
+     * -----END CERTIFICATE-----}&#92;{@code "
      *             """)
      *             .build());
      * 
@@ -50044,8 +50044,8 @@ public final class MongodbatlasFunctions {
      *             .projectId(testX509AuthenticationDatabaseUser.projectId())
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -50139,12 +50139,12 @@ public final class MongodbatlasFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .customerX509Cas("""
@@ -50163,7 +50163,7 @@ public final class MongodbatlasFunctions {
      * SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
      * 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
      * iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
-     * -----END CERTIFICATE-----\"
+     * -----END CERTIFICATE-----}&#92;{@code "
      *             """)
      *             .build());
      * 
@@ -50171,8 +50171,8 @@ public final class MongodbatlasFunctions {
      *             .projectId(testX509AuthenticationDatabaseUser.projectId())
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -50266,12 +50266,12 @@ public final class MongodbatlasFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .customerX509Cas("""
@@ -50290,7 +50290,7 @@ public final class MongodbatlasFunctions {
      * SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
      * 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
      * iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
-     * -----END CERTIFICATE-----\"
+     * -----END CERTIFICATE-----}&#92;{@code "
      *             """)
      *             .build());
      * 
@@ -50298,8 +50298,8 @@ public final class MongodbatlasFunctions {
      *             .projectId(testX509AuthenticationDatabaseUser.projectId())
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -50393,12 +50393,12 @@ public final class MongodbatlasFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         var testX509AuthenticationDatabaseUser = new X509AuthenticationDatabaseUser("testX509AuthenticationDatabaseUser", X509AuthenticationDatabaseUserArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .customerX509Cas("""
@@ -50417,7 +50417,7 @@ public final class MongodbatlasFunctions {
      * SIb3DQEBCwUAA4GBADMUncjEPV/MiZUcVNGmktP6BPmEqMXQWUDpdGW2+Tg2JtUA
      * 7MMILtepBkFzLO+GlpZxeAlXO0wxiNgEmCRONgh4+t2w3e7a8GFijYQ99FHrAC5A
      * iul59bdl18gVqXia1Yeq/iK7Ohfy/Jwd7Hsm530elwkM/ZEkYDjBlZSXYdyz
-     * -----END CERTIFICATE-----\"
+     * -----END CERTIFICATE-----}&#92;{@code "
      *             """)
      *             .build());
      * 
@@ -50425,8 +50425,8 @@ public final class MongodbatlasFunctions {
      *             .projectId(testX509AuthenticationDatabaseUser.projectId())
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 

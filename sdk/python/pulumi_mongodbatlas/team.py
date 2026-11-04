@@ -316,6 +316,20 @@ class Team(pulumi.CustomResource):
         __props__.__dict__["usernames"] = usernames
         return Team(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            team_id: pulumi.Input[Optional[_builtins.str]] = None,
+            usernames: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["name"] = name
+        __props__["orgId"] = org_id
+        __props__["teamId"] = team_id
+        __props__["usernames"] = usernames
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/team:Team', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:

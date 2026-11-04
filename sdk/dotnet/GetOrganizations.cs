@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getOrganizations` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -40,7 +39,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getOrganizations` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -65,7 +63,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.getOrganizations` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
-        /// 
         /// 
         /// ## Example Usage
         /// 

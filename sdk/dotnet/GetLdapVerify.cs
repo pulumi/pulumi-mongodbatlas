@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.LdapVerify` describes a LDAP Verify.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -89,7 +88,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.LdapVerify` describes a LDAP Verify.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -163,7 +161,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.LdapVerify` describes a LDAP Verify.
-        /// 
         /// 
         /// ## Example Usage
         /// 

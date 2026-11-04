@@ -217,6 +217,12 @@ func (CloudUserOrgAssignmentState) ElementType() reflect.Type {
 	return reflect.TypeOf((*cloudUserOrgAssignmentState)(nil)).Elem()
 }
 
+// CloudUserOrgAssignmentExists checks whether an existing CloudUserOrgAssignment resource with the given ID exists.
+func CloudUserOrgAssignmentExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CloudUserOrgAssignmentState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/cloudUserOrgAssignment:CloudUserOrgAssignment", id, state, "", opts...)
+}
+
 type cloudUserOrgAssignmentArgs struct {
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-organizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	OrgId string `pulumi:"orgId"`

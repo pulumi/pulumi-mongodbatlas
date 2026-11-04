@@ -32,11 +32,10 @@ public final class GetStreamProcessorResult {
     /**
      * @return Label that identifies the stream processing workspace.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to workspace_name.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Deprecated
     private @Nullable String instanceName;
     /**
      * @return Optional configuration for the stream processor. Empty `options` objects are not supported.
@@ -96,11 +95,10 @@ public final class GetStreamProcessorResult {
     /**
      * @return Label that identifies the stream processing workspace.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to workspace_name.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Deprecated
     public Optional<String> instanceName() {
         return Optional.ofNullable(this.instanceName);
     }

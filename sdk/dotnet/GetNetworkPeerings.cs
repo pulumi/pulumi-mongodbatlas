@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getNetworkPeerings` describes all Network Peering Connections.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ### Basic Example (AWS).
@@ -52,7 +51,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getNetworkPeerings` describes all Network Peering Connections.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ### Basic Example (AWS).
@@ -89,7 +87,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.getNetworkPeerings` describes all Network Peering Connections.
-        /// 
         /// 
         /// ## Example Usage
         /// 

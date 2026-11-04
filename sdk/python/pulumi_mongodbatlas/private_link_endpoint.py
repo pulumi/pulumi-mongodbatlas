@@ -687,6 +687,46 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         __props__.__dict__["supported_remote_regions"] = supported_remote_regions
         return PrivateLinkEndpoint(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            endpoint_group_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            endpoint_service_name: pulumi.Input[Optional[_builtins.str]] = None,
+            error_message: pulumi.Input[Optional[_builtins.str]] = None,
+            interface_endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            port_mapping_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            private_endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            private_link_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_link_service_name: pulumi.Input[Optional[_builtins.str]] = None,
+            private_link_service_resource_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            region_name: pulumi.Input[Optional[_builtins.str]] = None,
+            service_attachment_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            supported_remote_regions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["deleteOnCreateTimeout"] = delete_on_create_timeout
+        __props__["endpointGroupNames"] = endpoint_group_names
+        __props__["endpointServiceName"] = endpoint_service_name
+        __props__["errorMessage"] = error_message
+        __props__["interfaceEndpoints"] = interface_endpoints
+        __props__["portMappingEnabled"] = port_mapping_enabled
+        __props__["privateEndpoints"] = private_endpoints
+        __props__["privateLinkId"] = private_link_id
+        __props__["privateLinkServiceName"] = private_link_service_name
+        __props__["privateLinkServiceResourceId"] = private_link_service_resource_id
+        __props__["projectId"] = project_id
+        __props__["providerName"] = provider_name
+        __props__["region"] = region
+        __props__["regionName"] = region_name
+        __props__["serviceAttachmentNames"] = service_attachment_names
+        __props__["status"] = status
+        __props__["supportedRemoteRegions"] = supported_remote_regions
+        return pulumi.runtime.exists_resource(None, 'mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="deleteOnCreateTimeout")
     def delete_on_create_timeout(self) -> pulumi.Output[Optional[_builtins.bool]]:

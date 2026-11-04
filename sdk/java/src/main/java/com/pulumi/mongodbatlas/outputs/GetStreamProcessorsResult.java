@@ -30,11 +30,10 @@ public final class GetStreamProcessorsResult {
     /**
      * @return Label that identifies the stream processing workspace.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to workspace_name.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Deprecated
     private String instanceName;
     /**
      * @return Optional configuration for the stream processor. Empty `options` objects are not supported.
@@ -102,11 +101,10 @@ public final class GetStreamProcessorsResult {
     /**
      * @return Label that identifies the stream processing workspace.
      * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to workspace_name.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Deprecated
     public String instanceName() {
         return this.instanceName;
     }

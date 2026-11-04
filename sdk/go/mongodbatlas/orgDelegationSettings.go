@@ -141,6 +141,12 @@ func (OrgDelegationSettingsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*orgDelegationSettingsState)(nil)).Elem()
 }
 
+// OrgDelegationSettingsExists checks whether an existing OrgDelegationSettings resource with the given ID exists.
+func OrgDelegationSettingsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OrgDelegationSettingsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/orgDelegationSettings:OrgDelegationSettings", id, state, "", opts...)
+}
+
 type orgDelegationSettingsArgs struct {
 	// Policy that controls how MCP (Model Context Protocol) delegated access is permitted within this organization. Possible values are `DISALLOWED`, `READ_ONLY`, and `READ_WRITE`. Defaults to `DISALLOWED`.
 	DelegatedMcpAccess *string `pulumi:"delegatedMcpAccess"`

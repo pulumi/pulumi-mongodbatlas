@@ -506,6 +506,12 @@ func (FederatedDatabaseInstanceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*federatedDatabaseInstanceState)(nil)).Elem()
 }
 
+// FederatedDatabaseInstanceExists checks whether an existing FederatedDatabaseInstance resource with the given ID exists.
+func FederatedDatabaseInstanceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FederatedDatabaseInstanceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance", id, state, "", opts...)
+}
+
 type federatedDatabaseInstanceArgs struct {
 	// Cloud provider linked to this data federated instance.
 	// * `cloud_provider_config.aws` - AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket.
