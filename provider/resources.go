@@ -15,10 +15,13 @@
 package mongodbatlas
 
 import (
+	"bytes"
 	"context"
 	"fmt"
+	"os"
 	"path/filepath"
 	"regexp"
+	"slices"
 	"unicode"
 
 	// Enable embedding metadata
@@ -92,7 +95,7 @@ func Provider() tfbridge.ProviderInfo {
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		DocRules:     &tfbridge.DocRuleInfo{EditRules: docEditRules},
 
-		UpstreamRepoPath: "./upstream",
+		UpstreamRepoPath: upstreamRepoPath,
 
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"mongodbatlas_api_key_project_assignment": {
@@ -176,12 +179,58 @@ func Provider() tfbridge.ProviderInfo {
 	return prov
 }
 
+const upstreamRepoPath = "./upstream"
+
 func docEditRules(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
-	return append(
+	// The guide's content goes in first so the default rules rewrite its Terraform wording too.
+	return slices.Concat(
+		[]tfbridge.DocsEdit{inlineProviderConfigGuide()},
 		defaults,
-		skipSections(),
+		[]tfbridge.DocsEdit{skipSections()},
 	)
 }
+
+// Upstream's Overview leaves authentication and provider arguments to a separate guide, which the registry doesn't
+// publish, so the bridge strips the Overview's links to it and leaves bare labels. Replace the Overview's
+// Authentication section with the guide's content and point the remaining links at it.
+//
+// The guide nests some HCL examples inside list items. The bridge can't translate indented code blocks, so they're
+// moved to the left margin. The bridge also strips in-page anchor links, so those use the Overview's full URL.
+func inlineProviderConfigGuide() tfbridge.DocsEdit {
+	return tfbridge.DocsEdit{
+		Path: "index.md",
+		Edit: func(_ string, content []byte) ([]byte, error) {
+			guidePath := filepath.Join(upstreamRepoPath, "docs", "guides", "provider-configuration.md")
+			guide, err := os.ReadFile(guidePath)
+			if err != nil {
+				return nil, err
+			}
+			_, guideBody, ok := bytes.Cut(guide, []byte("\n## Authentication Methods\n"))
+			if !ok {
+				return nil, fmt.Errorf("%s: no \"## Authentication Methods\" section", guidePath)
+			}
+			before, rest, ok := bytes.Cut(content, []byte("\n## Authentication\n"))
+			if !ok {
+				return nil, fmt.Errorf("index.md: no \"## Authentication\" section")
+			}
+			_, after, ok := bytes.Cut(rest, []byte("\n## "))
+			if !ok {
+				return nil, fmt.Errorf("index.md: no section after \"## Authentication\"")
+			}
+			guideBody = indentedHCL.ReplaceAllFunc(guideBody, func(block []byte) []byte {
+				indent := indentedHCL.FindSubmatch(block)[1]
+				return bytes.ReplaceAll(block[len(indent):], append([]byte("\n"), indent...), []byte("\n"))
+			})
+			guideBody = bytes.ReplaceAll(guideBody, []byte("](#"), []byte("]("+overviewURL+"#"))
+			after = bytes.ReplaceAll(after, []byte("](guides/provider-configuration#"), []byte("]("+overviewURL+"#"))
+			return slices.Concat(before, []byte("\n## Authentication Methods\n"), guideBody, []byte("\n## "), after), nil
+		},
+	}
+}
+
+const overviewURL = "https://www.pulumi.com/registry/packages/mongodbatlas/"
+
+var indentedHCL = regexp.MustCompile("(?ms)^([ \t]+)```terraform\n.*?^[ \t]+```$")
 
 // Removes a set of sections not applicable to Pulumi
 func skipSections() tfbridge.DocsEdit {
@@ -193,6 +242,9 @@ func skipSections() tfbridge.DocsEdit {
 		regexp.MustCompile("Helpful Links/Information"),
 		regexp.MustCompile("Examples from MongoDB and the Community"),
 		regexp.MustCompile("MongoDB Atlas Modules"),
+		// These sections link to guides written for Terraform users.
+		regexp.MustCompile("^Additional Resources$"),
+		regexp.MustCompile("^Troubleshooting$"),
 	}
 	return tfbridge.DocsEdit{
 		Path: "index.md",
