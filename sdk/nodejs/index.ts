@@ -960,6 +960,16 @@ export const getStreamWorkspace: typeof import("./getStreamWorkspace").getStream
 export const getStreamWorkspaceOutput: typeof import("./getStreamWorkspace").getStreamWorkspaceOutput = null as any;
 utilities.lazyLoad(exports, ["getStreamWorkspace","getStreamWorkspaceOutput"], () => require("./getStreamWorkspace"));
 
+export { GetStreamWorkspacePrivateEndpointArgs, GetStreamWorkspacePrivateEndpointResult, GetStreamWorkspacePrivateEndpointOutputArgs } from "./getStreamWorkspacePrivateEndpoint";
+export const getStreamWorkspacePrivateEndpoint: typeof import("./getStreamWorkspacePrivateEndpoint").getStreamWorkspacePrivateEndpoint = null as any;
+export const getStreamWorkspacePrivateEndpointOutput: typeof import("./getStreamWorkspacePrivateEndpoint").getStreamWorkspacePrivateEndpointOutput = null as any;
+utilities.lazyLoad(exports, ["getStreamWorkspacePrivateEndpoint","getStreamWorkspacePrivateEndpointOutput"], () => require("./getStreamWorkspacePrivateEndpoint"));
+
+export { GetStreamWorkspacePrivateEndpointsArgs, GetStreamWorkspacePrivateEndpointsResult, GetStreamWorkspacePrivateEndpointsOutputArgs } from "./getStreamWorkspacePrivateEndpoints";
+export const getStreamWorkspacePrivateEndpoints: typeof import("./getStreamWorkspacePrivateEndpoints").getStreamWorkspacePrivateEndpoints = null as any;
+export const getStreamWorkspacePrivateEndpointsOutput: typeof import("./getStreamWorkspacePrivateEndpoints").getStreamWorkspacePrivateEndpointsOutput = null as any;
+utilities.lazyLoad(exports, ["getStreamWorkspacePrivateEndpoints","getStreamWorkspacePrivateEndpointsOutput"], () => require("./getStreamWorkspacePrivateEndpoints"));
+
 export { GetStreamWorkspacesArgs, GetStreamWorkspacesResult, GetStreamWorkspacesOutputArgs } from "./getStreamWorkspaces";
 export const getStreamWorkspaces: typeof import("./getStreamWorkspaces").getStreamWorkspaces = null as any;
 export const getStreamWorkspacesOutput: typeof import("./getStreamWorkspaces").getStreamWorkspacesOutput = null as any;
@@ -1218,6 +1228,11 @@ export type StreamWorkspace = import("./streamWorkspace").StreamWorkspace;
 export const StreamWorkspace: typeof import("./streamWorkspace").StreamWorkspace = null as any;
 utilities.lazyLoad(exports, ["StreamWorkspace"], () => require("./streamWorkspace"));
 
+export { StreamWorkspacePrivateEndpointArgs, StreamWorkspacePrivateEndpointState } from "./streamWorkspacePrivateEndpoint";
+export type StreamWorkspacePrivateEndpoint = import("./streamWorkspacePrivateEndpoint").StreamWorkspacePrivateEndpoint;
+export const StreamWorkspacePrivateEndpoint: typeof import("./streamWorkspacePrivateEndpoint").StreamWorkspacePrivateEndpoint = null as any;
+utilities.lazyLoad(exports, ["StreamWorkspacePrivateEndpoint"], () => require("./streamWorkspacePrivateEndpoint"));
+
 export { TeamArgs, TeamState } from "./team";
 export type Team = import("./team").Team;
 export const Team: typeof import("./team").Team = null as any;
@@ -1414,6 +1429,8 @@ const _module = {
                 return new StreamProcessor(name, <any>undefined, { urn })
             case "mongodbatlas:index/streamWorkspace:StreamWorkspace":
                 return new StreamWorkspace(name, <any>undefined, { urn })
+            case "mongodbatlas:index/streamWorkspacePrivateEndpoint:StreamWorkspacePrivateEndpoint":
+                return new StreamWorkspacePrivateEndpoint(name, <any>undefined, { urn })
             case "mongodbatlas:index/team:Team":
                 return new Team(name, <any>undefined, { urn })
             case "mongodbatlas:index/teamProjectAssignment:TeamProjectAssignment":
@@ -1508,6 +1525,7 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamInstance", _m
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamPrivatelinkEndpoint", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamProcessor", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamWorkspace", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamWorkspacePrivateEndpoint", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/team", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/teamProjectAssignment", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/thirdPartyIntegration", _module)

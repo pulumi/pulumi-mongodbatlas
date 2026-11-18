@@ -44,6 +44,11 @@ public final class GetProjectsResult {
     @Deprecated
     private GetProjectsResultIpAddresses ipAddresses;
     /**
+     * @return Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project.
+     * 
+     */
+    private Boolean isAtlasHomePageAiAssistantEnabled;
+    /**
      * @return Flag that indicates whether the AI Assistant is enabled for the project&#39;s clusters.
      * 
      */
@@ -172,6 +177,13 @@ public final class GetProjectsResult {
     @Deprecated
     public GetProjectsResultIpAddresses ipAddresses() {
         return this.ipAddresses;
+    }
+    /**
+     * @return Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project.
+     * 
+     */
+    public Boolean isAtlasHomePageAiAssistantEnabled() {
+        return this.isAtlasHomePageAiAssistantEnabled;
     }
     /**
      * @return Flag that indicates whether the AI Assistant is enabled for the project&#39;s clusters.
@@ -322,6 +334,7 @@ public final class GetProjectsResult {
         private String created;
         private String id;
         private GetProjectsResultIpAddresses ipAddresses;
+        private Boolean isAtlasHomePageAiAssistantEnabled;
         private Boolean isClusterAiAssistantEnabled;
         private Boolean isCollectDatabaseSpecificsStatisticsEnabled;
         private Boolean isDataExplorerEnabled;
@@ -348,6 +361,7 @@ public final class GetProjectsResult {
     	      this.created = defaults.created;
     	      this.id = defaults.id;
     	      this.ipAddresses = defaults.ipAddresses;
+    	      this.isAtlasHomePageAiAssistantEnabled = defaults.isAtlasHomePageAiAssistantEnabled;
     	      this.isClusterAiAssistantEnabled = defaults.isClusterAiAssistantEnabled;
     	      this.isCollectDatabaseSpecificsStatisticsEnabled = defaults.isCollectDatabaseSpecificsStatisticsEnabled;
     	      this.isDataExplorerEnabled = defaults.isDataExplorerEnabled;
@@ -399,6 +413,14 @@ public final class GetProjectsResult {
               throw new MissingRequiredPropertyException("GetProjectsResult", "ipAddresses");
             }
             this.ipAddresses = ipAddresses;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder isAtlasHomePageAiAssistantEnabled(Boolean isAtlasHomePageAiAssistantEnabled) {
+            if (isAtlasHomePageAiAssistantEnabled == null) {
+              throw new MissingRequiredPropertyException("GetProjectsResult", "isAtlasHomePageAiAssistantEnabled");
+            }
+            this.isAtlasHomePageAiAssistantEnabled = isAtlasHomePageAiAssistantEnabled;
             return this;
         }
         @CustomType.Setter
@@ -564,6 +586,7 @@ public final class GetProjectsResult {
             _resultValue.created = created;
             _resultValue.id = id;
             _resultValue.ipAddresses = ipAddresses;
+            _resultValue.isAtlasHomePageAiAssistantEnabled = isAtlasHomePageAiAssistantEnabled;
             _resultValue.isClusterAiAssistantEnabled = isClusterAiAssistantEnabled;
             _resultValue.isCollectDatabaseSpecificsStatisticsEnabled = isCollectDatabaseSpecificsStatisticsEnabled;
             _resultValue.isDataExplorerEnabled = isDataExplorerEnabled;

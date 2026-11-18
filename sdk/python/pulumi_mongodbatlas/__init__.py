@@ -197,6 +197,8 @@ from .get_stream_privatelink_endpoints import *
 from .get_stream_processor import *
 from .get_stream_processors import *
 from .get_stream_workspace import *
+from .get_stream_workspace_private_endpoint import *
+from .get_stream_workspace_private_endpoints import *
 from .get_stream_workspaces import *
 from .get_team import *
 from .get_team_project_assignment import *
@@ -249,6 +251,7 @@ from .stream_instance import *
 from .stream_privatelink_endpoint import *
 from .stream_processor import *
 from .stream_workspace import *
+from .stream_workspace_private_endpoint import *
 from .team import *
 from .team_project_assignment import *
 from .third_party_integration import *
@@ -912,6 +915,14 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/streamWorkspace:StreamWorkspace": "StreamWorkspace"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/streamWorkspacePrivateEndpoint",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/streamWorkspacePrivateEndpoint:StreamWorkspacePrivateEndpoint": "StreamWorkspacePrivateEndpoint"
   }
  },
  {

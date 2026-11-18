@@ -23,6 +23,8 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string? ExpiresAt;
         /// <summary>
         /// The secret for the Service Account. It will be returned only the first time after creation.
+        /// 
+        /// &gt; **NOTE:** The whole `Secrets` list is sensitive, so outputs that reference any attribute in it, including `ExpiresAt` and `SecretId`, must set `sensitive = true`.
         /// </summary>
         public readonly string? Secret;
         /// <summary>

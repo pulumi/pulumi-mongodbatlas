@@ -16,14 +16,14 @@ public final class CloudBackupSnapshotExportJobComponentArgs extends com.pulumi.
     public static final CloudBackupSnapshotExportJobComponentArgs Empty = new CloudBackupSnapshotExportJobComponentArgs();
 
     /**
-     * _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+     * _Returned for sharded clusters only._ Unique 24-hexadecimal character string that identifies the Cloud Backup snapshot export job for each shard in a sharded cluster.
      * 
      */
     @Import(name="exportId")
     private @Nullable Output<String> exportId;
 
     /**
-     * @return _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+     * @return _Returned for sharded clusters only._ Unique 24-hexadecimal character string that identifies the Cloud Backup snapshot export job for each shard in a sharded cluster.
      * 
      */
     public Optional<Output<String>> exportId() {
@@ -31,14 +31,14 @@ public final class CloudBackupSnapshotExportJobComponentArgs extends com.pulumi.
     }
 
     /**
-     * _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+     * _Returned for sharded clusters only._ Human-readable label that identifies the replica set on the sharded cluster.
      * 
      */
     @Import(name="replicaSetName")
     private @Nullable Output<String> replicaSetName;
 
     /**
-     * @return _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+     * @return _Returned for sharded clusters only._ Human-readable label that identifies the replica set on the sharded cluster.
      * 
      */
     public Optional<Output<String>> replicaSetName() {
@@ -71,7 +71,7 @@ public final class CloudBackupSnapshotExportJobComponentArgs extends com.pulumi.
         }
 
         /**
-         * @param exportId _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+         * @param exportId _Returned for sharded clusters only._ Unique 24-hexadecimal character string that identifies the Cloud Backup snapshot export job for each shard in a sharded cluster.
          * 
          * @return builder
          * 
@@ -82,7 +82,7 @@ public final class CloudBackupSnapshotExportJobComponentArgs extends com.pulumi.
         }
 
         /**
-         * @param exportId _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+         * @param exportId _Returned for sharded clusters only._ Unique 24-hexadecimal character string that identifies the Cloud Backup snapshot export job for each shard in a sharded cluster.
          * 
          * @return builder
          * 
@@ -92,7 +92,7 @@ public final class CloudBackupSnapshotExportJobComponentArgs extends com.pulumi.
         }
 
         /**
-         * @param replicaSetName _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+         * @param replicaSetName _Returned for sharded clusters only._ Human-readable label that identifies the replica set on the sharded cluster.
          * 
          * @return builder
          * 
@@ -103,7 +103,7 @@ public final class CloudBackupSnapshotExportJobComponentArgs extends com.pulumi.
         }
 
         /**
-         * @param replicaSetName _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+         * @param replicaSetName _Returned for sharded clusters only._ Human-readable label that identifies the replica set on the sharded cluster.
          * 
          * @return builder
          * 

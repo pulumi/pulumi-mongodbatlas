@@ -366,7 +366,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string SnapshotId;
         /// <summary>
-        /// Current state of the collection restore job.
+        /// Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `mongodbatlas.getCloudBackupCollectionRestoreJobCollections` data source to get per-collection detailed states.
         /// </summary>
         public readonly string State;
         /// <summary>

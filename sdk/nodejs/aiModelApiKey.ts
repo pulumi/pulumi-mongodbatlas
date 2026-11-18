@@ -92,7 +92,7 @@ export class AiModelApiKey extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly apiKeyId: pulumi.Output<string>;
     /**
-     * Cloud provider scope for this API key. Must be "ANY". Additional cloud values will be supported in future API versions.
+     * Cloud provider scope for this API key. Use "ANY" for a cloud-agnostic scope. Additional cloud values will be supported in future API versions.
      */
     declare public readonly cloud: pulumi.Output<string>;
     /**
@@ -108,7 +108,7 @@ export class AiModelApiKey extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly endpoint: pulumi.Output<string>;
     /**
-     * Geography scope for this API key. Must be "ANY". Additional geography values will be supported in future API versions.
+     * Geography scope for this API key. Use "ANY" for a geography-agnostic scope. Additional geography values will be supported in future API versions.
      */
     declare public readonly geography: pulumi.Output<string>;
     /**
@@ -201,7 +201,7 @@ export interface AiModelApiKeyState {
      */
     apiKeyId?: pulumi.Input<string | undefined>;
     /**
-     * Cloud provider scope for this API key. Must be "ANY". Additional cloud values will be supported in future API versions.
+     * Cloud provider scope for this API key. Use "ANY" for a cloud-agnostic scope. Additional cloud values will be supported in future API versions.
      */
     cloud?: pulumi.Input<string | undefined>;
     /**
@@ -217,7 +217,7 @@ export interface AiModelApiKeyState {
      */
     endpoint?: pulumi.Input<string | undefined>;
     /**
-     * Geography scope for this API key. Must be "ANY". Additional geography values will be supported in future API versions.
+     * Geography scope for this API key. Use "ANY" for a geography-agnostic scope. Additional geography values will be supported in future API versions.
      */
     geography?: pulumi.Input<string | undefined>;
     /**
@@ -251,11 +251,11 @@ export interface AiModelApiKeyState {
  */
 export interface AiModelApiKeyArgs {
     /**
-     * Cloud provider scope for this API key. Must be "ANY". Additional cloud values will be supported in future API versions.
+     * Cloud provider scope for this API key. Use "ANY" for a cloud-agnostic scope. Additional cloud values will be supported in future API versions.
      */
     cloud: pulumi.Input<string>;
     /**
-     * Geography scope for this API key. Must be "ANY". Additional geography values will be supported in future API versions.
+     * Geography scope for this API key. Use "ANY" for a geography-agnostic scope. Additional geography values will be supported in future API versions.
      */
     geography: pulumi.Input<string>;
     /**

@@ -13,6 +13,157 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type GetStreamConnectionFailoversResultAuthentication struct {
+	// OIDC client identifier for authentication to the Kafka cluster.
+	ClientId string `pulumi:"clientId"`
+	// OIDC client secret for authentication to the Kafka cluster.
+	ClientSecret string `pulumi:"clientSecret"`
+	// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+	Mechanism string `pulumi:"mechanism"`
+	// SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
+	Method string `pulumi:"method"`
+	// Password of the account to connect to the Kafka cluster.
+	Password string `pulumi:"password"`
+	// SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+	SaslOauthbearerExtensions string `pulumi:"saslOauthbearerExtensions"`
+	// OIDC scope parameter defining the access permissions requested.
+	Scope string `pulumi:"scope"`
+	// SSL certificate for client authentication to Kafka.
+	SslCertificate string `pulumi:"sslCertificate"`
+	// SSL key for client authentication to Kafka.
+	SslKey string `pulumi:"sslKey"`
+	// Password for the SSL key, if it is password protected.
+	SslKeyPassword string `pulumi:"sslKeyPassword"`
+	// OIDC token endpoint URL for obtaining access tokens.
+	TokenEndpointUrl string `pulumi:"tokenEndpointUrl"`
+	// Username of the account to connect to the Kafka cluster.
+	Username string `pulumi:"username"`
+}
+
+// GetStreamConnectionFailoversResultAuthenticationInput is an input type that accepts GetStreamConnectionFailoversResultAuthenticationArgs and GetStreamConnectionFailoversResultAuthenticationOutput values.
+// You can construct a concrete instance of `GetStreamConnectionFailoversResultAuthenticationInput` via:
+//
+//	GetStreamConnectionFailoversResultAuthenticationArgs{...}
+type GetStreamConnectionFailoversResultAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionFailoversResultAuthenticationOutput() GetStreamConnectionFailoversResultAuthenticationOutput
+	ToGetStreamConnectionFailoversResultAuthenticationOutputWithContext(context.Context) GetStreamConnectionFailoversResultAuthenticationOutput
+}
+
+type GetStreamConnectionFailoversResultAuthenticationArgs struct {
+	// OIDC client identifier for authentication to the Kafka cluster.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// OIDC client secret for authentication to the Kafka cluster.
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+	Mechanism pulumi.StringInput `pulumi:"mechanism"`
+	// SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
+	Method pulumi.StringInput `pulumi:"method"`
+	// Password of the account to connect to the Kafka cluster.
+	Password pulumi.StringInput `pulumi:"password"`
+	// SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+	SaslOauthbearerExtensions pulumi.StringInput `pulumi:"saslOauthbearerExtensions"`
+	// OIDC scope parameter defining the access permissions requested.
+	Scope pulumi.StringInput `pulumi:"scope"`
+	// SSL certificate for client authentication to Kafka.
+	SslCertificate pulumi.StringInput `pulumi:"sslCertificate"`
+	// SSL key for client authentication to Kafka.
+	SslKey pulumi.StringInput `pulumi:"sslKey"`
+	// Password for the SSL key, if it is password protected.
+	SslKeyPassword pulumi.StringInput `pulumi:"sslKeyPassword"`
+	// OIDC token endpoint URL for obtaining access tokens.
+	TokenEndpointUrl pulumi.StringInput `pulumi:"tokenEndpointUrl"`
+	// Username of the account to connect to the Kafka cluster.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetStreamConnectionFailoversResultAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResultAuthentication)(nil)).Elem()
+}
+
+func (i GetStreamConnectionFailoversResultAuthenticationArgs) ToGetStreamConnectionFailoversResultAuthenticationOutput() GetStreamConnectionFailoversResultAuthenticationOutput {
+	return i.ToGetStreamConnectionFailoversResultAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionFailoversResultAuthenticationArgs) ToGetStreamConnectionFailoversResultAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoversResultAuthenticationOutput)
+}
+
+type GetStreamConnectionFailoversResultAuthenticationOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionFailoversResultAuthenticationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResultAuthentication)(nil)).Elem()
+}
+
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) ToGetStreamConnectionFailoversResultAuthenticationOutput() GetStreamConnectionFailoversResultAuthenticationOutput {
+	return o
+}
+
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) ToGetStreamConnectionFailoversResultAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultAuthenticationOutput {
+	return o
+}
+
+// OIDC client identifier for authentication to the Kafka cluster.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// OIDC client secret for authentication to the Kafka cluster.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) ClientSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.ClientSecret }).(pulumi.StringOutput)
+}
+
+// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) Mechanism() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.Mechanism }).(pulumi.StringOutput)
+}
+
+// SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) Method() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.Method }).(pulumi.StringOutput)
+}
+
+// Password of the account to connect to the Kafka cluster.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) SaslOauthbearerExtensions() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.SaslOauthbearerExtensions }).(pulumi.StringOutput)
+}
+
+// OIDC scope parameter defining the access permissions requested.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.Scope }).(pulumi.StringOutput)
+}
+
+// SSL certificate for client authentication to Kafka.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) SslCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.SslCertificate }).(pulumi.StringOutput)
+}
+
+// SSL key for client authentication to Kafka.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) SslKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.SslKey }).(pulumi.StringOutput)
+}
+
+// Password for the SSL key, if it is password protected.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) SslKeyPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.SslKeyPassword }).(pulumi.StringOutput)
+}
+
+// OIDC token endpoint URL for obtaining access tokens.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) TokenEndpointUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.TokenEndpointUrl }).(pulumi.StringOutput)
+}
+
+// Username of the account to connect to the Kafka cluster.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.Username }).(pulumi.StringOutput)
+}
+
 type GetStreamConnectionFailoversResultDbRoleToExecute struct {
 	// The name of the role to use. Can be a built in role or a custom role.
 	Role string `pulumi:"role"`
@@ -2977,6 +3128,148 @@ func (o GetStreamWorkspaceFailoverRegionArrayOutput) Index(i pulumi.IntInput) Ge
 	}).(GetStreamWorkspaceFailoverRegionOutput)
 }
 
+type GetStreamWorkspacePrivateEndpointsResult struct {
+	// Cloud provider hosting the VPC endpoint.
+	CloudProvider string `pulumi:"cloudProvider"`
+	// DNS name of your VPC endpoint.
+	CustomerDnsName string `pulumi:"customerDnsName"`
+	// Unique identifier of your VPC endpoint.
+	EndpointId string `pulumi:"endpointId"`
+	// Name of the Atlas endpoint service your VPC endpoint connects to. Absent when no endpoint service is configured for the endpoint's region.
+	EndpointServiceName string `pulumi:"endpointServiceName"`
+	// Human-readable label identifying the region of your VPC endpoint.
+	Region string `pulumi:"region"`
+	// Status of the endpoint registration.
+	Status string `pulumi:"status"`
+}
+
+// GetStreamWorkspacePrivateEndpointsResultInput is an input type that accepts GetStreamWorkspacePrivateEndpointsResultArgs and GetStreamWorkspacePrivateEndpointsResultOutput values.
+// You can construct a concrete instance of `GetStreamWorkspacePrivateEndpointsResultInput` via:
+//
+//	GetStreamWorkspacePrivateEndpointsResultArgs{...}
+type GetStreamWorkspacePrivateEndpointsResultInput interface {
+	pulumi.Input
+
+	ToGetStreamWorkspacePrivateEndpointsResultOutput() GetStreamWorkspacePrivateEndpointsResultOutput
+	ToGetStreamWorkspacePrivateEndpointsResultOutputWithContext(context.Context) GetStreamWorkspacePrivateEndpointsResultOutput
+}
+
+type GetStreamWorkspacePrivateEndpointsResultArgs struct {
+	// Cloud provider hosting the VPC endpoint.
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// DNS name of your VPC endpoint.
+	CustomerDnsName pulumi.StringInput `pulumi:"customerDnsName"`
+	// Unique identifier of your VPC endpoint.
+	EndpointId pulumi.StringInput `pulumi:"endpointId"`
+	// Name of the Atlas endpoint service your VPC endpoint connects to. Absent when no endpoint service is configured for the endpoint's region.
+	EndpointServiceName pulumi.StringInput `pulumi:"endpointServiceName"`
+	// Human-readable label identifying the region of your VPC endpoint.
+	Region pulumi.StringInput `pulumi:"region"`
+	// Status of the endpoint registration.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetStreamWorkspacePrivateEndpointsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamWorkspacePrivateEndpointsResult)(nil)).Elem()
+}
+
+func (i GetStreamWorkspacePrivateEndpointsResultArgs) ToGetStreamWorkspacePrivateEndpointsResultOutput() GetStreamWorkspacePrivateEndpointsResultOutput {
+	return i.ToGetStreamWorkspacePrivateEndpointsResultOutputWithContext(context.Background())
+}
+
+func (i GetStreamWorkspacePrivateEndpointsResultArgs) ToGetStreamWorkspacePrivateEndpointsResultOutputWithContext(ctx context.Context) GetStreamWorkspacePrivateEndpointsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamWorkspacePrivateEndpointsResultOutput)
+}
+
+// GetStreamWorkspacePrivateEndpointsResultArrayInput is an input type that accepts GetStreamWorkspacePrivateEndpointsResultArray and GetStreamWorkspacePrivateEndpointsResultArrayOutput values.
+// You can construct a concrete instance of `GetStreamWorkspacePrivateEndpointsResultArrayInput` via:
+//
+//	GetStreamWorkspacePrivateEndpointsResultArray{ GetStreamWorkspacePrivateEndpointsResultArgs{...} }
+type GetStreamWorkspacePrivateEndpointsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetStreamWorkspacePrivateEndpointsResultArrayOutput() GetStreamWorkspacePrivateEndpointsResultArrayOutput
+	ToGetStreamWorkspacePrivateEndpointsResultArrayOutputWithContext(context.Context) GetStreamWorkspacePrivateEndpointsResultArrayOutput
+}
+
+type GetStreamWorkspacePrivateEndpointsResultArray []GetStreamWorkspacePrivateEndpointsResultInput
+
+func (GetStreamWorkspacePrivateEndpointsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamWorkspacePrivateEndpointsResult)(nil)).Elem()
+}
+
+func (i GetStreamWorkspacePrivateEndpointsResultArray) ToGetStreamWorkspacePrivateEndpointsResultArrayOutput() GetStreamWorkspacePrivateEndpointsResultArrayOutput {
+	return i.ToGetStreamWorkspacePrivateEndpointsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetStreamWorkspacePrivateEndpointsResultArray) ToGetStreamWorkspacePrivateEndpointsResultArrayOutputWithContext(ctx context.Context) GetStreamWorkspacePrivateEndpointsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamWorkspacePrivateEndpointsResultArrayOutput)
+}
+
+type GetStreamWorkspacePrivateEndpointsResultOutput struct{ *pulumi.OutputState }
+
+func (GetStreamWorkspacePrivateEndpointsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamWorkspacePrivateEndpointsResult)(nil)).Elem()
+}
+
+func (o GetStreamWorkspacePrivateEndpointsResultOutput) ToGetStreamWorkspacePrivateEndpointsResultOutput() GetStreamWorkspacePrivateEndpointsResultOutput {
+	return o
+}
+
+func (o GetStreamWorkspacePrivateEndpointsResultOutput) ToGetStreamWorkspacePrivateEndpointsResultOutputWithContext(ctx context.Context) GetStreamWorkspacePrivateEndpointsResultOutput {
+	return o
+}
+
+// Cloud provider hosting the VPC endpoint.
+func (o GetStreamWorkspacePrivateEndpointsResultOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamWorkspacePrivateEndpointsResult) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+// DNS name of your VPC endpoint.
+func (o GetStreamWorkspacePrivateEndpointsResultOutput) CustomerDnsName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamWorkspacePrivateEndpointsResult) string { return v.CustomerDnsName }).(pulumi.StringOutput)
+}
+
+// Unique identifier of your VPC endpoint.
+func (o GetStreamWorkspacePrivateEndpointsResultOutput) EndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamWorkspacePrivateEndpointsResult) string { return v.EndpointId }).(pulumi.StringOutput)
+}
+
+// Name of the Atlas endpoint service your VPC endpoint connects to. Absent when no endpoint service is configured for the endpoint's region.
+func (o GetStreamWorkspacePrivateEndpointsResultOutput) EndpointServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamWorkspacePrivateEndpointsResult) string { return v.EndpointServiceName }).(pulumi.StringOutput)
+}
+
+// Human-readable label identifying the region of your VPC endpoint.
+func (o GetStreamWorkspacePrivateEndpointsResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamWorkspacePrivateEndpointsResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// Status of the endpoint registration.
+func (o GetStreamWorkspacePrivateEndpointsResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamWorkspacePrivateEndpointsResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetStreamWorkspacePrivateEndpointsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStreamWorkspacePrivateEndpointsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamWorkspacePrivateEndpointsResult)(nil)).Elem()
+}
+
+func (o GetStreamWorkspacePrivateEndpointsResultArrayOutput) ToGetStreamWorkspacePrivateEndpointsResultArrayOutput() GetStreamWorkspacePrivateEndpointsResultArrayOutput {
+	return o
+}
+
+func (o GetStreamWorkspacePrivateEndpointsResultArrayOutput) ToGetStreamWorkspacePrivateEndpointsResultArrayOutputWithContext(ctx context.Context) GetStreamWorkspacePrivateEndpointsResultArrayOutput {
+	return o
+}
+
+func (o GetStreamWorkspacePrivateEndpointsResultArrayOutput) Index(i pulumi.IntInput) GetStreamWorkspacePrivateEndpointsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamWorkspacePrivateEndpointsResult {
+		return vs[0].([]GetStreamWorkspacePrivateEndpointsResult)[vs[1].(int)]
+	}).(GetStreamWorkspacePrivateEndpointsResultOutput)
+}
+
 type GetStreamWorkspaceStreamConfig struct {
 	MaxTierSize string `pulumi:"maxTierSize"`
 	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
@@ -4226,6 +4519,7 @@ func (o GetX509AuthenticationDatabaseUserCertificateArrayOutput) Index(i pulumi.
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultAuthenticationInput)(nil)).Elem(), GetStreamConnectionFailoversResultAuthenticationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionFailoversResultDbRoleToExecuteArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultNetworkingInput)(nil)).Elem(), GetStreamConnectionFailoversResultNetworkingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultNetworkingAccessInput)(nil)).Elem(), GetStreamConnectionFailoversResultNetworkingAccessArgs{})
@@ -4266,6 +4560,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspaceDataProcessRegionInput)(nil)).Elem(), GetStreamWorkspaceDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspaceFailoverRegionInput)(nil)).Elem(), GetStreamWorkspaceFailoverRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspaceFailoverRegionArrayInput)(nil)).Elem(), GetStreamWorkspaceFailoverRegionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspacePrivateEndpointsResultInput)(nil)).Elem(), GetStreamWorkspacePrivateEndpointsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspacePrivateEndpointsResultArrayInput)(nil)).Elem(), GetStreamWorkspacePrivateEndpointsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspaceStreamConfigInput)(nil)).Elem(), GetStreamWorkspaceStreamConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspacesResultInput)(nil)).Elem(), GetStreamWorkspacesResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspacesResultArrayInput)(nil)).Elem(), GetStreamWorkspacesResultArray{})
@@ -4283,6 +4579,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetThirdPartyIntegrationsResultArrayInput)(nil)).Elem(), GetThirdPartyIntegrationsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetX509AuthenticationDatabaseUserCertificateInput)(nil)).Elem(), GetX509AuthenticationDatabaseUserCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetX509AuthenticationDatabaseUserCertificateArrayInput)(nil)).Elem(), GetX509AuthenticationDatabaseUserCertificateArray{})
+	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultAuthenticationOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultDbRoleToExecuteOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultNetworkingOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultNetworkingAccessOutput{})
@@ -4323,6 +4620,8 @@ func init() {
 	pulumi.RegisterOutputType(GetStreamWorkspaceDataProcessRegionOutput{})
 	pulumi.RegisterOutputType(GetStreamWorkspaceFailoverRegionOutput{})
 	pulumi.RegisterOutputType(GetStreamWorkspaceFailoverRegionArrayOutput{})
+	pulumi.RegisterOutputType(GetStreamWorkspacePrivateEndpointsResultOutput{})
+	pulumi.RegisterOutputType(GetStreamWorkspacePrivateEndpointsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetStreamWorkspaceStreamConfigOutput{})
 	pulumi.RegisterOutputType(GetStreamWorkspacesResultOutput{})
 	pulumi.RegisterOutputType(GetStreamWorkspacesResultArrayOutput{})

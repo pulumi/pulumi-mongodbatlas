@@ -144,6 +144,20 @@ public class Project extends com.pulumi.resources.CustomResource {
         return this.ipAddresses;
     }
     /**
+     * Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
+     * 
+     */
+    @Export(name="isAtlasHomePageAiAssistantEnabled", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> isAtlasHomePageAiAssistantEnabled;
+
+    /**
+     * @return Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
+     * 
+     */
+    public Output<Boolean> isAtlasHomePageAiAssistantEnabled() {
+        return this.isAtlasHomePageAiAssistantEnabled;
+    }
+    /**
      * Flag that indicates whether to enable the AI Assistant for the project&#39;s clusters. By default, this flag is set to true.
      * 
      */

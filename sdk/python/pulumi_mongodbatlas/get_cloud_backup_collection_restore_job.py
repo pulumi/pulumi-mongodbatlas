@@ -235,7 +235,7 @@ class GetCloudBackupCollectionRestoreJobResult:
     @pulumi.getter
     def state(self) -> _builtins.str:
         """
-        Current state of the collection restore job.
+        Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `get_cloud_backup_collection_restore_job_collections` data source to get per-collection detailed states.
         """
         return pulumi.get(self, "state")
 

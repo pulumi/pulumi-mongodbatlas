@@ -165,7 +165,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
      * 
      * For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes, see [Supported AWS Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions). For the list of GCP regions that support Gen2 instance sizes, see [Supported GCP Regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#supported-regions).
      * 
-     * Gen2 clusters can span regions only if every region you deploy to supports Gen2 instance sizes on the cluster&#39;s cloud provider. Gen2 clusters don&#39;t support multi-cloud deployments.
+     * Gen2 clusters can span regions and cloud service providers only if every region you deploy to is on AWS or GCP and supports Gen2 instance sizes. All nodes in a cluster must use Gen2 instance sizes. You can&#39;t mix Gen1 and Gen2 nodes in the same cluster.
      * 
      */
     @Import(name="regionName", required=true)
@@ -176,7 +176,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
      * 
      * For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes, see [Supported AWS Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions). For the list of GCP regions that support Gen2 instance sizes, see [Supported GCP Regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#supported-regions).
      * 
-     * Gen2 clusters can span regions only if every region you deploy to supports Gen2 instance sizes on the cluster&#39;s cloud provider. Gen2 clusters don&#39;t support multi-cloud deployments.
+     * Gen2 clusters can span regions and cloud service providers only if every region you deploy to is on AWS or GCP and supports Gen2 instance sizes. All nodes in a cluster must use Gen2 instance sizes. You can&#39;t mix Gen1 and Gen2 nodes in the same cluster.
      * 
      */
     public Output<String> regionName() {
@@ -406,7 +406,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
          * 
          * For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes, see [Supported AWS Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions). For the list of GCP regions that support Gen2 instance sizes, see [Supported GCP Regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#supported-regions).
          * 
-         * Gen2 clusters can span regions only if every region you deploy to supports Gen2 instance sizes on the cluster&#39;s cloud provider. Gen2 clusters don&#39;t support multi-cloud deployments.
+         * Gen2 clusters can span regions and cloud service providers only if every region you deploy to is on AWS or GCP and supports Gen2 instance sizes. All nodes in a cluster must use Gen2 instance sizes. You can&#39;t mix Gen1 and Gen2 nodes in the same cluster.
          * 
          * @return builder
          * 
@@ -421,7 +421,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
          * 
          * For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes, see [Supported AWS Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions). For the list of GCP regions that support Gen2 instance sizes, see [Supported GCP Regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#supported-regions).
          * 
-         * Gen2 clusters can span regions only if every region you deploy to supports Gen2 instance sizes on the cluster&#39;s cloud provider. Gen2 clusters don&#39;t support multi-cloud deployments.
+         * Gen2 clusters can span regions and cloud service providers only if every region you deploy to is on AWS or GCP and supports Gen2 instance sizes. All nodes in a cluster must use Gen2 instance sizes. You can&#39;t mix Gen1 and Gen2 nodes in the same cluster.
          * 
          * @return builder
          * 

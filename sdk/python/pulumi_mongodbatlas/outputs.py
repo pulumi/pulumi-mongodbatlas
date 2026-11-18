@@ -183,6 +183,7 @@ __all__ = [
     'StreamProcessorTimeouts',
     'StreamWorkspaceDataProcessRegion',
     'StreamWorkspaceFailoverRegion',
+    'StreamWorkspacePrivateEndpointTimeouts',
     'StreamWorkspaceStreamConfig',
     'X509AuthenticationDatabaseUserCertificate',
     'GetAccessListApiKeysResultResult',
@@ -550,6 +551,7 @@ __all__ = [
     'GetStreamProcessorsResultOptionsDlqResult',
     'GetStreamWorkspaceDataProcessRegionResult',
     'GetStreamWorkspaceFailoverRegionResult',
+    'GetStreamWorkspacePrivateEndpointsResultResult',
     'GetStreamWorkspaceStreamConfigResult',
     'GetStreamWorkspacesResultResult',
     'GetStreamWorkspacesResultDataProcessRegionResult',
@@ -1297,7 +1299,7 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
                
                For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes, see [Supported AWS Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions). For the list of GCP regions that support Gen2 instance sizes, see [Supported GCP Regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#supported-regions).
                
-               Gen2 clusters can span regions only if every region you deploy to supports Gen2 instance sizes on the cluster's cloud provider. Gen2 clusters don't support multi-cloud deployments.
+               Gen2 clusters can span regions and cloud service providers only if every region you deploy to is on AWS or GCP and supports Gen2 instance sizes. All nodes in a cluster must use Gen2 instance sizes. You can't mix Gen1 and Gen2 nodes in the same cluster.
         :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs' analytics_auto_scaling: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
         :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs' analytics_specs: Hardware specifications for [analytics nodes](https://www.mongodb.com/docs/atlas/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
         :param 'AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs' auto_scaling: Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
@@ -1354,7 +1356,7 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
 
         For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes, see [Supported AWS Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions). For the list of GCP regions that support Gen2 instance sizes, see [Supported GCP Regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#supported-regions).
 
-        Gen2 clusters can span regions only if every region you deploy to supports Gen2 instance sizes on the cluster's cloud provider. Gen2 clusters don't support multi-cloud deployments.
+        Gen2 clusters can span regions and cloud service providers only if every region you deploy to is on AWS or GCP and supports Gen2 instance sizes. All nodes in a cluster must use Gen2 instance sizes. You can't mix Gen1 and Gen2 nodes in the same cluster.
         """
         return pulumi.get(self, "region_name")
 
@@ -1545,6 +1547,8 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
         """
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
                
+               In multi-cloud clusters, AWS and GCP regions can use different `disk_iops` values. The value must be consistent across all regions and node types that use the same cloud provider.
+               
                For AWS, valid configurations are:
                * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
                * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
@@ -1554,9 +1558,9 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
                * The minimum value is the greater of 3000 and three times `disk_size_gb`.
                * The maximum value is the lesser of 500 times `disk_size_gb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
                
-               For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+               For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for Azure regions in a multi-cloud cluster.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `disk_size_gb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `disk_size_gb` specifies the storage capacity while the IOPS are set independently. On GCP, `disk_size_gb` is always required input, since it determines the valid `disk_iops` range for Gen2 instance sizes.
-        :param _builtins.str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
+        :param _builtins.str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. In multi-cloud clusters, set this parameter only for AWS regions. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
                * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
                * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
                * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -1586,6 +1590,8 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
         """
         Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 
+        In multi-cloud clusters, AWS and GCP regions can use different `disk_iops` values. The value must be consistent across all regions and node types that use the same cloud provider.
+
         For AWS, valid configurations are:
         * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
         * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
@@ -1595,7 +1601,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
         * The minimum value is the greater of 3000 and three times `disk_size_gb`.
         * The maximum value is the lesser of 500 times `disk_size_gb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
 
-        For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+        For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for Azure regions in a multi-cloud cluster.
         """
         return pulumi.get(self, "disk_iops")
 
@@ -1611,7 +1617,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> Optional[_builtins.str]:
         """
-        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
+        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. In multi-cloud clusters, set this parameter only for AWS regions. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
         * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
         * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
         * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -1848,6 +1854,8 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
         """
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
                
+               In multi-cloud clusters, AWS and GCP regions can use different `disk_iops` values. Within each shard (`replication_specs` entry), the value must be consistent across all regions and node types that use the same cloud provider.
+               
                For AWS, valid configurations are:
                * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
                * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
@@ -1857,9 +1865,9 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
                * The minimum value is the greater of 3000 and three times `disk_size_gb`.
                * The maximum value is the lesser of 500 times `disk_size_gb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
                
-               For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+               For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for Azure regions in a multi-cloud cluster.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `disk_size_gb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `disk_size_gb` specifies the storage capacity while the IOPS are set independently. On GCP, `disk_size_gb` is always required input, since it determines the valid `disk_iops` range for Gen2 instance sizes.
-        :param _builtins.str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
+        :param _builtins.str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. In multi-cloud clusters, set this parameter only for AWS regions. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
                * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
                * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
                * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -1889,6 +1897,8 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
         """
         Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 
+        In multi-cloud clusters, AWS and GCP regions can use different `disk_iops` values. Within each shard (`replication_specs` entry), the value must be consistent across all regions and node types that use the same cloud provider.
+
         For AWS, valid configurations are:
         * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
         * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
@@ -1898,7 +1908,7 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
         * The minimum value is the greater of 3000 and three times `disk_size_gb`.
         * The maximum value is the lesser of 500 times `disk_size_gb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
 
-        For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+        For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for Azure regions in a multi-cloud cluster.
         """
         return pulumi.get(self, "disk_iops")
 
@@ -1914,7 +1924,7 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> Optional[_builtins.str]:
         """
-        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
+        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. In multi-cloud clusters, set this parameter only for AWS regions. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
         * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
         * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
         * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -1980,6 +1990,8 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
         """
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
                
+               In multi-cloud clusters, AWS and GCP regions can use different `disk_iops` values. The value must be consistent across all regions and node types that use the same cloud provider.
+               
                For AWS, valid configurations are:
                * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
                * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
@@ -1989,9 +2001,9 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
                * The minimum value is the greater of 3000 and three times `disk_size_gb`.
                * The maximum value is the lesser of 500 times `disk_size_gb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
                
-               For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+               For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for Azure regions in a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `disk_size_gb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `disk_size_gb` specifies the storage capacity while the IOPS are set independently. On GCP, `disk_size_gb` is always required input, since it determines the valid `disk_iops` range for Gen2 instance sizes.
-        :param _builtins.str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
+        :param _builtins.str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. In multi-cloud clusters, set this parameter only for AWS regions. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
                * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
                * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
                * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -2021,6 +2033,8 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
         """
         Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 
+        In multi-cloud clusters, AWS and GCP regions can use different `disk_iops` values. The value must be consistent across all regions and node types that use the same cloud provider.
+
         For AWS, valid configurations are:
         * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
         * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
@@ -2030,7 +2044,7 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
         * The minimum value is the greater of 3000 and three times `disk_size_gb`.
         * The maximum value is the lesser of 500 times `disk_size_gb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
 
-        For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+        For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for Azure regions in a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
         """
         return pulumi.get(self, "disk_iops")
 
@@ -2046,7 +2060,7 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> Optional[_builtins.str]:
         """
-        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
+        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. In multi-cloud clusters, set this parameter only for AWS regions. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
         * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
         * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
         * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -4140,8 +4154,8 @@ class CloudBackupSnapshotExportJobComponent(dict):
                  export_id: Optional[_builtins.str] = None,
                  replica_set_name: Optional[_builtins.str] = None):
         """
-        :param _builtins.str export_id: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
-        :param _builtins.str replica_set_name: _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        :param _builtins.str export_id: _Returned for sharded clusters only._ Unique 24-hexadecimal character string that identifies the Cloud Backup snapshot export job for each shard in a sharded cluster.
+        :param _builtins.str replica_set_name: _Returned for sharded clusters only._ Human-readable label that identifies the replica set on the sharded cluster.
         """
         if export_id is not None:
             pulumi.set(__self__, "export_id", export_id)
@@ -4152,7 +4166,7 @@ class CloudBackupSnapshotExportJobComponent(dict):
     @pulumi.getter(name="exportId")
     def export_id(self) -> Optional[_builtins.str]:
         """
-        _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        _Returned for sharded clusters only._ Unique 24-hexadecimal character string that identifies the Cloud Backup snapshot export job for each shard in a sharded cluster.
         """
         return pulumi.get(self, "export_id")
 
@@ -4160,7 +4174,7 @@ class CloudBackupSnapshotExportJobComponent(dict):
     @pulumi.getter(name="replicaSetName")
     def replica_set_name(self) -> Optional[_builtins.str]:
         """
-        _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        _Returned for sharded clusters only._ Human-readable label that identifies the replica set on the sharded cluster.
         """
         return pulumi.get(self, "replica_set_name")
 
@@ -9163,6 +9177,8 @@ class OrganizationServiceAccountSecret(dict):
         :param _builtins.str created_at: The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         :param _builtins.str expires_at: The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         :param _builtins.str secret: The secret for the Service Account. It will be returned only the first time after creation.
+               
+               > **NOTE:** The whole `secrets` list is sensitive, so outputs that reference any attribute in it, including `expires_at` and `secret_id`, must set `sensitive = true`.
         :param _builtins.str secret_id: Unique 24-hexadecimal digit string that identifies the secret.
         """
         if created_at is not None:
@@ -9195,6 +9211,8 @@ class OrganizationServiceAccountSecret(dict):
     def secret(self) -> Optional[_builtins.str]:
         """
         The secret for the Service Account. It will be returned only the first time after creation.
+
+        > **NOTE:** The whole `secrets` list is sensitive, so outputs that reference any attribute in it, including `expires_at` and `secret_id`, must set `sensitive = true`.
         """
         return pulumi.get(self, "secret")
 
@@ -11524,6 +11542,25 @@ class StreamWorkspaceFailoverRegion(dict):
         Name of the failover cloud provider region.
         """
         return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class StreamWorkspacePrivateEndpointTimeouts(dict):
+    def __init__(__self__, *,
+                 create: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "create")
 
 
 @pulumi.output_type
@@ -17175,7 +17212,7 @@ class GetCloudBackupCollectionRestoreJobsResultResult(dict):
         :param _builtins.int point_in_time_utc_seconds: Point-in-time restore time in seconds since UNIX epoch.
         :param _builtins.int restored_documents: Number of documents restored so far across all supported collections.
         :param _builtins.str snapshot_id: Unique 24-hexadecimal digit string that identifies the snapshot being restored.
-        :param _builtins.str state: Current state of the collection restore job.
+        :param _builtins.str state: Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `get_cloud_backup_collection_restore_job_collections` data source to get per-collection detailed states.
         :param _builtins.str target_cluster_name: Human-readable label that identifies the target cluster.
         :param _builtins.str target_project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param _builtins.int total_documents: Total number of documents across all supported collections in the restore job. This value may initially reflect an estimate based on collection metadata and can change as accurate document counts become available during the restore.
@@ -17326,7 +17363,7 @@ class GetCloudBackupCollectionRestoreJobsResultResult(dict):
     @pulumi.getter
     def state(self) -> _builtins.str:
         """
-        Current state of the collection restore job.
+        Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `get_cloud_backup_collection_restore_job_collections` data source to get per-collection detailed states.
         """
         return pulumi.get(self, "state")
 
@@ -18052,8 +18089,8 @@ class GetCloudBackupSnapshotExportJobComponentResult(dict):
                  export_id: _builtins.str,
                  replica_set_name: _builtins.str):
         """
-        :param _builtins.str export_id: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
-        :param _builtins.str replica_set_name: _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        :param _builtins.str export_id: _Returned for sharded clusters only._ Unique 24-hexadecimal character string that identifies the Cloud Backup snapshot export job for each shard in a sharded cluster.
+        :param _builtins.str replica_set_name: _Returned for sharded clusters only._ Human-readable label that identifies the replica set on the sharded cluster.
         """
         pulumi.set(__self__, "export_id", export_id)
         pulumi.set(__self__, "replica_set_name", replica_set_name)
@@ -18062,7 +18099,7 @@ class GetCloudBackupSnapshotExportJobComponentResult(dict):
     @pulumi.getter(name="exportId")
     def export_id(self) -> _builtins.str:
         """
-        _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        _Returned for sharded clusters only._ Unique 24-hexadecimal character string that identifies the Cloud Backup snapshot export job for each shard in a sharded cluster.
         """
         return pulumi.get(self, "export_id")
 
@@ -18070,7 +18107,7 @@ class GetCloudBackupSnapshotExportJobComponentResult(dict):
     @pulumi.getter(name="replicaSetName")
     def replica_set_name(self) -> _builtins.str:
         """
-        _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        _Returned for sharded clusters only._ Human-readable label that identifies the replica set on the sharded cluster.
         """
         return pulumi.get(self, "replica_set_name")
 
@@ -18238,8 +18275,8 @@ class GetCloudBackupSnapshotExportJobsResultComponentResult(dict):
                  export_id: _builtins.str,
                  replica_set_name: _builtins.str):
         """
-        :param _builtins.str export_id: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
-        :param _builtins.str replica_set_name: _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        :param _builtins.str export_id: _Returned for sharded clusters only._ Unique 24-hexadecimal character string that identifies the Cloud Backup snapshot export job for each shard in a sharded cluster.
+        :param _builtins.str replica_set_name: _Returned for sharded clusters only._ Human-readable label that identifies the replica set on the sharded cluster.
         """
         pulumi.set(__self__, "export_id", export_id)
         pulumi.set(__self__, "replica_set_name", replica_set_name)
@@ -18248,7 +18285,7 @@ class GetCloudBackupSnapshotExportJobsResultComponentResult(dict):
     @pulumi.getter(name="exportId")
     def export_id(self) -> _builtins.str:
         """
-        _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        _Returned for sharded clusters only._ Unique 24-hexadecimal character string that identifies the Cloud Backup snapshot export job for each shard in a sharded cluster.
         """
         return pulumi.get(self, "export_id")
 
@@ -18256,7 +18293,7 @@ class GetCloudBackupSnapshotExportJobsResultComponentResult(dict):
     @pulumi.getter(name="replicaSetName")
     def replica_set_name(self) -> _builtins.str:
         """
-        _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        _Returned for sharded clusters only._ Human-readable label that identifies the replica set on the sharded cluster.
         """
         return pulumi.get(self, "replica_set_name")
 
@@ -29399,6 +29436,7 @@ class GetProjectsResultResult(dict):
                  created: _builtins.str,
                  id: _builtins.str,
                  ip_addresses: 'outputs.GetProjectsResultIpAddressesResult',
+                 is_atlas_home_page_ai_assistant_enabled: _builtins.bool,
                  is_cluster_ai_assistant_enabled: _builtins.bool,
                  is_collect_database_specifics_statistics_enabled: _builtins.bool,
                  is_data_explorer_enabled: _builtins.bool,
@@ -29423,6 +29461,7 @@ class GetProjectsResultResult(dict):
         :param _builtins.str created: The ISO-8601-formatted timestamp of when Atlas created the project.
         :param _builtins.str id: Autogenerated Unique ID for this data source.
         :param 'GetProjectsResultIpAddressesArgs' ip_addresses: IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `get_project_ip_addresses` data source instead.
+        :param _builtins.bool is_atlas_home_page_ai_assistant_enabled: Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project.
         :param _builtins.bool is_cluster_ai_assistant_enabled: Flag that indicates whether the AI Assistant is enabled for the project's clusters.
         :param _builtins.bool is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
         :param _builtins.bool is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
@@ -29446,6 +29485,7 @@ class GetProjectsResultResult(dict):
         pulumi.set(__self__, "created", created)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "ip_addresses", ip_addresses)
+        pulumi.set(__self__, "is_atlas_home_page_ai_assistant_enabled", is_atlas_home_page_ai_assistant_enabled)
         pulumi.set(__self__, "is_cluster_ai_assistant_enabled", is_cluster_ai_assistant_enabled)
         pulumi.set(__self__, "is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
         pulumi.set(__self__, "is_data_explorer_enabled", is_data_explorer_enabled)
@@ -29500,6 +29540,14 @@ class GetProjectsResultResult(dict):
         IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `get_project_ip_addresses` data source instead.
         """
         return pulumi.get(self, "ip_addresses")
+
+    @_builtins.property
+    @pulumi.getter(name="isAtlasHomePageAiAssistantEnabled")
+    def is_atlas_home_page_ai_assistant_enabled(self) -> _builtins.bool:
+        """
+        Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project.
+        """
+        return pulumi.get(self, "is_atlas_home_page_ai_assistant_enabled")
 
     @_builtins.property
     @pulumi.getter(name="isClusterAiAssistantEnabled")
@@ -34014,6 +34062,79 @@ class GetStreamWorkspaceFailoverRegionResult(dict):
         Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
         """
         return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class GetStreamWorkspacePrivateEndpointsResultResult(dict):
+    def __init__(__self__, *,
+                 cloud_provider: _builtins.str,
+                 customer_dns_name: _builtins.str,
+                 endpoint_id: _builtins.str,
+                 endpoint_service_name: _builtins.str,
+                 region: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str cloud_provider: Cloud provider hosting the VPC endpoint.
+        :param _builtins.str customer_dns_name: DNS name of your VPC endpoint.
+        :param _builtins.str endpoint_id: Unique identifier of your VPC endpoint.
+        :param _builtins.str endpoint_service_name: Name of the Atlas endpoint service your VPC endpoint connects to. Absent when no endpoint service is configured for the endpoint's region.
+        :param _builtins.str region: Human-readable label identifying the region of your VPC endpoint.
+        :param _builtins.str status: Status of the endpoint registration.
+        """
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "customer_dns_name", customer_dns_name)
+        pulumi.set(__self__, "endpoint_id", endpoint_id)
+        pulumi.set(__self__, "endpoint_service_name", endpoint_service_name)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> _builtins.str:
+        """
+        Cloud provider hosting the VPC endpoint.
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @_builtins.property
+    @pulumi.getter(name="customerDnsName")
+    def customer_dns_name(self) -> _builtins.str:
+        """
+        DNS name of your VPC endpoint.
+        """
+        return pulumi.get(self, "customer_dns_name")
+
+    @_builtins.property
+    @pulumi.getter(name="endpointId")
+    def endpoint_id(self) -> _builtins.str:
+        """
+        Unique identifier of your VPC endpoint.
+        """
+        return pulumi.get(self, "endpoint_id")
+
+    @_builtins.property
+    @pulumi.getter(name="endpointServiceName")
+    def endpoint_service_name(self) -> _builtins.str:
+        """
+        Name of the Atlas endpoint service your VPC endpoint connects to. Absent when no endpoint service is configured for the endpoint's region.
+        """
+        return pulumi.get(self, "endpoint_service_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Human-readable label identifying the region of your VPC endpoint.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Status of the endpoint registration.
+        """
+        return pulumi.get(self, "status")
 
 
 @pulumi.output_type

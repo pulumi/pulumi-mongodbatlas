@@ -96,6 +96,10 @@ export interface GetProjectResult {
      */
     readonly ipAddresses: outputs.GetProjectIpAddresses;
     /**
+     * Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project.
+     */
+    readonly isAtlasHomePageAiAssistantEnabled: boolean;
+    /**
      * Flag that indicates whether the AI Assistant is enabled for the project's clusters.
      */
     readonly isClusterAiAssistantEnabled: boolean;

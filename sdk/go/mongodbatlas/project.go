@@ -89,6 +89,8 @@ type Project struct {
 	//
 	// Deprecated: This parameter is deprecated. Please transition to getProjectIpAddresses data source.
 	IpAddresses ProjectIpAddressesOutput `pulumi:"ipAddresses"`
+	// Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
+	IsAtlasHomePageAiAssistantEnabled pulumi.BoolOutput `pulumi:"isAtlasHomePageAiAssistantEnabled"`
 	// Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.
 	IsClusterAiAssistantEnabled pulumi.BoolOutput `pulumi:"isClusterAiAssistantEnabled"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
@@ -171,6 +173,8 @@ type projectState struct {
 	//
 	// Deprecated: This parameter is deprecated. Please transition to getProjectIpAddresses data source.
 	IpAddresses *ProjectIpAddresses `pulumi:"ipAddresses"`
+	// Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
+	IsAtlasHomePageAiAssistantEnabled *bool `pulumi:"isAtlasHomePageAiAssistantEnabled"`
 	// Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.
 	IsClusterAiAssistantEnabled *bool `pulumi:"isClusterAiAssistantEnabled"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
@@ -221,6 +225,8 @@ type ProjectState struct {
 	//
 	// Deprecated: This parameter is deprecated. Please transition to getProjectIpAddresses data source.
 	IpAddresses ProjectIpAddressesPtrInput
+	// Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
+	IsAtlasHomePageAiAssistantEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.
 	IsClusterAiAssistantEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
@@ -273,6 +279,8 @@ func ProjectExists(ctx *pulumi.Context,
 }
 
 type projectArgs struct {
+	// Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
+	IsAtlasHomePageAiAssistantEnabled *bool `pulumi:"isAtlasHomePageAiAssistantEnabled"`
 	// Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.
 	IsClusterAiAssistantEnabled *bool `pulumi:"isClusterAiAssistantEnabled"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
@@ -316,6 +324,8 @@ type projectArgs struct {
 
 // The set of arguments for constructing a Project resource.
 type ProjectArgs struct {
+	// Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
+	IsAtlasHomePageAiAssistantEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.
 	IsClusterAiAssistantEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
@@ -459,6 +469,11 @@ func (o ProjectOutput) Created() pulumi.StringOutput {
 // Deprecated: This parameter is deprecated. Please transition to getProjectIpAddresses data source.
 func (o ProjectOutput) IpAddresses() ProjectIpAddressesOutput {
 	return o.ApplyT(func(v *Project) ProjectIpAddressesOutput { return v.IpAddresses }).(ProjectIpAddressesOutput)
+}
+
+// Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
+func (o ProjectOutput) IsAtlasHomePageAiAssistantEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Project) pulumi.BoolOutput { return v.IsAtlasHomePageAiAssistantEnabled }).(pulumi.BoolOutput)
 }
 
 // Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.

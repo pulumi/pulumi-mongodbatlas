@@ -912,10 +912,14 @@ class SearchIndex(pulumi.CustomResource):
 
         ## Import
 
-        You can import search indexes using `project_id`, `cluster_name`, and `index_id` as in the following example:
+        You can import search indexes using `project_id`, `cluster_name`, and `index_id` in one of the following formats:
+
+        1. `project_id`/`cluster_name`/`index_id` (recommended)
+        2. `project_id`--`cluster_name`--`index_id` (legacy)
 
         ```sh
-        $ pulumi import mongodbatlas:index/searchIndex:SearchIndex test {project_id}--{cluster_name}--{index_id}
+        terraform import mongodbatlas_search_index.test {project_id}/{cluster_name}/{index_id} # (1)
+        terraform import mongodbatlas_search_index.test {project_id}--{cluster_name}--{index_id} # (2)
         ```
 
 
@@ -1130,10 +1134,14 @@ class SearchIndex(pulumi.CustomResource):
 
         ## Import
 
-        You can import search indexes using `project_id`, `cluster_name`, and `index_id` as in the following example:
+        You can import search indexes using `project_id`, `cluster_name`, and `index_id` in one of the following formats:
+
+        1. `project_id`/`cluster_name`/`index_id` (recommended)
+        2. `project_id`--`cluster_name`--`index_id` (legacy)
 
         ```sh
-        $ pulumi import mongodbatlas:index/searchIndex:SearchIndex test {project_id}--{cluster_name}--{index_id}
+        terraform import mongodbatlas_search_index.test {project_id}/{cluster_name}/{index_id} # (1)
+        terraform import mongodbatlas_search_index.test {project_id}--{cluster_name}--{index_id} # (2)
         ```
 
 

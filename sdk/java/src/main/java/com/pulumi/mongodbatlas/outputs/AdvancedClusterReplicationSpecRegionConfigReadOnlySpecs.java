@@ -16,6 +16,8 @@ public final class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
     /**
      * @return Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
      * 
+     * In multi-cloud clusters, AWS and GCP regions can use different `diskIops` values. The value must be consistent across all regions and node types that use the same cloud provider.
+     * 
      * For AWS, valid configurations are:
      * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
      * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
@@ -25,7 +27,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
      * * The minimum value is the greater of 3000 and three times `diskSizeGb`.
      * * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
      * 
-     * For Azure (Gen1 only; Azure doesn&#39;t support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can&#39;t set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier&#39;s standard IOPS value.
+     * For Azure (Gen1 only; Azure doesn&#39;t support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can&#39;t set this attribute for Azure regions in a multi-cloud cluster. This parameter defaults to the cluster tier&#39;s standard IOPS value.
      * 
      */
     private @Nullable Integer diskIops;
@@ -35,7 +37,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
      */
     private @Nullable Double diskSizeGb;
     /**
-     * @return Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
+     * @return Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. In multi-cloud clusters, set this parameter only for AWS regions. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
      * * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
      * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
      * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -63,6 +65,8 @@ public final class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
     /**
      * @return Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
      * 
+     * In multi-cloud clusters, AWS and GCP regions can use different `diskIops` values. The value must be consistent across all regions and node types that use the same cloud provider.
+     * 
      * For AWS, valid configurations are:
      * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
      * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
@@ -72,7 +76,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
      * * The minimum value is the greater of 3000 and three times `diskSizeGb`.
      * * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
      * 
-     * For Azure (Gen1 only; Azure doesn&#39;t support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can&#39;t set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier&#39;s standard IOPS value.
+     * For Azure (Gen1 only; Azure doesn&#39;t support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can&#39;t set this attribute for Azure regions in a multi-cloud cluster. This parameter defaults to the cluster tier&#39;s standard IOPS value.
      * 
      */
     public Optional<Integer> diskIops() {
@@ -86,7 +90,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
         return Optional.ofNullable(this.diskSizeGb);
     }
     /**
-     * @return Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
+     * @return Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. In multi-cloud clusters, set this parameter only for AWS regions. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
      * * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
      * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
      * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.

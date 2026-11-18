@@ -303,7 +303,7 @@ class _CloudBackupCollectionRestoreJobState:
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.int] restored_documents: Number of documents restored so far across all supported collections.
         :param pulumi.Input[_builtins.str] snapshot_id: ID of the snapshot to restore.
-        :param pulumi.Input[_builtins.str] state: Current state of the collection restore job.
+        :param pulumi.Input[_builtins.str] state: Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `get_cloud_backup_collection_restore_job_collections` data source to get per-collection detailed states.
         :param pulumi.Input[_builtins.str] target_cluster_name: Target cluster name.
         :param pulumi.Input[_builtins.str] target_project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.int] total_documents: Total number of documents across all supported collections in the restore job. This value may initially reflect an estimate based on collection metadata and can change as accurate document counts become available during the restore.
@@ -564,7 +564,7 @@ class _CloudBackupCollectionRestoreJobState:
     @pulumi.getter
     def state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Current state of the collection restore job.
+        Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `get_cloud_backup_collection_restore_job_collections` data source to get per-collection detailed states.
         """
         return pulumi.get(self, "state")
 
@@ -866,7 +866,7 @@ class CloudBackupCollectionRestoreJob(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.int] restored_documents: Number of documents restored so far across all supported collections.
         :param pulumi.Input[_builtins.str] snapshot_id: ID of the snapshot to restore.
-        :param pulumi.Input[_builtins.str] state: Current state of the collection restore job.
+        :param pulumi.Input[_builtins.str] state: Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `get_cloud_backup_collection_restore_job_collections` data source to get per-collection detailed states.
         :param pulumi.Input[_builtins.str] target_cluster_name: Target cluster name.
         :param pulumi.Input[_builtins.str] target_project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.int] total_documents: Total number of documents across all supported collections in the restore job. This value may initially reflect an estimate based on collection metadata and can change as accurate document counts become available during the restore.
@@ -1093,7 +1093,7 @@ class CloudBackupCollectionRestoreJob(pulumi.CustomResource):
     @pulumi.getter
     def state(self) -> pulumi.Output[_builtins.str]:
         """
-        Current state of the collection restore job.
+        Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `get_cloud_backup_collection_restore_job_collections` data source to get per-collection detailed states.
         """
         return pulumi.get(self, "state")
 

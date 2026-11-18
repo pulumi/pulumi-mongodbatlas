@@ -315,6 +315,10 @@ import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamWorkspaceArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamWorkspacePlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamWorkspacePrivateEndpointArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamWorkspacePrivateEndpointPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamWorkspacePrivateEndpointsArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamWorkspacePrivateEndpointsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamWorkspacesArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamWorkspacesPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
@@ -481,6 +485,8 @@ import com.pulumi.mongodbatlas.outputs.GetStreamPrivatelinkEndpointResult;
 import com.pulumi.mongodbatlas.outputs.GetStreamPrivatelinkEndpointsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetStreamProcessorResult;
 import com.pulumi.mongodbatlas.outputs.GetStreamProcessorsInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetStreamWorkspacePrivateEndpointResult;
+import com.pulumi.mongodbatlas.outputs.GetStreamWorkspacePrivateEndpointsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetStreamWorkspaceResult;
 import com.pulumi.mongodbatlas.outputs.GetStreamWorkspacesInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetTeamProjectAssignmentResult;
@@ -48298,6 +48304,116 @@ public final class MongodbatlasFunctions {
      */
     public static CompletableFuture<GetStreamWorkspaceResult> getStreamWorkspacePlain(GetStreamWorkspacePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamWorkspace:getStreamWorkspace", TypeShape.of(GetStreamWorkspaceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.StreamWorkspacePrivateEndpoint` describes a VPC interface endpoint registered for inbound private connectivity to Atlas Stream Processing in a project, identified by the `endpointId` of your VPC endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     */
+    public static Output<GetStreamWorkspacePrivateEndpointResult> getStreamWorkspacePrivateEndpoint(GetStreamWorkspacePrivateEndpointArgs args) {
+        return getStreamWorkspacePrivateEndpoint(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.StreamWorkspacePrivateEndpoint` describes a VPC interface endpoint registered for inbound private connectivity to Atlas Stream Processing in a project, identified by the `endpointId` of your VPC endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     */
+    public static CompletableFuture<GetStreamWorkspacePrivateEndpointResult> getStreamWorkspacePrivateEndpointPlain(GetStreamWorkspacePrivateEndpointPlainArgs args) {
+        return getStreamWorkspacePrivateEndpointPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.StreamWorkspacePrivateEndpoint` describes a VPC interface endpoint registered for inbound private connectivity to Atlas Stream Processing in a project, identified by the `endpointId` of your VPC endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     */
+    public static Output<GetStreamWorkspacePrivateEndpointResult> getStreamWorkspacePrivateEndpoint(GetStreamWorkspacePrivateEndpointArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamWorkspacePrivateEndpoint:getStreamWorkspacePrivateEndpoint", TypeShape.of(GetStreamWorkspacePrivateEndpointResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.StreamWorkspacePrivateEndpoint` describes a VPC interface endpoint registered for inbound private connectivity to Atlas Stream Processing in a project, identified by the `endpointId` of your VPC endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     */
+    public static Output<GetStreamWorkspacePrivateEndpointResult> getStreamWorkspacePrivateEndpoint(GetStreamWorkspacePrivateEndpointArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamWorkspacePrivateEndpoint:getStreamWorkspacePrivateEndpoint", TypeShape.of(GetStreamWorkspacePrivateEndpointResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.StreamWorkspacePrivateEndpoint` describes a VPC interface endpoint registered for inbound private connectivity to Atlas Stream Processing in a project, identified by the `endpointId` of your VPC endpoint.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     */
+    public static CompletableFuture<GetStreamWorkspacePrivateEndpointResult> getStreamWorkspacePrivateEndpointPlain(GetStreamWorkspacePrivateEndpointPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamWorkspacePrivateEndpoint:getStreamWorkspacePrivateEndpoint", TypeShape.of(GetStreamWorkspacePrivateEndpointResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getStreamWorkspacePrivateEndpoints` describes all the VPC interface endpoints registered for inbound private connectivity to Atlas Stream Processing in a project.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     */
+    public static Output<GetStreamWorkspacePrivateEndpointsInvokeResult> getStreamWorkspacePrivateEndpoints(GetStreamWorkspacePrivateEndpointsArgs args) {
+        return getStreamWorkspacePrivateEndpoints(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getStreamWorkspacePrivateEndpoints` describes all the VPC interface endpoints registered for inbound private connectivity to Atlas Stream Processing in a project.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     */
+    public static CompletableFuture<GetStreamWorkspacePrivateEndpointsInvokeResult> getStreamWorkspacePrivateEndpointsPlain(GetStreamWorkspacePrivateEndpointsPlainArgs args) {
+        return getStreamWorkspacePrivateEndpointsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getStreamWorkspacePrivateEndpoints` describes all the VPC interface endpoints registered for inbound private connectivity to Atlas Stream Processing in a project.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     */
+    public static Output<GetStreamWorkspacePrivateEndpointsInvokeResult> getStreamWorkspacePrivateEndpoints(GetStreamWorkspacePrivateEndpointsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamWorkspacePrivateEndpoints:getStreamWorkspacePrivateEndpoints", TypeShape.of(GetStreamWorkspacePrivateEndpointsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getStreamWorkspacePrivateEndpoints` describes all the VPC interface endpoints registered for inbound private connectivity to Atlas Stream Processing in a project.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     */
+    public static Output<GetStreamWorkspacePrivateEndpointsInvokeResult> getStreamWorkspacePrivateEndpoints(GetStreamWorkspacePrivateEndpointsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamWorkspacePrivateEndpoints:getStreamWorkspacePrivateEndpoints", TypeShape.of(GetStreamWorkspacePrivateEndpointsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getStreamWorkspacePrivateEndpoints` describes all the VPC interface endpoints registered for inbound private connectivity to Atlas Stream Processing in a project.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     */
+    public static CompletableFuture<GetStreamWorkspacePrivateEndpointsInvokeResult> getStreamWorkspacePrivateEndpointsPlain(GetStreamWorkspacePrivateEndpointsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamWorkspacePrivateEndpoints:getStreamWorkspacePrivateEndpoints", TypeShape.of(GetStreamWorkspacePrivateEndpointsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
      * `mongodbatlas.getStreamWorkspaces` describes the stream workspaces defined in a project.

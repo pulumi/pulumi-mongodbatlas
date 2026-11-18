@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// > **DEPRECATED:** This resource is deprecated and will be removed in the next major version. Please use `LogIntegration` instead. For migration instructions, see the Push-Based Log Export to Log Integration Migration Guide.
+// > **DEPRECATED:** This resource is deprecated and will be removed in the next major version. Push-based log export can no longer be enabled through this resource. Existing configurations continue to work and can still be updated through this resource. Please use `LogIntegration` instead. For migration instructions, see the Push-Based Log Export to Log Integration Migration Guide.
 //
 // `PushBasedLogExport` provides a resource for push-based log export feature. The resource lets you configure, enable & disable the project level settings for the push-based log export feature. Using this resource you
 // can continually push logs from mongod, mongos, and audit logs to an Amazon S3 bucket. Atlas exports logs every 5 minutes.

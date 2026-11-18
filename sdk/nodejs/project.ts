@@ -110,6 +110,10 @@ export class Project extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly ipAddresses: pulumi.Output<outputs.ProjectIpAddresses>;
     /**
+     * Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
+     */
+    declare public readonly isAtlasHomePageAiAssistantEnabled: pulumi.Output<boolean>;
+    /**
      * Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.
      */
     declare public readonly isClusterAiAssistantEnabled: pulumi.Output<boolean>;
@@ -201,6 +205,7 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["clusterCount"] = state?.clusterCount;
             resourceInputs["created"] = state?.created;
             resourceInputs["ipAddresses"] = state?.ipAddresses;
+            resourceInputs["isAtlasHomePageAiAssistantEnabled"] = state?.isAtlasHomePageAiAssistantEnabled;
             resourceInputs["isClusterAiAssistantEnabled"] = state?.isClusterAiAssistantEnabled;
             resourceInputs["isCollectDatabaseSpecificsStatisticsEnabled"] = state?.isCollectDatabaseSpecificsStatisticsEnabled;
             resourceInputs["isDataExplorerEnabled"] = state?.isDataExplorerEnabled;
@@ -225,6 +230,7 @@ export class Project extends pulumi.CustomResource {
             if (args?.orgId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'orgId'");
             }
+            resourceInputs["isAtlasHomePageAiAssistantEnabled"] = args?.isAtlasHomePageAiAssistantEnabled;
             resourceInputs["isClusterAiAssistantEnabled"] = args?.isClusterAiAssistantEnabled;
             resourceInputs["isCollectDatabaseSpecificsStatisticsEnabled"] = args?.isCollectDatabaseSpecificsStatisticsEnabled;
             resourceInputs["isDataExplorerEnabled"] = args?.isDataExplorerEnabled;
@@ -271,6 +277,10 @@ export interface ProjectState {
      * @deprecated This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source.
      */
     ipAddresses?: pulumi.Input<inputs.ProjectIpAddresses | undefined>;
+    /**
+     * Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
+     */
+    isAtlasHomePageAiAssistantEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.
      */
@@ -352,6 +362,10 @@ export interface ProjectState {
  * The set of arguments for constructing a Project resource.
  */
 export interface ProjectArgs {
+    /**
+     * Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
+     */
+    isAtlasHomePageAiAssistantEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.
      */

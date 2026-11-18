@@ -26,8 +26,8 @@ class AiModelApiKeyArgs:
         """
         The set of arguments for constructing a AiModelApiKey resource.
 
-        :param pulumi.Input[_builtins.str] cloud: Cloud provider scope for this API key. Must be "ANY". Additional cloud values will be supported in future API versions.
-        :param pulumi.Input[_builtins.str] geography: Geography scope for this API key. Must be "ANY". Additional geography values will be supported in future API versions.
+        :param pulumi.Input[_builtins.str] cloud: Cloud provider scope for this API key. Use "ANY" for a cloud-agnostic scope. Additional cloud values will be supported in future API versions.
+        :param pulumi.Input[_builtins.str] geography: Geography scope for this API key. Use "ANY" for a geography-agnostic scope. Additional geography values will be supported in future API versions.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] name: A name for the new API key that will be created.
         """
@@ -41,7 +41,7 @@ class AiModelApiKeyArgs:
     @pulumi.getter
     def cloud(self) -> pulumi.Input[_builtins.str]:
         """
-        Cloud provider scope for this API key. Must be "ANY". Additional cloud values will be supported in future API versions.
+        Cloud provider scope for this API key. Use "ANY" for a cloud-agnostic scope. Additional cloud values will be supported in future API versions.
         """
         return pulumi.get(self, "cloud")
 
@@ -53,7 +53,7 @@ class AiModelApiKeyArgs:
     @pulumi.getter
     def geography(self) -> pulumi.Input[_builtins.str]:
         """
-        Geography scope for this API key. Must be "ANY". Additional geography values will be supported in future API versions.
+        Geography scope for this API key. Use "ANY" for a geography-agnostic scope. Additional geography values will be supported in future API versions.
         """
         return pulumi.get(self, "geography")
 
@@ -105,11 +105,11 @@ class _AiModelApiKeyState:
         Input properties used for looking up and filtering AiModelApiKey resources.
 
         :param pulumi.Input[_builtins.str] api_key_id: Identifier used to reference this API key in admin API calls.
-        :param pulumi.Input[_builtins.str] cloud: Cloud provider scope for this API key. Must be "ANY". Additional cloud values will be supported in future API versions.
+        :param pulumi.Input[_builtins.str] cloud: Cloud provider scope for this API key. Use "ANY" for a cloud-agnostic scope. Additional cloud values will be supported in future API versions.
         :param pulumi.Input[_builtins.str] created_at: UTC date when the API key was created. This parameter is formatted as an ISO 8601 timestamp.
         :param pulumi.Input[_builtins.str] created_by: Name of the user that created this API key. If no user name is available, the user ID is returned.
         :param pulumi.Input[_builtins.str] endpoint: Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
-        :param pulumi.Input[_builtins.str] geography: Geography scope for this API key. Must be "ANY". Additional geography values will be supported in future API versions.
+        :param pulumi.Input[_builtins.str] geography: Geography scope for this API key. Use "ANY" for a geography-agnostic scope. Additional geography values will be supported in future API versions.
         :param pulumi.Input[_builtins.str] last_used_at: UTC date when the API key was last used. This parameter is formatted as an ISO 8601 timestamp.
         :param pulumi.Input[_builtins.str] masked_secret: A partially obfuscated version of the API key secret returned when the API key was created.
         :param pulumi.Input[_builtins.str] name: A name for the new API key that will be created.
@@ -158,7 +158,7 @@ class _AiModelApiKeyState:
     @pulumi.getter
     def cloud(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Cloud provider scope for this API key. Must be "ANY". Additional cloud values will be supported in future API versions.
+        Cloud provider scope for this API key. Use "ANY" for a cloud-agnostic scope. Additional cloud values will be supported in future API versions.
         """
         return pulumi.get(self, "cloud")
 
@@ -206,7 +206,7 @@ class _AiModelApiKeyState:
     @pulumi.getter
     def geography(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Geography scope for this API key. Must be "ANY". Additional geography values will be supported in future API versions.
+        Geography scope for this API key. Use "ANY" for a geography-agnostic scope. Additional geography values will be supported in future API versions.
         """
         return pulumi.get(self, "geography")
 
@@ -340,8 +340,8 @@ class AiModelApiKey(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] cloud: Cloud provider scope for this API key. Must be "ANY". Additional cloud values will be supported in future API versions.
-        :param pulumi.Input[_builtins.str] geography: Geography scope for this API key. Must be "ANY". Additional geography values will be supported in future API versions.
+        :param pulumi.Input[_builtins.str] cloud: Cloud provider scope for this API key. Use "ANY" for a cloud-agnostic scope. Additional cloud values will be supported in future API versions.
+        :param pulumi.Input[_builtins.str] geography: Geography scope for this API key. Use "ANY" for a geography-agnostic scope. Additional geography values will be supported in future API versions.
         :param pulumi.Input[_builtins.str] name: A name for the new API key that will be created.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
@@ -469,11 +469,11 @@ class AiModelApiKey(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] api_key_id: Identifier used to reference this API key in admin API calls.
-        :param pulumi.Input[_builtins.str] cloud: Cloud provider scope for this API key. Must be "ANY". Additional cloud values will be supported in future API versions.
+        :param pulumi.Input[_builtins.str] cloud: Cloud provider scope for this API key. Use "ANY" for a cloud-agnostic scope. Additional cloud values will be supported in future API versions.
         :param pulumi.Input[_builtins.str] created_at: UTC date when the API key was created. This parameter is formatted as an ISO 8601 timestamp.
         :param pulumi.Input[_builtins.str] created_by: Name of the user that created this API key. If no user name is available, the user ID is returned.
         :param pulumi.Input[_builtins.str] endpoint: Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
-        :param pulumi.Input[_builtins.str] geography: Geography scope for this API key. Must be "ANY". Additional geography values will be supported in future API versions.
+        :param pulumi.Input[_builtins.str] geography: Geography scope for this API key. Use "ANY" for a geography-agnostic scope. Additional geography values will be supported in future API versions.
         :param pulumi.Input[_builtins.str] last_used_at: UTC date when the API key was last used. This parameter is formatted as an ISO 8601 timestamp.
         :param pulumi.Input[_builtins.str] masked_secret: A partially obfuscated version of the API key secret returned when the API key was created.
         :param pulumi.Input[_builtins.str] name: A name for the new API key that will be created.
@@ -541,7 +541,7 @@ class AiModelApiKey(pulumi.CustomResource):
     @pulumi.getter
     def cloud(self) -> pulumi.Output[_builtins.str]:
         """
-        Cloud provider scope for this API key. Must be "ANY". Additional cloud values will be supported in future API versions.
+        Cloud provider scope for this API key. Use "ANY" for a cloud-agnostic scope. Additional cloud values will be supported in future API versions.
         """
         return pulumi.get(self, "cloud")
 
@@ -573,7 +573,7 @@ class AiModelApiKey(pulumi.CustomResource):
     @pulumi.getter
     def geography(self) -> pulumi.Output[_builtins.str]:
         """
-        Geography scope for this API key. Must be "ANY". Additional geography values will be supported in future API versions.
+        Geography scope for this API key. Use "ANY" for a geography-agnostic scope. Additional geography values will be supported in future API versions.
         """
         return pulumi.get(self, "geography")
 

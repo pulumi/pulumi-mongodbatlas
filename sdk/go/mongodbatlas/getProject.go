@@ -120,6 +120,8 @@ type LookupProjectResult struct {
 	//
 	// Deprecated: This parameter is deprecated. Please transition to getProjectIpAddresses data source.
 	IpAddresses GetProjectIpAddresses `pulumi:"ipAddresses"`
+	// Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project.
+	IsAtlasHomePageAiAssistantEnabled bool `pulumi:"isAtlasHomePageAiAssistantEnabled"`
 	// Flag that indicates whether the AI Assistant is enabled for the project's clusters.
 	IsClusterAiAssistantEnabled bool `pulumi:"isClusterAiAssistantEnabled"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
@@ -217,6 +219,11 @@ func (o LookupProjectResultOutput) Id() pulumi.StringOutput {
 // Deprecated: This parameter is deprecated. Please transition to getProjectIpAddresses data source.
 func (o LookupProjectResultOutput) IpAddresses() GetProjectIpAddressesOutput {
 	return o.ApplyT(func(v LookupProjectResult) GetProjectIpAddresses { return v.IpAddresses }).(GetProjectIpAddressesOutput)
+}
+
+// Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project.
+func (o LookupProjectResultOutput) IsAtlasHomePageAiAssistantEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupProjectResult) bool { return v.IsAtlasHomePageAiAssistantEnabled }).(pulumi.BoolOutput)
 }
 
 // Flag that indicates whether the AI Assistant is enabled for the project's clusters.

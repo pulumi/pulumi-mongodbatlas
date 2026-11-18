@@ -24,6 +24,8 @@ public final class OrganizationServiceAccountSecret {
     /**
      * @return The secret for the Service Account. It will be returned only the first time after creation.
      * 
+     * &gt; **NOTE:** The whole `secrets` list is sensitive, so outputs that reference any attribute in it, including `expiresAt` and `secretId`, must set `sensitive = true`.
+     * 
      */
     private @Nullable String secret;
     /**
@@ -49,6 +51,8 @@ public final class OrganizationServiceAccountSecret {
     }
     /**
      * @return The secret for the Service Account. It will be returned only the first time after creation.
+     * 
+     * &gt; **NOTE:** The whole `secrets` list is sensitive, so outputs that reference any attribute in it, including `expiresAt` and `secretId`, must set `sensitive = true`.
      * 
      */
     public Optional<String> secret() {

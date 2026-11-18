@@ -22,6 +22,21 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
     public static final ProjectArgs Empty = new ProjectArgs();
 
     /**
+     * Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
+     * 
+     */
+    @Import(name="isAtlasHomePageAiAssistantEnabled")
+    private @Nullable Output<Boolean> isAtlasHomePageAiAssistantEnabled;
+
+    /**
+     * @return Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
+     * 
+     */
+    public Optional<Output<Boolean>> isAtlasHomePageAiAssistantEnabled() {
+        return Optional.ofNullable(this.isAtlasHomePageAiAssistantEnabled);
+    }
+
+    /**
      * Flag that indicates whether to enable the AI Assistant for the project&#39;s clusters. By default, this flag is set to true.
      * 
      */
@@ -309,6 +324,7 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
     private ProjectArgs() {}
 
     private ProjectArgs(ProjectArgs $) {
+        this.isAtlasHomePageAiAssistantEnabled = $.isAtlasHomePageAiAssistantEnabled;
         this.isClusterAiAssistantEnabled = $.isClusterAiAssistantEnabled;
         this.isCollectDatabaseSpecificsStatisticsEnabled = $.isCollectDatabaseSpecificsStatisticsEnabled;
         this.isDataExplorerEnabled = $.isDataExplorerEnabled;
@@ -346,6 +362,27 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(ProjectArgs defaults) {
             $ = new ProjectArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param isAtlasHomePageAiAssistantEnabled Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isAtlasHomePageAiAssistantEnabled(@Nullable Output<Boolean> isAtlasHomePageAiAssistantEnabled) {
+            $.isAtlasHomePageAiAssistantEnabled = isAtlasHomePageAiAssistantEnabled;
+            return this;
+        }
+
+        /**
+         * @param isAtlasHomePageAiAssistantEnabled Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isAtlasHomePageAiAssistantEnabled(Boolean isAtlasHomePageAiAssistantEnabled) {
+            return isAtlasHomePageAiAssistantEnabled(Output.of(isAtlasHomePageAiAssistantEnabled));
         }
 
         /**

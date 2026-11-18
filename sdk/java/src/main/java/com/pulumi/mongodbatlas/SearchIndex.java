@@ -306,10 +306,14 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * You can import search indexes using `projectId`, `clusterName`, and `indexId` as in the following example:
+ * You can import search indexes using `projectId`, `clusterName`, and `indexId` in one of the following formats:
+ * 
+ * 1. `projectId`/`clusterName`/`indexId` (recommended)
+ * 2. `projectId`--`clusterName`--`indexId` (legacy)
  * 
  * ```sh
- * $ pulumi import mongodbatlas:index/searchIndex:SearchIndex test {project_id}--{cluster_name}--{index_id}
+ * terraform import mongodbatlas_search_index.test {project_id}/{cluster_name}/{index_id} # (1)
+ * terraform import mongodbatlas_search_index.test {project_id}--{cluster_name}--{index_id} # (2)
  * ```
  * 
  */
