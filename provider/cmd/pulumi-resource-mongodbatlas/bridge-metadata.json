@@ -1080,6 +1080,10 @@
                     }
                 }
             },
+            "mongodbatlas_stream_workspace_private_endpoint": {
+                "current": "mongodbatlas:index/streamWorkspacePrivateEndpoint:StreamWorkspacePrivateEndpoint",
+                "majorVersion": 4
+            },
             "mongodbatlas_team": {
                 "current": "mongodbatlas:index/team:Team",
                 "majorVersion": 4,
@@ -3667,6 +3671,19 @@
                     }
                 }
             },
+            "mongodbatlas_stream_workspace_private_endpoint": {
+                "current": "mongodbatlas:index/getStreamWorkspacePrivateEndpoint:getStreamWorkspacePrivateEndpoint",
+                "majorVersion": 4
+            },
+            "mongodbatlas_stream_workspace_private_endpoints": {
+                "current": "mongodbatlas:index/getStreamWorkspacePrivateEndpoints:getStreamWorkspacePrivateEndpoints",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "mongodbatlas_stream_workspaces": {
                 "current": "mongodbatlas:index/getStreamWorkspaces:getStreamWorkspaces",
                 "majorVersion": 4,
@@ -3916,6 +3933,11 @@
             "mongodbatlas_stream_privatelink_endpoint": {},
             "mongodbatlas_stream_processor": {},
             "mongodbatlas_stream_workspace": {},
+            "mongodbatlas_stream_workspace_private_endpoint": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
             "mongodbatlas_team_project_assignment": {
                 "computeID": {
                     "kind": "missing"
@@ -4006,6 +4028,7 @@
             "mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint": 1,
             "mongodbatlas:index/streamProcessor:StreamProcessor": 1,
             "mongodbatlas:index/streamWorkspace:StreamWorkspace": 1,
+            "mongodbatlas:index/streamWorkspacePrivateEndpoint:StreamWorkspacePrivateEndpoint": 1,
             "mongodbatlas:index/team:Team": 0,
             "mongodbatlas:index/teamProjectAssignment:TeamProjectAssignment": 1,
             "mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration": 0,
@@ -4167,6 +4190,8 @@
             "mongodbatlas:index/getStreamProcessor:getStreamProcessor": 1,
             "mongodbatlas:index/getStreamProcessors:getStreamProcessors": 1,
             "mongodbatlas:index/getStreamWorkspace:getStreamWorkspace": 1,
+            "mongodbatlas:index/getStreamWorkspacePrivateEndpoint:getStreamWorkspacePrivateEndpoint": 1,
+            "mongodbatlas:index/getStreamWorkspacePrivateEndpoints:getStreamWorkspacePrivateEndpoints": 1,
             "mongodbatlas:index/getStreamWorkspaces:getStreamWorkspaces": 1,
             "mongodbatlas:index/getTeam:getTeam": 0,
             "mongodbatlas:index/getTeamProjectAssignment:getTeamProjectAssignment": 1,
