@@ -77,7 +77,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ApiKeyId { get; private set; } = null!;
 
         /// <summary>
-        /// Cloud provider scope for this API key. Must be "ANY". Additional cloud values will be supported in future API versions.
+        /// Cloud provider scope for this API key. Use "ANY" for a cloud-agnostic scope. Additional cloud values will be supported in future API versions.
         /// </summary>
         [Output("cloud")]
         public Output<string> Cloud { get; private set; } = null!;
@@ -101,7 +101,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> Endpoint { get; private set; } = null!;
 
         /// <summary>
-        /// Geography scope for this API key. Must be "ANY". Additional geography values will be supported in future API versions.
+        /// Geography scope for this API key. Use "ANY" for a geography-agnostic scope. Additional geography values will be supported in future API versions.
         /// </summary>
         [Output("geography")]
         public Output<string> Geography { get; private set; } = null!;
@@ -193,13 +193,13 @@ namespace Pulumi.Mongodbatlas
     public sealed class AiModelApiKeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Cloud provider scope for this API key. Must be "ANY". Additional cloud values will be supported in future API versions.
+        /// Cloud provider scope for this API key. Use "ANY" for a cloud-agnostic scope. Additional cloud values will be supported in future API versions.
         /// </summary>
         [Input("cloud", required: true)]
         public Input<string> Cloud { get; set; } = null!;
 
         /// <summary>
-        /// Geography scope for this API key. Must be "ANY". Additional geography values will be supported in future API versions.
+        /// Geography scope for this API key. Use "ANY" for a geography-agnostic scope. Additional geography values will be supported in future API versions.
         /// </summary>
         [Input("geography", required: true)]
         public Input<string> Geography { get; set; } = null!;
@@ -231,7 +231,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ApiKeyId { get; set; }
 
         /// <summary>
-        /// Cloud provider scope for this API key. Must be "ANY". Additional cloud values will be supported in future API versions.
+        /// Cloud provider scope for this API key. Use "ANY" for a cloud-agnostic scope. Additional cloud values will be supported in future API versions.
         /// </summary>
         [Input("cloud")]
         public Input<string>? Cloud { get; set; }
@@ -255,7 +255,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Endpoint { get; set; }
 
         /// <summary>
-        /// Geography scope for this API key. Must be "ANY". Additional geography values will be supported in future API versions.
+        /// Geography scope for this API key. Use "ANY" for a geography-agnostic scope. Additional geography values will be supported in future API versions.
         /// </summary>
         [Input("geography")]
         public Input<string>? Geography { get; set; }

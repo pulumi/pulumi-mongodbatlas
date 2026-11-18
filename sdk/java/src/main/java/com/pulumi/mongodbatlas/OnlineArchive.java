@@ -199,6 +199,11 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
+ * You can import online archives using `projectId`, `clusterName`, and `archiveId` in one of the following formats:
+ * 
+ * 1. `projectId`/`clusterName`/`archiveId` (recommended)
+ * 2. `projectId`-`clusterName`-`archiveId` (legacy)
+ * 
  * See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api/online-archive-create-one/) Documentation for more information.
  * 
  */

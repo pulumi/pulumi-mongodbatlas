@@ -294,6 +294,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly Outputs.GetProjectIpAddressesResult IpAddresses;
         /// <summary>
+        /// Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project.
+        /// </summary>
+        public readonly bool IsAtlasHomePageAiAssistantEnabled;
+        /// <summary>
         /// Flag that indicates whether the AI Assistant is enabled for the project's clusters.
         /// </summary>
         public readonly bool IsClusterAiAssistantEnabled;
@@ -377,6 +381,8 @@ namespace Pulumi.Mongodbatlas
 
             Outputs.GetProjectIpAddressesResult ipAddresses,
 
+            bool isAtlasHomePageAiAssistantEnabled,
+
             bool isClusterAiAssistantEnabled,
 
             bool isCollectDatabaseSpecificsStatisticsEnabled,
@@ -419,6 +425,7 @@ namespace Pulumi.Mongodbatlas
             Created = created;
             Id = id;
             IpAddresses = ipAddresses;
+            IsAtlasHomePageAiAssistantEnabled = isAtlasHomePageAiAssistantEnabled;
             IsClusterAiAssistantEnabled = isClusterAiAssistantEnabled;
             IsCollectDatabaseSpecificsStatisticsEnabled = isCollectDatabaseSpecificsStatisticsEnabled;
             IsDataExplorerEnabled = isDataExplorerEnabled;

@@ -77,7 +77,7 @@ type AiModelApiKey struct {
 
 	// Identifier used to reference this API key in admin API calls.
 	ApiKeyId pulumi.StringOutput `pulumi:"apiKeyId"`
-	// Cloud provider scope for this API key. Must be "ANY". Additional cloud values will be supported in future API versions.
+	// Cloud provider scope for this API key. Use "ANY" for a cloud-agnostic scope. Additional cloud values will be supported in future API versions.
 	Cloud pulumi.StringOutput `pulumi:"cloud"`
 	// UTC date when the API key was created. This parameter is formatted as an ISO 8601 timestamp.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
@@ -85,7 +85,7 @@ type AiModelApiKey struct {
 	CreatedBy pulumi.StringOutput `pulumi:"createdBy"`
 	// Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
 	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
-	// Geography scope for this API key. Must be "ANY". Additional geography values will be supported in future API versions.
+	// Geography scope for this API key. Use "ANY" for a geography-agnostic scope. Additional geography values will be supported in future API versions.
 	Geography pulumi.StringOutput `pulumi:"geography"`
 	// UTC date when the API key was last used. This parameter is formatted as an ISO 8601 timestamp.
 	LastUsedAt pulumi.StringOutput `pulumi:"lastUsedAt"`
@@ -146,7 +146,7 @@ func GetAiModelApiKey(ctx *pulumi.Context,
 type aiModelApiKeyState struct {
 	// Identifier used to reference this API key in admin API calls.
 	ApiKeyId *string `pulumi:"apiKeyId"`
-	// Cloud provider scope for this API key. Must be "ANY". Additional cloud values will be supported in future API versions.
+	// Cloud provider scope for this API key. Use "ANY" for a cloud-agnostic scope. Additional cloud values will be supported in future API versions.
 	Cloud *string `pulumi:"cloud"`
 	// UTC date when the API key was created. This parameter is formatted as an ISO 8601 timestamp.
 	CreatedAt *string `pulumi:"createdAt"`
@@ -154,7 +154,7 @@ type aiModelApiKeyState struct {
 	CreatedBy *string `pulumi:"createdBy"`
 	// Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
 	Endpoint *string `pulumi:"endpoint"`
-	// Geography scope for this API key. Must be "ANY". Additional geography values will be supported in future API versions.
+	// Geography scope for this API key. Use "ANY" for a geography-agnostic scope. Additional geography values will be supported in future API versions.
 	Geography *string `pulumi:"geography"`
 	// UTC date when the API key was last used. This parameter is formatted as an ISO 8601 timestamp.
 	LastUsedAt *string `pulumi:"lastUsedAt"`
@@ -173,7 +173,7 @@ type aiModelApiKeyState struct {
 type AiModelApiKeyState struct {
 	// Identifier used to reference this API key in admin API calls.
 	ApiKeyId pulumi.StringPtrInput
-	// Cloud provider scope for this API key. Must be "ANY". Additional cloud values will be supported in future API versions.
+	// Cloud provider scope for this API key. Use "ANY" for a cloud-agnostic scope. Additional cloud values will be supported in future API versions.
 	Cloud pulumi.StringPtrInput
 	// UTC date when the API key was created. This parameter is formatted as an ISO 8601 timestamp.
 	CreatedAt pulumi.StringPtrInput
@@ -181,7 +181,7 @@ type AiModelApiKeyState struct {
 	CreatedBy pulumi.StringPtrInput
 	// Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
 	Endpoint pulumi.StringPtrInput
-	// Geography scope for this API key. Must be "ANY". Additional geography values will be supported in future API versions.
+	// Geography scope for this API key. Use "ANY" for a geography-agnostic scope. Additional geography values will be supported in future API versions.
 	Geography pulumi.StringPtrInput
 	// UTC date when the API key was last used. This parameter is formatted as an ISO 8601 timestamp.
 	LastUsedAt pulumi.StringPtrInput
@@ -208,9 +208,9 @@ func AiModelApiKeyExists(ctx *pulumi.Context,
 }
 
 type aiModelApiKeyArgs struct {
-	// Cloud provider scope for this API key. Must be "ANY". Additional cloud values will be supported in future API versions.
+	// Cloud provider scope for this API key. Use "ANY" for a cloud-agnostic scope. Additional cloud values will be supported in future API versions.
 	Cloud string `pulumi:"cloud"`
-	// Geography scope for this API key. Must be "ANY". Additional geography values will be supported in future API versions.
+	// Geography scope for this API key. Use "ANY" for a geography-agnostic scope. Additional geography values will be supported in future API versions.
 	Geography string `pulumi:"geography"`
 	// A name for the new API key that will be created.
 	Name *string `pulumi:"name"`
@@ -220,9 +220,9 @@ type aiModelApiKeyArgs struct {
 
 // The set of arguments for constructing a AiModelApiKey resource.
 type AiModelApiKeyArgs struct {
-	// Cloud provider scope for this API key. Must be "ANY". Additional cloud values will be supported in future API versions.
+	// Cloud provider scope for this API key. Use "ANY" for a cloud-agnostic scope. Additional cloud values will be supported in future API versions.
 	Cloud pulumi.StringInput
-	// Geography scope for this API key. Must be "ANY". Additional geography values will be supported in future API versions.
+	// Geography scope for this API key. Use "ANY" for a geography-agnostic scope. Additional geography values will be supported in future API versions.
 	Geography pulumi.StringInput
 	// A name for the new API key that will be created.
 	Name pulumi.StringPtrInput
@@ -322,7 +322,7 @@ func (o AiModelApiKeyOutput) ApiKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AiModelApiKey) pulumi.StringOutput { return v.ApiKeyId }).(pulumi.StringOutput)
 }
 
-// Cloud provider scope for this API key. Must be "ANY". Additional cloud values will be supported in future API versions.
+// Cloud provider scope for this API key. Use "ANY" for a cloud-agnostic scope. Additional cloud values will be supported in future API versions.
 func (o AiModelApiKeyOutput) Cloud() pulumi.StringOutput {
 	return o.ApplyT(func(v *AiModelApiKey) pulumi.StringOutput { return v.Cloud }).(pulumi.StringOutput)
 }
@@ -342,7 +342,7 @@ func (o AiModelApiKeyOutput) Endpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *AiModelApiKey) pulumi.StringOutput { return v.Endpoint }).(pulumi.StringOutput)
 }
 
-// Geography scope for this API key. Must be "ANY". Additional geography values will be supported in future API versions.
+// Geography scope for this API key. Use "ANY" for a geography-agnostic scope. Additional geography values will be supported in future API versions.
 func (o AiModelApiKeyOutput) Geography() pulumi.StringOutput {
 	return o.ApplyT(func(v *AiModelApiKey) pulumi.StringOutput { return v.Geography }).(pulumi.StringOutput)
 }

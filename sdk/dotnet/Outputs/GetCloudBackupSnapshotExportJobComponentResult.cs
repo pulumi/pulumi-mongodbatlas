@@ -14,11 +14,11 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetCloudBackupSnapshotExportJobComponentResult
     {
         /// <summary>
-        /// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+        /// _Returned for sharded clusters only._ Unique 24-hexadecimal character string that identifies the Cloud Backup snapshot export job for each shard in a sharded cluster.
         /// </summary>
         public readonly string ExportId;
         /// <summary>
-        /// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+        /// _Returned for sharded clusters only._ Human-readable label that identifies the replica set on the sharded cluster.
         /// </summary>
         public readonly string ReplicaSetName;
 

@@ -22,6 +22,7 @@ __all__ = ['ProjectArgs', 'Project']
 class ProjectArgs:
     def __init__(__self__, *,
                  org_id: pulumi.Input[_builtins.str],
+                 is_atlas_home_page_ai_assistant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_cluster_ai_assistant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_collect_database_specifics_statistics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_data_explorer_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -44,6 +45,7 @@ class ProjectArgs:
         The set of arguments for constructing a Project resource.
 
         :param pulumi.Input[_builtins.str] org_id: The ID of the organization you want to create the project within.
+        :param pulumi.Input[_builtins.bool] is_atlas_home_page_ai_assistant_enabled: Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_cluster_ai_assistant_enabled: Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
@@ -62,6 +64,8 @@ class ProjectArgs:
         :param pulumi.Input[_builtins.bool] with_default_alerts_settings: Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
         """
         pulumi.set(__self__, "org_id", org_id)
+        if is_atlas_home_page_ai_assistant_enabled is not None:
+            pulumi.set(__self__, "is_atlas_home_page_ai_assistant_enabled", is_atlas_home_page_ai_assistant_enabled)
         if is_cluster_ai_assistant_enabled is not None:
             pulumi.set(__self__, "is_cluster_ai_assistant_enabled", is_cluster_ai_assistant_enabled)
         if is_collect_database_specifics_statistics_enabled is not None:
@@ -116,6 +120,18 @@ class ProjectArgs:
     @org_id.setter
     def org_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "org_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isAtlasHomePageAiAssistantEnabled")
+    def is_atlas_home_page_ai_assistant_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
+        """
+        return pulumi.get(self, "is_atlas_home_page_ai_assistant_enabled")
+
+    @is_atlas_home_page_ai_assistant_enabled.setter
+    def is_atlas_home_page_ai_assistant_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "is_atlas_home_page_ai_assistant_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="isClusterAiAssistantEnabled")
@@ -336,6 +352,7 @@ class _ProjectState:
                  cluster_count: pulumi.Input[Optional[_builtins.int]] = None,
                  created: pulumi.Input[Optional[_builtins.str]] = None,
                  ip_addresses: pulumi.Input[Optional['ProjectIpAddressesArgs']] = None,
+                 is_atlas_home_page_ai_assistant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_cluster_ai_assistant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_collect_database_specifics_statistics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_data_explorer_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -361,6 +378,7 @@ class _ProjectState:
         :param pulumi.Input[_builtins.int] cluster_count: The number of Atlas clusters deployed in the project.
         :param pulumi.Input[_builtins.str] created: The ISO-8601-formatted timestamp of when Atlas created the project.
         :param pulumi.Input['ProjectIpAddressesArgs'] ip_addresses: IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `get_project_ip_addresses` data source instead.
+        :param pulumi.Input[_builtins.bool] is_atlas_home_page_ai_assistant_enabled: Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_cluster_ai_assistant_enabled: Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
@@ -388,6 +406,8 @@ class _ProjectState:
             pulumi.log.warn("""ip_addresses is deprecated: This parameter is deprecated. Please transition to get_project_ip_addresses data source.""")
         if ip_addresses is not None:
             pulumi.set(__self__, "ip_addresses", ip_addresses)
+        if is_atlas_home_page_ai_assistant_enabled is not None:
+            pulumi.set(__self__, "is_atlas_home_page_ai_assistant_enabled", is_atlas_home_page_ai_assistant_enabled)
         if is_cluster_ai_assistant_enabled is not None:
             pulumi.set(__self__, "is_cluster_ai_assistant_enabled", is_cluster_ai_assistant_enabled)
         if is_collect_database_specifics_statistics_enabled is not None:
@@ -469,6 +489,18 @@ class _ProjectState:
     @ip_addresses.setter
     def ip_addresses(self, value: pulumi.Input[Optional['ProjectIpAddressesArgs']]):
         pulumi.set(self, "ip_addresses", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isAtlasHomePageAiAssistantEnabled")
+    def is_atlas_home_page_ai_assistant_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
+        """
+        return pulumi.get(self, "is_atlas_home_page_ai_assistant_enabled")
+
+    @is_atlas_home_page_ai_assistant_enabled.setter
+    def is_atlas_home_page_ai_assistant_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "is_atlas_home_page_ai_assistant_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="isClusterAiAssistantEnabled")
@@ -701,6 +733,7 @@ class Project(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 is_atlas_home_page_ai_assistant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_cluster_ai_assistant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_collect_database_specifics_statistics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_data_explorer_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -773,6 +806,7 @@ class Project(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] is_atlas_home_page_ai_assistant_enabled: Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_cluster_ai_assistant_enabled: Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
@@ -862,6 +896,7 @@ class Project(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 is_atlas_home_page_ai_assistant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_cluster_ai_assistant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_collect_database_specifics_statistics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_data_explorer_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -890,6 +925,7 @@ class Project(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProjectArgs.__new__(ProjectArgs)
 
+            __props__.__dict__["is_atlas_home_page_ai_assistant_enabled"] = is_atlas_home_page_ai_assistant_enabled
             __props__.__dict__["is_cluster_ai_assistant_enabled"] = is_cluster_ai_assistant_enabled
             __props__.__dict__["is_collect_database_specifics_statistics_enabled"] = is_collect_database_specifics_statistics_enabled
             __props__.__dict__["is_data_explorer_enabled"] = is_data_explorer_enabled
@@ -927,6 +963,7 @@ class Project(pulumi.CustomResource):
             cluster_count: pulumi.Input[Optional[_builtins.int]] = None,
             created: pulumi.Input[Optional[_builtins.str]] = None,
             ip_addresses: pulumi.Input[Optional[Union['ProjectIpAddressesArgs', 'ProjectIpAddressesArgsDict', 'outputs.ProjectIpAddresses']]] = None,
+            is_atlas_home_page_ai_assistant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             is_cluster_ai_assistant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             is_collect_database_specifics_statistics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             is_data_explorer_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -956,6 +993,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] cluster_count: The number of Atlas clusters deployed in the project.
         :param pulumi.Input[_builtins.str] created: The ISO-8601-formatted timestamp of when Atlas created the project.
         :param pulumi.Input[Union['ProjectIpAddressesArgs', 'ProjectIpAddressesArgsDict', 'outputs.ProjectIpAddresses']] ip_addresses: IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `get_project_ip_addresses` data source instead.
+        :param pulumi.Input[_builtins.bool] is_atlas_home_page_ai_assistant_enabled: Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_cluster_ai_assistant_enabled: Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
@@ -981,6 +1019,7 @@ class Project(pulumi.CustomResource):
         __props__.__dict__["cluster_count"] = cluster_count
         __props__.__dict__["created"] = created
         __props__.__dict__["ip_addresses"] = ip_addresses
+        __props__.__dict__["is_atlas_home_page_ai_assistant_enabled"] = is_atlas_home_page_ai_assistant_enabled
         __props__.__dict__["is_cluster_ai_assistant_enabled"] = is_cluster_ai_assistant_enabled
         __props__.__dict__["is_collect_database_specifics_statistics_enabled"] = is_collect_database_specifics_statistics_enabled
         __props__.__dict__["is_data_explorer_enabled"] = is_data_explorer_enabled
@@ -1008,6 +1047,7 @@ class Project(pulumi.CustomResource):
             cluster_count: pulumi.Input[Optional[_builtins.int]] = None,
             created: pulumi.Input[Optional[_builtins.str]] = None,
             ip_addresses: pulumi.Input[Optional[Union['ProjectIpAddressesArgs', 'ProjectIpAddressesArgsDict', 'outputs.ProjectIpAddresses']]] = None,
+            is_atlas_home_page_ai_assistant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             is_cluster_ai_assistant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             is_collect_database_specifics_statistics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             is_data_explorer_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1031,6 +1071,7 @@ class Project(pulumi.CustomResource):
         __props__["clusterCount"] = cluster_count
         __props__["created"] = created
         __props__["ipAddresses"] = ip_addresses
+        __props__["isAtlasHomePageAiAssistantEnabled"] = is_atlas_home_page_ai_assistant_enabled
         __props__["isClusterAiAssistantEnabled"] = is_cluster_ai_assistant_enabled
         __props__["isCollectDatabaseSpecificsStatisticsEnabled"] = is_collect_database_specifics_statistics_enabled
         __props__["isDataExplorerEnabled"] = is_data_explorer_enabled
@@ -1076,6 +1117,14 @@ class Project(pulumi.CustomResource):
         IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `get_project_ip_addresses` data source instead.
         """
         return pulumi.get(self, "ip_addresses")
+
+    @_builtins.property
+    @pulumi.getter(name="isAtlasHomePageAiAssistantEnabled")
+    def is_atlas_home_page_ai_assistant_enabled(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
+        """
+        return pulumi.get(self, "is_atlas_home_page_ai_assistant_enabled")
 
     @_builtins.property
     @pulumi.getter(name="isClusterAiAssistantEnabled")

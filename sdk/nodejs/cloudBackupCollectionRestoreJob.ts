@@ -143,7 +143,7 @@ export class CloudBackupCollectionRestoreJob extends pulumi.CustomResource {
      */
     declare public readonly snapshotId: pulumi.Output<string>;
     /**
-     * Current state of the collection restore job.
+     * Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `mongodbatlas.getCloudBackupCollectionRestoreJobCollections` data source to get per-collection detailed states.
      */
     declare public /*out*/ readonly state: pulumi.Output<string>;
     /**
@@ -322,7 +322,7 @@ export interface CloudBackupCollectionRestoreJobState {
      */
     snapshotId?: pulumi.Input<string | undefined>;
     /**
-     * Current state of the collection restore job.
+     * Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `mongodbatlas.getCloudBackupCollectionRestoreJobCollections` data source to get per-collection detailed states.
      */
     state?: pulumi.Input<string | undefined>;
     /**

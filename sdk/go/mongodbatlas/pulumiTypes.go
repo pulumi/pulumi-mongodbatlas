@@ -1411,7 +1411,7 @@ type AdvancedClusterReplicationSpecRegionConfig struct {
 	//
 	// For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes, see [Supported AWS Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions). For the list of GCP regions that support Gen2 instance sizes, see [Supported GCP Regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#supported-regions).
 	//
-	// Gen2 clusters can span regions only if every region you deploy to supports Gen2 instance sizes on the cluster's cloud provider. Gen2 clusters don't support multi-cloud deployments.
+	// Gen2 clusters can span regions and cloud service providers only if every region you deploy to is on AWS or GCP and supports Gen2 instance sizes. All nodes in a cluster must use Gen2 instance sizes. You can't mix Gen1 and Gen2 nodes in the same cluster.
 	RegionName string `pulumi:"regionName"`
 }
 
@@ -1456,7 +1456,7 @@ type AdvancedClusterReplicationSpecRegionConfigArgs struct {
 	//
 	// For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes, see [Supported AWS Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions). For the list of GCP regions that support Gen2 instance sizes, see [Supported GCP Regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#supported-regions).
 	//
-	// Gen2 clusters can span regions only if every region you deploy to supports Gen2 instance sizes on the cluster's cloud provider. Gen2 clusters don't support multi-cloud deployments.
+	// Gen2 clusters can span regions and cloud service providers only if every region you deploy to is on AWS or GCP and supports Gen2 instance sizes. All nodes in a cluster must use Gen2 instance sizes. You can't mix Gen1 and Gen2 nodes in the same cluster.
 	RegionName pulumi.StringInput `pulumi:"regionName"`
 }
 
@@ -1574,7 +1574,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) ReadOnlySpecs() Advanc
 //
 // For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes, see [Supported AWS Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions). For the list of GCP regions that support Gen2 instance sizes, see [Supported GCP Regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#supported-regions).
 //
-// Gen2 clusters can span regions only if every region you deploy to supports Gen2 instance sizes on the cluster's cloud provider. Gen2 clusters don't support multi-cloud deployments.
+// Gen2 clusters can span regions and cloud service providers only if every region you deploy to is on AWS or GCP and supports Gen2 instance sizes. All nodes in a cluster must use Gen2 instance sizes. You can't mix Gen1 and Gen2 nodes in the same cluster.
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) RegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) string { return v.RegionName }).(pulumi.StringOutput)
 }
@@ -1841,6 +1841,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrOutput)
 type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs struct {
 	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 	//
+	// In multi-cloud clusters, AWS and GCP regions can use different `diskIops` values. The value must be consistent across all regions and node types that use the same cloud provider.
+	//
 	// For AWS, valid configurations are:
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
@@ -1850,11 +1852,11 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs struct {
 	// * The minimum value is the greater of 3000 and three times `diskSizeGb`.
 	// * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
 	//
-	// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+	// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for Azure regions in a multi-cloud cluster.
 	DiskIops *int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. In multi-cloud clusters, set this parameter only for AWS regions. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 	// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -1885,6 +1887,8 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput interface {
 type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
 	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 	//
+	// In multi-cloud clusters, AWS and GCP regions can use different `diskIops` values. The value must be consistent across all regions and node types that use the same cloud provider.
+	//
 	// For AWS, valid configurations are:
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
@@ -1894,11 +1898,11 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
 	// * The minimum value is the greater of 3000 and three times `diskSizeGb`.
 	// * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
 	//
-	// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+	// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for Azure regions in a multi-cloud cluster.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 	DiskSizeGb pulumi.Float64PtrInput `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. In multi-cloud clusters, set this parameter only for AWS regions. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 	// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -1994,6 +1998,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) ToAdvanc
 
 // Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 //
+// In multi-cloud clusters, AWS and GCP regions can use different `diskIops` values. The value must be consistent across all regions and node types that use the same cloud provider.
+//
 // For AWS, valid configurations are:
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
@@ -2003,7 +2009,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) ToAdvanc
 // * The minimum value is the greater of 3000 and three times `diskSizeGb`.
 // * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
 //
-// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for Azure regions in a multi-cloud cluster.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
 }
@@ -2013,7 +2019,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskSize
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *float64 { return v.DiskSizeGb }).(pulumi.Float64PtrOutput)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. In multi-cloud clusters, set this parameter only for AWS regions. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 // * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 // * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 // * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -2063,6 +2069,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) Elem(
 
 // Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 //
+// In multi-cloud clusters, AWS and GCP regions can use different `diskIops` values. The value must be consistent across all regions and node types that use the same cloud provider.
+//
 // For AWS, valid configurations are:
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
@@ -2072,7 +2080,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) Elem(
 // * The minimum value is the greater of 3000 and three times `diskSizeGb`.
 // * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
 //
-// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for Azure regions in a multi-cloud cluster.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *int {
 		if v == nil {
@@ -2092,7 +2100,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) DiskS
 	}).(pulumi.Float64PtrOutput)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. In multi-cloud clusters, set this parameter only for AWS regions. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 // * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 // * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 // * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -2567,6 +2575,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOut
 type AdvancedClusterReplicationSpecRegionConfigElectableSpecs struct {
 	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 	//
+	// In multi-cloud clusters, AWS and GCP regions can use different `diskIops` values. Within each shard (`replicationSpecs` entry), the value must be consistent across all regions and node types that use the same cloud provider.
+	//
 	// For AWS, valid configurations are:
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
@@ -2576,11 +2586,11 @@ type AdvancedClusterReplicationSpecRegionConfigElectableSpecs struct {
 	// * The minimum value is the greater of 3000 and three times `diskSizeGb`.
 	// * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
 	//
-	// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+	// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for Azure regions in a multi-cloud cluster.
 	DiskIops *int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. In multi-cloud clusters, set this parameter only for AWS regions. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 	// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -2611,6 +2621,8 @@ type AdvancedClusterReplicationSpecRegionConfigElectableSpecsInput interface {
 type AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs struct {
 	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 	//
+	// In multi-cloud clusters, AWS and GCP regions can use different `diskIops` values. Within each shard (`replicationSpecs` entry), the value must be consistent across all regions and node types that use the same cloud provider.
+	//
 	// For AWS, valid configurations are:
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
@@ -2620,11 +2632,11 @@ type AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs struct {
 	// * The minimum value is the greater of 3000 and three times `diskSizeGb`.
 	// * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
 	//
-	// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+	// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for Azure regions in a multi-cloud cluster.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 	DiskSizeGb pulumi.Float64PtrInput `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. In multi-cloud clusters, set this parameter only for AWS regions. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 	// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -2720,6 +2732,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) ToAdvanc
 
 // Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 //
+// In multi-cloud clusters, AWS and GCP regions can use different `diskIops` values. Within each shard (`replicationSpecs` entry), the value must be consistent across all regions and node types that use the same cloud provider.
+//
 // For AWS, valid configurations are:
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
@@ -2729,7 +2743,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) ToAdvanc
 // * The minimum value is the greater of 3000 and three times `diskSizeGb`.
 // * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
 //
-// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for Azure regions in a multi-cloud cluster.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
 }
@@ -2739,7 +2753,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskSize
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *float64 { return v.DiskSizeGb }).(pulumi.Float64PtrOutput)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. In multi-cloud clusters, set this parameter only for AWS regions. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 // * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 // * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 // * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -2789,6 +2803,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) Elem(
 
 // Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 //
+// In multi-cloud clusters, AWS and GCP regions can use different `diskIops` values. Within each shard (`replicationSpecs` entry), the value must be consistent across all regions and node types that use the same cloud provider.
+//
 // For AWS, valid configurations are:
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
@@ -2798,7 +2814,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) Elem(
 // * The minimum value is the greater of 3000 and three times `diskSizeGb`.
 // * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
 //
-// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for Azure regions in a multi-cloud cluster.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *int {
 		if v == nil {
@@ -2818,7 +2834,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) DiskS
 	}).(pulumi.Float64PtrOutput)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. In multi-cloud clusters, set this parameter only for AWS regions. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 // * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 // * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 // * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -2860,6 +2876,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) NodeC
 type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs struct {
 	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 	//
+	// In multi-cloud clusters, AWS and GCP regions can use different `diskIops` values. The value must be consistent across all regions and node types that use the same cloud provider.
+	//
 	// For AWS, valid configurations are:
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
@@ -2869,11 +2887,11 @@ type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs struct {
 	// * The minimum value is the greater of 3000 and three times `diskSizeGb`.
 	// * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
 	//
-	// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+	// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for Azure regions in a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
 	DiskIops *int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. In multi-cloud clusters, set this parameter only for AWS regions. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 	// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -2904,6 +2922,8 @@ type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput interface {
 type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs struct {
 	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 	//
+	// In multi-cloud clusters, AWS and GCP regions can use different `diskIops` values. The value must be consistent across all regions and node types that use the same cloud provider.
+	//
 	// For AWS, valid configurations are:
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
@@ -2913,11 +2933,11 @@ type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs struct {
 	// * The minimum value is the greater of 3000 and three times `diskSizeGb`.
 	// * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
 	//
-	// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+	// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for Azure regions in a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 	DiskSizeGb pulumi.Float64PtrInput `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. In multi-cloud clusters, set this parameter only for AWS regions. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 	// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -3013,6 +3033,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) ToAdvance
 
 // Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 //
+// In multi-cloud clusters, AWS and GCP regions can use different `diskIops` values. The value must be consistent across all regions and node types that use the same cloud provider.
+//
 // For AWS, valid configurations are:
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
@@ -3022,7 +3044,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) ToAdvance
 // * The minimum value is the greater of 3000 and three times `diskSizeGb`.
 // * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
 //
-// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for Azure regions in a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
 }
@@ -3032,7 +3054,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskSizeG
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *float64 { return v.DiskSizeGb }).(pulumi.Float64PtrOutput)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. In multi-cloud clusters, set this parameter only for AWS regions. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 // * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 // * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 // * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -3082,6 +3104,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) Elem()
 
 // Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 //
+// In multi-cloud clusters, AWS and GCP regions can use different `diskIops` values. The value must be consistent across all regions and node types that use the same cloud provider.
+//
 // For AWS, valid configurations are:
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
@@ -3091,7 +3115,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) Elem()
 // * The minimum value is the greater of 3000 and three times `diskSizeGb`.
 // * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
 //
-// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for Azure regions in a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *int {
 		if v == nil {
@@ -3111,7 +3135,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) DiskSi
 	}).(pulumi.Float64PtrOutput)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. In multi-cloud clusters, set this parameter only for AWS regions. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 // * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 // * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 // * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -7063,9 +7087,9 @@ func (o CloudBackupSchedulePolicyItemYearlyArrayOutput) Index(i pulumi.IntInput)
 }
 
 type CloudBackupSnapshotExportJobComponent struct {
-	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	// _Returned for sharded clusters only._ Unique 24-hexadecimal character string that identifies the Cloud Backup snapshot export job for each shard in a sharded cluster.
 	ExportId *string `pulumi:"exportId"`
-	// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+	// _Returned for sharded clusters only._ Human-readable label that identifies the replica set on the sharded cluster.
 	ReplicaSetName *string `pulumi:"replicaSetName"`
 }
 
@@ -7081,9 +7105,9 @@ type CloudBackupSnapshotExportJobComponentInput interface {
 }
 
 type CloudBackupSnapshotExportJobComponentArgs struct {
-	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	// _Returned for sharded clusters only._ Unique 24-hexadecimal character string that identifies the Cloud Backup snapshot export job for each shard in a sharded cluster.
 	ExportId pulumi.StringPtrInput `pulumi:"exportId"`
-	// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+	// _Returned for sharded clusters only._ Human-readable label that identifies the replica set on the sharded cluster.
 	ReplicaSetName pulumi.StringPtrInput `pulumi:"replicaSetName"`
 }
 
@@ -7138,12 +7162,12 @@ func (o CloudBackupSnapshotExportJobComponentOutput) ToCloudBackupSnapshotExport
 	return o
 }
 
-// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+// _Returned for sharded clusters only._ Unique 24-hexadecimal character string that identifies the Cloud Backup snapshot export job for each shard in a sharded cluster.
 func (o CloudBackupSnapshotExportJobComponentOutput) ExportId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupSnapshotExportJobComponent) *string { return v.ExportId }).(pulumi.StringPtrOutput)
 }
 
-// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+// _Returned for sharded clusters only._ Human-readable label that identifies the replica set on the sharded cluster.
 func (o CloudBackupSnapshotExportJobComponentOutput) ReplicaSetName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupSnapshotExportJobComponent) *string { return v.ReplicaSetName }).(pulumi.StringPtrOutput)
 }
@@ -19200,6 +19224,8 @@ type OrganizationServiceAccountSecret struct {
 	// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	ExpiresAt *string `pulumi:"expiresAt"`
 	// The secret for the Service Account. It will be returned only the first time after creation.
+	//
+	// > **NOTE:** The whole `secrets` list is sensitive, so outputs that reference any attribute in it, including `expiresAt` and `secretId`, must set `sensitive = true`.
 	Secret *string `pulumi:"secret"`
 	// Unique 24-hexadecimal digit string that identifies the secret.
 	SecretId *string `pulumi:"secretId"`
@@ -19222,6 +19248,8 @@ type OrganizationServiceAccountSecretArgs struct {
 	// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	ExpiresAt pulumi.StringPtrInput `pulumi:"expiresAt"`
 	// The secret for the Service Account. It will be returned only the first time after creation.
+	//
+	// > **NOTE:** The whole `secrets` list is sensitive, so outputs that reference any attribute in it, including `expiresAt` and `secretId`, must set `sensitive = true`.
 	Secret pulumi.StringPtrInput `pulumi:"secret"`
 	// Unique 24-hexadecimal digit string that identifies the secret.
 	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
@@ -19289,6 +19317,8 @@ func (o OrganizationServiceAccountSecretOutput) ExpiresAt() pulumi.StringPtrOutp
 }
 
 // The secret for the Service Account. It will be returned only the first time after creation.
+//
+// > **NOTE:** The whole `secrets` list is sensitive, so outputs that reference any attribute in it, including `expiresAt` and `secretId`, must set `sensitive = true`.
 func (o OrganizationServiceAccountSecretOutput) Secret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v OrganizationServiceAccountSecret) *string { return v.Secret }).(pulumi.StringPtrOutput)
 }
@@ -26548,6 +26578,143 @@ func (o StreamWorkspaceFailoverRegionArrayOutput) Index(i pulumi.IntInput) Strea
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) StreamWorkspaceFailoverRegion {
 		return vs[0].([]StreamWorkspaceFailoverRegion)[vs[1].(int)]
 	}).(StreamWorkspaceFailoverRegionOutput)
+}
+
+type StreamWorkspacePrivateEndpointTimeouts struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create *string `pulumi:"create"`
+}
+
+// StreamWorkspacePrivateEndpointTimeoutsInput is an input type that accepts StreamWorkspacePrivateEndpointTimeoutsArgs and StreamWorkspacePrivateEndpointTimeoutsOutput values.
+// You can construct a concrete instance of `StreamWorkspacePrivateEndpointTimeoutsInput` via:
+//
+//	StreamWorkspacePrivateEndpointTimeoutsArgs{...}
+type StreamWorkspacePrivateEndpointTimeoutsInput interface {
+	pulumi.Input
+
+	ToStreamWorkspacePrivateEndpointTimeoutsOutput() StreamWorkspacePrivateEndpointTimeoutsOutput
+	ToStreamWorkspacePrivateEndpointTimeoutsOutputWithContext(context.Context) StreamWorkspacePrivateEndpointTimeoutsOutput
+}
+
+type StreamWorkspacePrivateEndpointTimeoutsArgs struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create pulumi.StringPtrInput `pulumi:"create"`
+}
+
+func (StreamWorkspacePrivateEndpointTimeoutsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamWorkspacePrivateEndpointTimeouts)(nil)).Elem()
+}
+
+func (i StreamWorkspacePrivateEndpointTimeoutsArgs) ToStreamWorkspacePrivateEndpointTimeoutsOutput() StreamWorkspacePrivateEndpointTimeoutsOutput {
+	return i.ToStreamWorkspacePrivateEndpointTimeoutsOutputWithContext(context.Background())
+}
+
+func (i StreamWorkspacePrivateEndpointTimeoutsArgs) ToStreamWorkspacePrivateEndpointTimeoutsOutputWithContext(ctx context.Context) StreamWorkspacePrivateEndpointTimeoutsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamWorkspacePrivateEndpointTimeoutsOutput)
+}
+
+func (i StreamWorkspacePrivateEndpointTimeoutsArgs) ToStreamWorkspacePrivateEndpointTimeoutsPtrOutput() StreamWorkspacePrivateEndpointTimeoutsPtrOutput {
+	return i.ToStreamWorkspacePrivateEndpointTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i StreamWorkspacePrivateEndpointTimeoutsArgs) ToStreamWorkspacePrivateEndpointTimeoutsPtrOutputWithContext(ctx context.Context) StreamWorkspacePrivateEndpointTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamWorkspacePrivateEndpointTimeoutsOutput).ToStreamWorkspacePrivateEndpointTimeoutsPtrOutputWithContext(ctx)
+}
+
+// StreamWorkspacePrivateEndpointTimeoutsPtrInput is an input type that accepts StreamWorkspacePrivateEndpointTimeoutsArgs, StreamWorkspacePrivateEndpointTimeoutsPtr and StreamWorkspacePrivateEndpointTimeoutsPtrOutput values.
+// You can construct a concrete instance of `StreamWorkspacePrivateEndpointTimeoutsPtrInput` via:
+//
+//	        StreamWorkspacePrivateEndpointTimeoutsArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamWorkspacePrivateEndpointTimeoutsPtrInput interface {
+	pulumi.Input
+
+	ToStreamWorkspacePrivateEndpointTimeoutsPtrOutput() StreamWorkspacePrivateEndpointTimeoutsPtrOutput
+	ToStreamWorkspacePrivateEndpointTimeoutsPtrOutputWithContext(context.Context) StreamWorkspacePrivateEndpointTimeoutsPtrOutput
+}
+
+type streamWorkspacePrivateEndpointTimeoutsPtrType StreamWorkspacePrivateEndpointTimeoutsArgs
+
+func StreamWorkspacePrivateEndpointTimeoutsPtr(v *StreamWorkspacePrivateEndpointTimeoutsArgs) StreamWorkspacePrivateEndpointTimeoutsPtrInput {
+	return (*streamWorkspacePrivateEndpointTimeoutsPtrType)(v)
+}
+
+func (*streamWorkspacePrivateEndpointTimeoutsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamWorkspacePrivateEndpointTimeouts)(nil)).Elem()
+}
+
+func (i *streamWorkspacePrivateEndpointTimeoutsPtrType) ToStreamWorkspacePrivateEndpointTimeoutsPtrOutput() StreamWorkspacePrivateEndpointTimeoutsPtrOutput {
+	return i.ToStreamWorkspacePrivateEndpointTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i *streamWorkspacePrivateEndpointTimeoutsPtrType) ToStreamWorkspacePrivateEndpointTimeoutsPtrOutputWithContext(ctx context.Context) StreamWorkspacePrivateEndpointTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamWorkspacePrivateEndpointTimeoutsPtrOutput)
+}
+
+type StreamWorkspacePrivateEndpointTimeoutsOutput struct{ *pulumi.OutputState }
+
+func (StreamWorkspacePrivateEndpointTimeoutsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamWorkspacePrivateEndpointTimeouts)(nil)).Elem()
+}
+
+func (o StreamWorkspacePrivateEndpointTimeoutsOutput) ToStreamWorkspacePrivateEndpointTimeoutsOutput() StreamWorkspacePrivateEndpointTimeoutsOutput {
+	return o
+}
+
+func (o StreamWorkspacePrivateEndpointTimeoutsOutput) ToStreamWorkspacePrivateEndpointTimeoutsOutputWithContext(ctx context.Context) StreamWorkspacePrivateEndpointTimeoutsOutput {
+	return o
+}
+
+func (o StreamWorkspacePrivateEndpointTimeoutsOutput) ToStreamWorkspacePrivateEndpointTimeoutsPtrOutput() StreamWorkspacePrivateEndpointTimeoutsPtrOutput {
+	return o.ToStreamWorkspacePrivateEndpointTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (o StreamWorkspacePrivateEndpointTimeoutsOutput) ToStreamWorkspacePrivateEndpointTimeoutsPtrOutputWithContext(ctx context.Context) StreamWorkspacePrivateEndpointTimeoutsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamWorkspacePrivateEndpointTimeouts) *StreamWorkspacePrivateEndpointTimeouts {
+		return &v
+	}).(StreamWorkspacePrivateEndpointTimeoutsPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o StreamWorkspacePrivateEndpointTimeoutsOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamWorkspacePrivateEndpointTimeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
+}
+
+type StreamWorkspacePrivateEndpointTimeoutsPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamWorkspacePrivateEndpointTimeoutsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamWorkspacePrivateEndpointTimeouts)(nil)).Elem()
+}
+
+func (o StreamWorkspacePrivateEndpointTimeoutsPtrOutput) ToStreamWorkspacePrivateEndpointTimeoutsPtrOutput() StreamWorkspacePrivateEndpointTimeoutsPtrOutput {
+	return o
+}
+
+func (o StreamWorkspacePrivateEndpointTimeoutsPtrOutput) ToStreamWorkspacePrivateEndpointTimeoutsPtrOutputWithContext(ctx context.Context) StreamWorkspacePrivateEndpointTimeoutsPtrOutput {
+	return o
+}
+
+func (o StreamWorkspacePrivateEndpointTimeoutsPtrOutput) Elem() StreamWorkspacePrivateEndpointTimeoutsOutput {
+	return o.ApplyT(func(v *StreamWorkspacePrivateEndpointTimeouts) StreamWorkspacePrivateEndpointTimeouts {
+		if v != nil {
+			return *v
+		}
+		var ret StreamWorkspacePrivateEndpointTimeouts
+		return ret
+	}).(StreamWorkspacePrivateEndpointTimeoutsOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o StreamWorkspacePrivateEndpointTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamWorkspacePrivateEndpointTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(pulumi.StringPtrOutput)
 }
 
 type StreamWorkspaceStreamConfig struct {
@@ -36240,7 +36407,7 @@ type GetCloudBackupCollectionRestoreJobsResult struct {
 	RestoredDocuments int `pulumi:"restoredDocuments"`
 	// Unique 24-hexadecimal digit string that identifies the snapshot being restored.
 	SnapshotId string `pulumi:"snapshotId"`
-	// Current state of the collection restore job.
+	// Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `getCloudBackupCollectionRestoreJobCollections` data source to get per-collection detailed states.
 	State string `pulumi:"state"`
 	// Human-readable label that identifies the target cluster.
 	TargetClusterName string `pulumi:"targetClusterName"`
@@ -36294,7 +36461,7 @@ type GetCloudBackupCollectionRestoreJobsResultArgs struct {
 	RestoredDocuments pulumi.IntInput `pulumi:"restoredDocuments"`
 	// Unique 24-hexadecimal digit string that identifies the snapshot being restored.
 	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
-	// Current state of the collection restore job.
+	// Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `getCloudBackupCollectionRestoreJobCollections` data source to get per-collection detailed states.
 	State pulumi.StringInput `pulumi:"state"`
 	// Human-readable label that identifies the target cluster.
 	TargetClusterName pulumi.StringInput `pulumi:"targetClusterName"`
@@ -36438,7 +36605,7 @@ func (o GetCloudBackupCollectionRestoreJobsResultOutput) SnapshotId() pulumi.Str
 	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) string { return v.SnapshotId }).(pulumi.StringOutput)
 }
 
-// Current state of the collection restore job.
+// Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `getCloudBackupCollectionRestoreJobCollections` data source to get per-collection detailed states.
 func (o GetCloudBackupCollectionRestoreJobsResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) string { return v.State }).(pulumi.StringOutput)
 }
@@ -38162,9 +38329,9 @@ func (o GetCloudBackupSnapshotExportBucketsResultArrayOutput) Index(i pulumi.Int
 }
 
 type GetCloudBackupSnapshotExportJobComponent struct {
-	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	// _Returned for sharded clusters only._ Unique 24-hexadecimal character string that identifies the Cloud Backup snapshot export job for each shard in a sharded cluster.
 	ExportId string `pulumi:"exportId"`
-	// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+	// _Returned for sharded clusters only._ Human-readable label that identifies the replica set on the sharded cluster.
 	ReplicaSetName string `pulumi:"replicaSetName"`
 }
 
@@ -38180,9 +38347,9 @@ type GetCloudBackupSnapshotExportJobComponentInput interface {
 }
 
 type GetCloudBackupSnapshotExportJobComponentArgs struct {
-	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	// _Returned for sharded clusters only._ Unique 24-hexadecimal character string that identifies the Cloud Backup snapshot export job for each shard in a sharded cluster.
 	ExportId pulumi.StringInput `pulumi:"exportId"`
-	// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+	// _Returned for sharded clusters only._ Human-readable label that identifies the replica set on the sharded cluster.
 	ReplicaSetName pulumi.StringInput `pulumi:"replicaSetName"`
 }
 
@@ -38237,12 +38404,12 @@ func (o GetCloudBackupSnapshotExportJobComponentOutput) ToGetCloudBackupSnapshot
 	return o
 }
 
-// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+// _Returned for sharded clusters only._ Unique 24-hexadecimal character string that identifies the Cloud Backup snapshot export job for each shard in a sharded cluster.
 func (o GetCloudBackupSnapshotExportJobComponentOutput) ExportId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobComponent) string { return v.ExportId }).(pulumi.StringOutput)
 }
 
-// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+// _Returned for sharded clusters only._ Human-readable label that identifies the replica set on the sharded cluster.
 func (o GetCloudBackupSnapshotExportJobComponentOutput) ReplicaSetName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobComponent) string { return v.ReplicaSetName }).(pulumi.StringOutput)
 }
@@ -38574,9 +38741,9 @@ func (o GetCloudBackupSnapshotExportJobsResultArrayOutput) Index(i pulumi.IntInp
 }
 
 type GetCloudBackupSnapshotExportJobsResultComponent struct {
-	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	// _Returned for sharded clusters only._ Unique 24-hexadecimal character string that identifies the Cloud Backup snapshot export job for each shard in a sharded cluster.
 	ExportId string `pulumi:"exportId"`
-	// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+	// _Returned for sharded clusters only._ Human-readable label that identifies the replica set on the sharded cluster.
 	ReplicaSetName string `pulumi:"replicaSetName"`
 }
 
@@ -38592,9 +38759,9 @@ type GetCloudBackupSnapshotExportJobsResultComponentInput interface {
 }
 
 type GetCloudBackupSnapshotExportJobsResultComponentArgs struct {
-	// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+	// _Returned for sharded clusters only._ Unique 24-hexadecimal character string that identifies the Cloud Backup snapshot export job for each shard in a sharded cluster.
 	ExportId pulumi.StringInput `pulumi:"exportId"`
-	// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+	// _Returned for sharded clusters only._ Human-readable label that identifies the replica set on the sharded cluster.
 	ReplicaSetName pulumi.StringInput `pulumi:"replicaSetName"`
 }
 
@@ -38649,12 +38816,12 @@ func (o GetCloudBackupSnapshotExportJobsResultComponentOutput) ToGetCloudBackupS
 	return o
 }
 
-// _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
+// _Returned for sharded clusters only._ Unique 24-hexadecimal character string that identifies the Cloud Backup snapshot export job for each shard in a sharded cluster.
 func (o GetCloudBackupSnapshotExportJobsResultComponentOutput) ExportId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResultComponent) string { return v.ExportId }).(pulumi.StringOutput)
 }
 
-// _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
+// _Returned for sharded clusters only._ Human-readable label that identifies the replica set on the sharded cluster.
 func (o GetCloudBackupSnapshotExportJobsResultComponentOutput) ReplicaSetName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotExportJobsResultComponent) string { return v.ReplicaSetName }).(pulumi.StringOutput)
 }
@@ -63204,6 +63371,8 @@ type GetProjectsResult struct {
 	//
 	// Deprecated: This parameter is deprecated. Please transition to getProjectIpAddresses data source.
 	IpAddresses GetProjectsResultIpAddresses `pulumi:"ipAddresses"`
+	// Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project.
+	IsAtlasHomePageAiAssistantEnabled bool `pulumi:"isAtlasHomePageAiAssistantEnabled"`
 	// Flag that indicates whether the AI Assistant is enabled for the project's clusters.
 	IsClusterAiAssistantEnabled bool `pulumi:"isClusterAiAssistantEnabled"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
@@ -63269,6 +63438,8 @@ type GetProjectsResultArgs struct {
 	//
 	// Deprecated: This parameter is deprecated. Please transition to getProjectIpAddresses data source.
 	IpAddresses GetProjectsResultIpAddressesInput `pulumi:"ipAddresses"`
+	// Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project.
+	IsAtlasHomePageAiAssistantEnabled pulumi.BoolInput `pulumi:"isAtlasHomePageAiAssistantEnabled"`
 	// Flag that indicates whether the AI Assistant is enabled for the project's clusters.
 	IsClusterAiAssistantEnabled pulumi.BoolInput `pulumi:"isClusterAiAssistantEnabled"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
@@ -63383,6 +63554,11 @@ func (o GetProjectsResultOutput) Id() pulumi.StringOutput {
 // Deprecated: This parameter is deprecated. Please transition to getProjectIpAddresses data source.
 func (o GetProjectsResultOutput) IpAddresses() GetProjectsResultIpAddressesOutput {
 	return o.ApplyT(func(v GetProjectsResult) GetProjectsResultIpAddresses { return v.IpAddresses }).(GetProjectsResultIpAddressesOutput)
+}
+
+// Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project.
+func (o GetProjectsResultOutput) IsAtlasHomePageAiAssistantEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsAtlasHomePageAiAssistantEnabled }).(pulumi.BoolOutput)
 }
 
 // Flag that indicates whether the AI Assistant is enabled for the project's clusters.
@@ -68622,157 +68798,6 @@ func (o GetStreamConnectionFailoversResultArrayOutput) Index(i pulumi.IntInput) 
 	}).(GetStreamConnectionFailoversResultOutput)
 }
 
-type GetStreamConnectionFailoversResultAuthentication struct {
-	// OIDC client identifier for authentication to the Kafka cluster.
-	ClientId string `pulumi:"clientId"`
-	// OIDC client secret for authentication to the Kafka cluster.
-	ClientSecret string `pulumi:"clientSecret"`
-	// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
-	Mechanism string `pulumi:"mechanism"`
-	// SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
-	Method string `pulumi:"method"`
-	// Password of the account to connect to the Kafka cluster.
-	Password string `pulumi:"password"`
-	// SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
-	SaslOauthbearerExtensions string `pulumi:"saslOauthbearerExtensions"`
-	// OIDC scope parameter defining the access permissions requested.
-	Scope string `pulumi:"scope"`
-	// SSL certificate for client authentication to Kafka.
-	SslCertificate string `pulumi:"sslCertificate"`
-	// SSL key for client authentication to Kafka.
-	SslKey string `pulumi:"sslKey"`
-	// Password for the SSL key, if it is password protected.
-	SslKeyPassword string `pulumi:"sslKeyPassword"`
-	// OIDC token endpoint URL for obtaining access tokens.
-	TokenEndpointUrl string `pulumi:"tokenEndpointUrl"`
-	// Username of the account to connect to the Kafka cluster.
-	Username string `pulumi:"username"`
-}
-
-// GetStreamConnectionFailoversResultAuthenticationInput is an input type that accepts GetStreamConnectionFailoversResultAuthenticationArgs and GetStreamConnectionFailoversResultAuthenticationOutput values.
-// You can construct a concrete instance of `GetStreamConnectionFailoversResultAuthenticationInput` via:
-//
-//	GetStreamConnectionFailoversResultAuthenticationArgs{...}
-type GetStreamConnectionFailoversResultAuthenticationInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionFailoversResultAuthenticationOutput() GetStreamConnectionFailoversResultAuthenticationOutput
-	ToGetStreamConnectionFailoversResultAuthenticationOutputWithContext(context.Context) GetStreamConnectionFailoversResultAuthenticationOutput
-}
-
-type GetStreamConnectionFailoversResultAuthenticationArgs struct {
-	// OIDC client identifier for authentication to the Kafka cluster.
-	ClientId pulumi.StringInput `pulumi:"clientId"`
-	// OIDC client secret for authentication to the Kafka cluster.
-	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
-	// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
-	Mechanism pulumi.StringInput `pulumi:"mechanism"`
-	// SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
-	Method pulumi.StringInput `pulumi:"method"`
-	// Password of the account to connect to the Kafka cluster.
-	Password pulumi.StringInput `pulumi:"password"`
-	// SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
-	SaslOauthbearerExtensions pulumi.StringInput `pulumi:"saslOauthbearerExtensions"`
-	// OIDC scope parameter defining the access permissions requested.
-	Scope pulumi.StringInput `pulumi:"scope"`
-	// SSL certificate for client authentication to Kafka.
-	SslCertificate pulumi.StringInput `pulumi:"sslCertificate"`
-	// SSL key for client authentication to Kafka.
-	SslKey pulumi.StringInput `pulumi:"sslKey"`
-	// Password for the SSL key, if it is password protected.
-	SslKeyPassword pulumi.StringInput `pulumi:"sslKeyPassword"`
-	// OIDC token endpoint URL for obtaining access tokens.
-	TokenEndpointUrl pulumi.StringInput `pulumi:"tokenEndpointUrl"`
-	// Username of the account to connect to the Kafka cluster.
-	Username pulumi.StringInput `pulumi:"username"`
-}
-
-func (GetStreamConnectionFailoversResultAuthenticationArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionFailoversResultAuthentication)(nil)).Elem()
-}
-
-func (i GetStreamConnectionFailoversResultAuthenticationArgs) ToGetStreamConnectionFailoversResultAuthenticationOutput() GetStreamConnectionFailoversResultAuthenticationOutput {
-	return i.ToGetStreamConnectionFailoversResultAuthenticationOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionFailoversResultAuthenticationArgs) ToGetStreamConnectionFailoversResultAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultAuthenticationOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoversResultAuthenticationOutput)
-}
-
-type GetStreamConnectionFailoversResultAuthenticationOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionFailoversResultAuthenticationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionFailoversResultAuthentication)(nil)).Elem()
-}
-
-func (o GetStreamConnectionFailoversResultAuthenticationOutput) ToGetStreamConnectionFailoversResultAuthenticationOutput() GetStreamConnectionFailoversResultAuthenticationOutput {
-	return o
-}
-
-func (o GetStreamConnectionFailoversResultAuthenticationOutput) ToGetStreamConnectionFailoversResultAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultAuthenticationOutput {
-	return o
-}
-
-// OIDC client identifier for authentication to the Kafka cluster.
-func (o GetStreamConnectionFailoversResultAuthenticationOutput) ClientId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.ClientId }).(pulumi.StringOutput)
-}
-
-// OIDC client secret for authentication to the Kafka cluster.
-func (o GetStreamConnectionFailoversResultAuthenticationOutput) ClientSecret() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.ClientSecret }).(pulumi.StringOutput)
-}
-
-// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
-func (o GetStreamConnectionFailoversResultAuthenticationOutput) Mechanism() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.Mechanism }).(pulumi.StringOutput)
-}
-
-// SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
-func (o GetStreamConnectionFailoversResultAuthenticationOutput) Method() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.Method }).(pulumi.StringOutput)
-}
-
-// Password of the account to connect to the Kafka cluster.
-func (o GetStreamConnectionFailoversResultAuthenticationOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.Password }).(pulumi.StringOutput)
-}
-
-// SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
-func (o GetStreamConnectionFailoversResultAuthenticationOutput) SaslOauthbearerExtensions() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.SaslOauthbearerExtensions }).(pulumi.StringOutput)
-}
-
-// OIDC scope parameter defining the access permissions requested.
-func (o GetStreamConnectionFailoversResultAuthenticationOutput) Scope() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.Scope }).(pulumi.StringOutput)
-}
-
-// SSL certificate for client authentication to Kafka.
-func (o GetStreamConnectionFailoversResultAuthenticationOutput) SslCertificate() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.SslCertificate }).(pulumi.StringOutput)
-}
-
-// SSL key for client authentication to Kafka.
-func (o GetStreamConnectionFailoversResultAuthenticationOutput) SslKey() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.SslKey }).(pulumi.StringOutput)
-}
-
-// Password for the SSL key, if it is password protected.
-func (o GetStreamConnectionFailoversResultAuthenticationOutput) SslKeyPassword() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.SslKeyPassword }).(pulumi.StringOutput)
-}
-
-// OIDC token endpoint URL for obtaining access tokens.
-func (o GetStreamConnectionFailoversResultAuthenticationOutput) TokenEndpointUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.TokenEndpointUrl }).(pulumi.StringOutput)
-}
-
-// Username of the account to connect to the Kafka cluster.
-func (o GetStreamConnectionFailoversResultAuthenticationOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.Username }).(pulumi.StringOutput)
-}
-
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterAdvancedConfigurationInput)(nil)).Elem(), AdvancedClusterAdvancedConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterAdvancedConfigurationPtrInput)(nil)).Elem(), AdvancedClusterAdvancedConfigurationArgs{})
@@ -69110,6 +69135,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamWorkspaceDataProcessRegionPtrInput)(nil)).Elem(), StreamWorkspaceDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamWorkspaceFailoverRegionInput)(nil)).Elem(), StreamWorkspaceFailoverRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamWorkspaceFailoverRegionArrayInput)(nil)).Elem(), StreamWorkspaceFailoverRegionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamWorkspacePrivateEndpointTimeoutsInput)(nil)).Elem(), StreamWorkspacePrivateEndpointTimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamWorkspacePrivateEndpointTimeoutsPtrInput)(nil)).Elem(), StreamWorkspacePrivateEndpointTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamWorkspaceStreamConfigInput)(nil)).Elem(), StreamWorkspaceStreamConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamWorkspaceStreamConfigPtrInput)(nil)).Elem(), StreamWorkspaceStreamConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*X509AuthenticationDatabaseUserCertificateInput)(nil)).Elem(), X509AuthenticationDatabaseUserCertificateArgs{})
@@ -69705,7 +69732,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoverSecurityInput)(nil)).Elem(), GetStreamConnectionFailoverSecurityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultInput)(nil)).Elem(), GetStreamConnectionFailoversResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultArrayInput)(nil)).Elem(), GetStreamConnectionFailoversResultArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultAuthenticationInput)(nil)).Elem(), GetStreamConnectionFailoversResultAuthenticationArgs{})
 	pulumi.RegisterOutputType(AdvancedClusterAdvancedConfigurationOutput{})
 	pulumi.RegisterOutputType(AdvancedClusterAdvancedConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(AdvancedClusterBiConnectorConfigOutput{})
@@ -70042,6 +70068,8 @@ func init() {
 	pulumi.RegisterOutputType(StreamWorkspaceDataProcessRegionPtrOutput{})
 	pulumi.RegisterOutputType(StreamWorkspaceFailoverRegionOutput{})
 	pulumi.RegisterOutputType(StreamWorkspaceFailoverRegionArrayOutput{})
+	pulumi.RegisterOutputType(StreamWorkspacePrivateEndpointTimeoutsOutput{})
+	pulumi.RegisterOutputType(StreamWorkspacePrivateEndpointTimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(StreamWorkspaceStreamConfigOutput{})
 	pulumi.RegisterOutputType(StreamWorkspaceStreamConfigPtrOutput{})
 	pulumi.RegisterOutputType(X509AuthenticationDatabaseUserCertificateOutput{})
@@ -70637,5 +70665,4 @@ func init() {
 	pulumi.RegisterOutputType(GetStreamConnectionFailoverSecurityOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultArrayOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultAuthenticationOutput{})
 }

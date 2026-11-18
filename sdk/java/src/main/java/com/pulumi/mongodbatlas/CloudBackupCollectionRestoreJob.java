@@ -291,14 +291,14 @@ public class CloudBackupCollectionRestoreJob extends com.pulumi.resources.Custom
         return this.snapshotId;
     }
     /**
-     * Current state of the collection restore job.
+     * Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `mongodbatlas.getCloudBackupCollectionRestoreJobCollections` data source to get per-collection detailed states.
      * 
      */
     @Export(name="state", refs={String.class}, tree="[0]")
     private Output<String> state;
 
     /**
-     * @return Current state of the collection restore job.
+     * @return Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `mongodbatlas.getCloudBackupCollectionRestoreJobCollections` data source to get per-collection detailed states.
      * 
      */
     public Output<String> state() {

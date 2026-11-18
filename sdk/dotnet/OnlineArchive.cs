@@ -152,6 +152,11 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Import
     /// 
+    /// You can import online archives using `ProjectId`, `ClusterName`, and `ArchiveId` in one of the following formats:
+    /// 
+    /// 1. `ProjectId`/`ClusterName`/`ArchiveId` (recommended)
+    /// 2. `ProjectId`-`ClusterName`-`ArchiveId` (legacy)
+    /// 
     /// See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api/online-archive-create-one/) Documentation for more information.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/onlineArchive:OnlineArchive")]

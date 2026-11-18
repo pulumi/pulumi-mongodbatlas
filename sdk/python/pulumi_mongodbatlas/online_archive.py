@@ -602,6 +602,11 @@ class OnlineArchive(pulumi.CustomResource):
 
         ## Import
 
+        You can import online archives using `project_id`, `cluster_name`, and `archive_id` in one of the following formats:
+
+        1. `project_id`/`cluster_name`/`archive_id` (recommended)
+        2. `project_id`-`cluster_name`-`archive_id` (legacy)
+
         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api/online-archive-create-one/) Documentation for more information.
 
 
@@ -729,6 +734,11 @@ class OnlineArchive(pulumi.CustomResource):
         - Online Archive Example
 
         ## Import
+
+        You can import online archives using `project_id`, `cluster_name`, and `archive_id` in one of the following formats:
+
+        1. `project_id`/`cluster_name`/`archive_id` (recommended)
+        2. `project_id`-`cluster_name`-`archive_id` (legacy)
 
         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api/online-archive-create-one/) Documentation for more information.
 

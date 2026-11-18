@@ -91,7 +91,7 @@ public final class GetCloudBackupCollectionRestoreJobsResult {
      */
     private String snapshotId;
     /**
-     * @return Current state of the collection restore job.
+     * @return Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `mongodbatlas.getCloudBackupCollectionRestoreJobCollections` data source to get per-collection detailed states.
      * 
      */
     private String state;
@@ -223,7 +223,7 @@ public final class GetCloudBackupCollectionRestoreJobsResult {
         return this.snapshotId;
     }
     /**
-     * @return Current state of the collection restore job.
+     * @return Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `mongodbatlas.getCloudBackupCollectionRestoreJobCollections` data source to get per-collection detailed states.
      * 
      */
     public String state() {

@@ -134,10 +134,14 @@ import (
 //
 // ## Import
 //
-// Cloud Backup Snapshot Export Backup entries can be imported using project project_id, clusterName and exportJobId (Unique identifier of the snapshot export job), in the format `PROJECTID-CLUSTERNAME-EXPORTJOBID`, e.g.
+// Cloud Backup Snapshot Export Job entries can be imported using `projectId`, `clusterName`, and `exportJobId` in one of the following formats:
+//
+// 1. `projectId`/`clusterName`/`exportJobId` (recommended)
+// 2. `projectId`--`clusterName`--`exportJobId` (legacy)
 //
 // ```sh
-// $ pulumi import mongodbatlas:index/cloudBackupSnapshotExportJob:CloudBackupSnapshotExportJob test 5d0f1f73cf09a29120e173cf-5d116d82014b764445b2f9b5-5d116d82014b764445b2f9b5
+// $ terraform import mongodbatlas_cloud_backup_snapshot_export_job.test 5d0f1f73cf09a29120e173cf/MyCluster/5d116d82014b764445b2f9b5 # (1)
+// $ terraform import mongodbatlas_cloud_backup_snapshot_export_job.test 5d0f1f73cf09a29120e173cf--MyCluster--5d116d82014b764445b2f9b5 # (2)
 // ```
 //
 // For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/export/create-one-export-job/)
@@ -155,7 +159,6 @@ type CloudBackupSnapshotExportJob struct {
 	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
 	ExportBucketId pulumi.StringOutput `pulumi:"exportBucketId"`
 	// Unique identifier of the export job.
-	// * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
 	ExportJobId pulumi.StringOutput `pulumi:"exportJobId"`
 	// _Returned for replica set only._ Number of collections that have been exported.
 	ExportStatusExportedCollections pulumi.IntOutput `pulumi:"exportStatusExportedCollections"`
@@ -163,10 +166,11 @@ type CloudBackupSnapshotExportJob struct {
 	ExportStatusTotalCollections pulumi.IntOutput `pulumi:"exportStatusTotalCollections"`
 	// Timestamp in ISO 8601 date and time format in UTC when the export job completes.
 	FinishedAt pulumi.StringOutput `pulumi:"finishedAt"`
-	Prefix     pulumi.StringOutput `pulumi:"prefix"`
+	// Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
+	Prefix pulumi.StringOutput `pulumi:"prefix"`
 	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
+	// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_backup_snapshots
 	SnapshotId pulumi.StringOutput `pulumi:"snapshotId"`
 	// Status of the export job. Value can be one of the following:
 	// * `Queued` - indicates that the export job is queued
@@ -230,7 +234,6 @@ type cloudBackupSnapshotExportJobState struct {
 	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
 	ExportBucketId *string `pulumi:"exportBucketId"`
 	// Unique identifier of the export job.
-	// * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
 	ExportJobId *string `pulumi:"exportJobId"`
 	// _Returned for replica set only._ Number of collections that have been exported.
 	ExportStatusExportedCollections *int `pulumi:"exportStatusExportedCollections"`
@@ -238,10 +241,11 @@ type cloudBackupSnapshotExportJobState struct {
 	ExportStatusTotalCollections *int `pulumi:"exportStatusTotalCollections"`
 	// Timestamp in ISO 8601 date and time format in UTC when the export job completes.
 	FinishedAt *string `pulumi:"finishedAt"`
-	Prefix     *string `pulumi:"prefix"`
+	// Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
+	Prefix *string `pulumi:"prefix"`
 	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
-	// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
+	// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_backup_snapshots
 	SnapshotId *string `pulumi:"snapshotId"`
 	// Status of the export job. Value can be one of the following:
 	// * `Queued` - indicates that the export job is queued
@@ -264,7 +268,6 @@ type CloudBackupSnapshotExportJobState struct {
 	// Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
 	ExportBucketId pulumi.StringPtrInput
 	// Unique identifier of the export job.
-	// * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
 	ExportJobId pulumi.StringPtrInput
 	// _Returned for replica set only._ Number of collections that have been exported.
 	ExportStatusExportedCollections pulumi.IntPtrInput
@@ -272,10 +275,11 @@ type CloudBackupSnapshotExportJobState struct {
 	ExportStatusTotalCollections pulumi.IntPtrInput
 	// Timestamp in ISO 8601 date and time format in UTC when the export job completes.
 	FinishedAt pulumi.StringPtrInput
-	Prefix     pulumi.StringPtrInput
+	// Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
+	Prefix pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
-	// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
+	// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_backup_snapshots
 	SnapshotId pulumi.StringPtrInput
 	// Status of the export job. Value can be one of the following:
 	// * `Queued` - indicates that the export job is queued
@@ -305,7 +309,7 @@ type cloudBackupSnapshotExportJobArgs struct {
 	ExportBucketId string `pulumi:"exportBucketId"`
 	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
-	// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
+	// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_backup_snapshots
 	SnapshotId string `pulumi:"snapshotId"`
 }
 
@@ -319,7 +323,7 @@ type CloudBackupSnapshotExportJobArgs struct {
 	ExportBucketId pulumi.StringInput
 	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
-	// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
+	// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_backup_snapshots
 	SnapshotId pulumi.StringInput
 }
 
@@ -440,7 +444,6 @@ func (o CloudBackupSnapshotExportJobOutput) ExportBucketId() pulumi.StringOutput
 }
 
 // Unique identifier of the export job.
-// * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
 func (o CloudBackupSnapshotExportJobOutput) ExportJobId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.ExportJobId }).(pulumi.StringOutput)
 }
@@ -460,6 +463,7 @@ func (o CloudBackupSnapshotExportJobOutput) FinishedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.FinishedAt }).(pulumi.StringOutput)
 }
 
+// Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
 func (o CloudBackupSnapshotExportJobOutput) Prefix() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.Prefix }).(pulumi.StringOutput)
 }
@@ -469,7 +473,7 @@ func (o CloudBackupSnapshotExportJobOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
+// Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_backup_snapshots
 func (o CloudBackupSnapshotExportJobOutput) SnapshotId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotExportJob) pulumi.StringOutput { return v.SnapshotId }).(pulumi.StringOutput)
 }

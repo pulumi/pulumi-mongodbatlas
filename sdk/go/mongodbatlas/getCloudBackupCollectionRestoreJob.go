@@ -80,7 +80,7 @@ type LookupCloudBackupCollectionRestoreJobResult struct {
 	RestoredDocuments int `pulumi:"restoredDocuments"`
 	// Unique 24-hexadecimal digit string that identifies the snapshot being restored.
 	SnapshotId string `pulumi:"snapshotId"`
-	// Current state of the collection restore job.
+	// Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `getCloudBackupCollectionRestoreJobCollections` data source to get per-collection detailed states.
 	State string `pulumi:"state"`
 	// Human-readable label that identifies the target cluster.
 	TargetClusterName string `pulumi:"targetClusterName"`
@@ -217,7 +217,7 @@ func (o LookupCloudBackupCollectionRestoreJobResultOutput) SnapshotId() pulumi.S
 	return o.ApplyT(func(v LookupCloudBackupCollectionRestoreJobResult) string { return v.SnapshotId }).(pulumi.StringOutput)
 }
 
-// Current state of the collection restore job.
+// Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `getCloudBackupCollectionRestoreJobCollections` data source to get per-collection detailed states.
 func (o LookupCloudBackupCollectionRestoreJobResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudBackupCollectionRestoreJobResult) string { return v.State }).(pulumi.StringOutput)
 }

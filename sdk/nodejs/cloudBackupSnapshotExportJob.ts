@@ -87,10 +87,14 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Cloud Backup Snapshot Export Backup entries can be imported using project project_id, clusterName and exportJobId (Unique identifier of the snapshot export job), in the format `PROJECTID-CLUSTERNAME-EXPORTJOBID`, e.g.
+ * Cloud Backup Snapshot Export Job entries can be imported using `projectId`, `clusterName`, and `exportJobId` in one of the following formats:
+ *
+ * 1. `projectId`/`clusterName`/`exportJobId` (recommended)
+ * 2. `projectId`--`clusterName`--`exportJobId` (legacy)
  *
  * ```sh
- * $ pulumi import mongodbatlas:index/cloudBackupSnapshotExportJob:CloudBackupSnapshotExportJob test 5d0f1f73cf09a29120e173cf-5d116d82014b764445b2f9b5-5d116d82014b764445b2f9b5
+ * $ terraform import mongodbatlas_cloud_backup_snapshot_export_job.test 5d0f1f73cf09a29120e173cf/MyCluster/5d116d82014b764445b2f9b5 # (1)
+ * $ terraform import mongodbatlas_cloud_backup_snapshot_export_job.test 5d0f1f73cf09a29120e173cf--MyCluster--5d116d82014b764445b2f9b5 # (2)
  * ```
  *
  * For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/export/create-one-export-job/)
@@ -156,7 +160,6 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
     declare public readonly exportBucketId: pulumi.Output<string>;
     /**
      * Unique identifier of the export job.
-     * * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
      */
     declare public /*out*/ readonly exportJobId: pulumi.Output<string>;
     /**
@@ -171,13 +174,16 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
      * Timestamp in ISO 8601 date and time format in UTC when the export job completes.
      */
     declare public /*out*/ readonly finishedAt: pulumi.Output<string>;
+    /**
+     * Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
+     */
     declare public /*out*/ readonly prefix: pulumi.Output<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
-     * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
+     * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_backup_snapshots
      */
     declare public readonly snapshotId: pulumi.Output<string>;
     /**
@@ -275,7 +281,6 @@ export interface CloudBackupSnapshotExportJobState {
     exportBucketId?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the export job.
-     * * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
      */
     exportJobId?: pulumi.Input<string | undefined>;
     /**
@@ -290,13 +295,16 @@ export interface CloudBackupSnapshotExportJobState {
      * Timestamp in ISO 8601 date and time format in UTC when the export job completes.
      */
     finishedAt?: pulumi.Input<string | undefined>;
+    /**
+     * Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
+     */
     prefix?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
-     * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
+     * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_backup_snapshots
      */
     snapshotId?: pulumi.Input<string | undefined>;
     /**
@@ -331,7 +339,7 @@ export interface CloudBackupSnapshotExportJobArgs {
      */
     projectId: pulumi.Input<string>;
     /**
-     * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
+     * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_backup_snapshots
      */
     snapshotId: pulumi.Input<string>;
 }

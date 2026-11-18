@@ -65,7 +65,11 @@ namespace Pulumi.Mongodbatlas.Inputs
         public InputList<Inputs.OrganizationServiceAccountSecretArgs> Secrets
         {
             get => _secrets ?? (_secrets = new InputList<Inputs.OrganizationServiceAccountSecretArgs>());
-            set => _secrets = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableArray.Create<Inputs.OrganizationServiceAccountSecretArgs>());
+                _secrets = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         public OrganizationServiceAccountArgs()

@@ -92,6 +92,12 @@ namespace Pulumi.Mongodbatlas
         public Output<Outputs.ProjectIpAddresses> IpAddresses { get; private set; } = null!;
 
         /// <summary>
+        /// Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
+        /// </summary>
+        [Output("isAtlasHomePageAiAssistantEnabled")]
+        public Output<bool> IsAtlasHomePageAiAssistantEnabled { get; private set; } = null!;
+
+        /// <summary>
         /// Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.
         /// </summary>
         [Output("isClusterAiAssistantEnabled")]
@@ -246,6 +252,12 @@ namespace Pulumi.Mongodbatlas
     public sealed class ProjectArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
+        /// </summary>
+        [Input("isAtlasHomePageAiAssistantEnabled")]
+        public Input<bool>? IsAtlasHomePageAiAssistantEnabled { get; set; }
+
+        /// <summary>
         /// Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.
         /// </summary>
         [Input("isClusterAiAssistantEnabled")]
@@ -395,6 +407,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("ipAddresses")]
         public Input<Inputs.ProjectIpAddressesGetArgs>? IpAddresses { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project. By default, this flag is set to true.
+        /// </summary>
+        [Input("isAtlasHomePageAiAssistantEnabled")]
+        public Input<bool>? IsAtlasHomePageAiAssistantEnabled { get; set; }
 
         /// <summary>
         /// Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.

@@ -221,10 +221,14 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Import
     /// 
-    /// You can import search indexes using `ProjectId`, `ClusterName`, and `IndexId` as in the following example:
+    /// You can import search indexes using `ProjectId`, `ClusterName`, and `IndexId` in one of the following formats:
+    /// 
+    /// 1. `ProjectId`/`ClusterName`/`IndexId` (recommended)
+    /// 2. `ProjectId`--`ClusterName`--`IndexId` (legacy)
     /// 
     /// ```sh
-    /// $ pulumi import mongodbatlas:index/searchIndex:SearchIndex test {project_id}--{cluster_name}--{index_id}
+    /// terraform import mongodbatlas_search_index.test {project_id}/{cluster_name}/{index_id} # (1)
+    /// terraform import mongodbatlas_search_index.test {project_id}--{cluster_name}--{index_id} # (2)
     /// ```
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/searchIndex:SearchIndex")]

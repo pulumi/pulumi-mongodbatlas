@@ -103,14 +103,14 @@ public class AiModelApiKey extends com.pulumi.resources.CustomResource {
         return this.apiKeyId;
     }
     /**
-     * Cloud provider scope for this API key. Must be &#34;ANY&#34;. Additional cloud values will be supported in future API versions.
+     * Cloud provider scope for this API key. Use &#34;ANY&#34; for a cloud-agnostic scope. Additional cloud values will be supported in future API versions.
      * 
      */
     @Export(name="cloud", refs={String.class}, tree="[0]")
     private Output<String> cloud;
 
     /**
-     * @return Cloud provider scope for this API key. Must be &#34;ANY&#34;. Additional cloud values will be supported in future API versions.
+     * @return Cloud provider scope for this API key. Use &#34;ANY&#34; for a cloud-agnostic scope. Additional cloud values will be supported in future API versions.
      * 
      */
     public Output<String> cloud() {
@@ -159,14 +159,14 @@ public class AiModelApiKey extends com.pulumi.resources.CustomResource {
         return this.endpoint;
     }
     /**
-     * Geography scope for this API key. Must be &#34;ANY&#34;. Additional geography values will be supported in future API versions.
+     * Geography scope for this API key. Use &#34;ANY&#34; for a geography-agnostic scope. Additional geography values will be supported in future API versions.
      * 
      */
     @Export(name="geography", refs={String.class}, tree="[0]")
     private Output<String> geography;
 
     /**
-     * @return Geography scope for this API key. Must be &#34;ANY&#34;. Additional geography values will be supported in future API versions.
+     * @return Geography scope for this API key. Use &#34;ANY&#34; for a geography-agnostic scope. Additional geography values will be supported in future API versions.
      * 
      */
     public Output<String> geography() {

@@ -27,7 +27,7 @@ class GetProjectResult:
     """
     A collection of values returned by getProject.
     """
-    def __init__(__self__, cluster_count=None, created=None, id=None, ip_addresses=None, is_cluster_ai_assistant_enabled=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_data_explorer_gen_ai_features_enabled=None, is_data_explorer_gen_ai_sample_document_passing_enabled=None, is_extended_storage_sizes_enabled=None, is_native_reranking_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, is_slow_operation_thresholding_enabled=None, limits=None, name=None, org_id=None, project_id=None, region_usage_restrictions=None, tags=None, teams=None, users=None):
+    def __init__(__self__, cluster_count=None, created=None, id=None, ip_addresses=None, is_atlas_home_page_ai_assistant_enabled=None, is_cluster_ai_assistant_enabled=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_data_explorer_gen_ai_features_enabled=None, is_data_explorer_gen_ai_sample_document_passing_enabled=None, is_extended_storage_sizes_enabled=None, is_native_reranking_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, is_slow_operation_thresholding_enabled=None, limits=None, name=None, org_id=None, project_id=None, region_usage_restrictions=None, tags=None, teams=None, users=None):
         if cluster_count and not isinstance(cluster_count, int):
             raise TypeError("Expected argument 'cluster_count' to be a int")
         pulumi.set(__self__, "cluster_count", cluster_count)
@@ -40,6 +40,9 @@ class GetProjectResult:
         if ip_addresses and not isinstance(ip_addresses, dict):
             raise TypeError("Expected argument 'ip_addresses' to be a dict")
         pulumi.set(__self__, "ip_addresses", ip_addresses)
+        if is_atlas_home_page_ai_assistant_enabled and not isinstance(is_atlas_home_page_ai_assistant_enabled, bool):
+            raise TypeError("Expected argument 'is_atlas_home_page_ai_assistant_enabled' to be a bool")
+        pulumi.set(__self__, "is_atlas_home_page_ai_assistant_enabled", is_atlas_home_page_ai_assistant_enabled)
         if is_cluster_ai_assistant_enabled and not isinstance(is_cluster_ai_assistant_enabled, bool):
             raise TypeError("Expected argument 'is_cluster_ai_assistant_enabled' to be a bool")
         pulumi.set(__self__, "is_cluster_ai_assistant_enabled", is_cluster_ai_assistant_enabled)
@@ -130,6 +133,14 @@ class GetProjectResult:
         IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `get_project_ip_addresses` data source instead.
         """
         return pulumi.get(self, "ip_addresses")
+
+    @_builtins.property
+    @pulumi.getter(name="isAtlasHomePageAiAssistantEnabled")
+    def is_atlas_home_page_ai_assistant_enabled(self) -> _builtins.bool:
+        """
+        Flag that indicates whether the MongoDB Assistant on the Atlas Home Page is enabled for the project.
+        """
+        return pulumi.get(self, "is_atlas_home_page_ai_assistant_enabled")
 
     @_builtins.property
     @pulumi.getter(name="isClusterAiAssistantEnabled")
@@ -293,6 +304,7 @@ class AwaitableGetProjectResult(GetProjectResult):
             created=self.created,
             id=self.id,
             ip_addresses=self.ip_addresses,
+            is_atlas_home_page_ai_assistant_enabled=self.is_atlas_home_page_ai_assistant_enabled,
             is_cluster_ai_assistant_enabled=self.is_cluster_ai_assistant_enabled,
             is_collect_database_specifics_statistics_enabled=self.is_collect_database_specifics_statistics_enabled,
             is_data_explorer_enabled=self.is_data_explorer_enabled,
@@ -370,6 +382,7 @@ def get_project(name: Optional[_builtins.str] = None,
         created=pulumi.get(__ret__, 'created'),
         id=pulumi.get(__ret__, 'id'),
         ip_addresses=pulumi.get(__ret__, 'ip_addresses'),
+        is_atlas_home_page_ai_assistant_enabled=pulumi.get(__ret__, 'is_atlas_home_page_ai_assistant_enabled'),
         is_cluster_ai_assistant_enabled=pulumi.get(__ret__, 'is_cluster_ai_assistant_enabled'),
         is_collect_database_specifics_statistics_enabled=pulumi.get(__ret__, 'is_collect_database_specifics_statistics_enabled'),
         is_data_explorer_enabled=pulumi.get(__ret__, 'is_data_explorer_enabled'),
@@ -444,6 +457,7 @@ def get_project_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = N
         created=pulumi.get(__response__, 'created'),
         id=pulumi.get(__response__, 'id'),
         ip_addresses=pulumi.get(__response__, 'ip_addresses'),
+        is_atlas_home_page_ai_assistant_enabled=pulumi.get(__response__, 'is_atlas_home_page_ai_assistant_enabled'),
         is_cluster_ai_assistant_enabled=pulumi.get(__response__, 'is_cluster_ai_assistant_enabled'),
         is_collect_database_specifics_statistics_enabled=pulumi.get(__response__, 'is_collect_database_specifics_statistics_enabled'),
         is_data_explorer_enabled=pulumi.get(__response__, 'is_data_explorer_enabled'),

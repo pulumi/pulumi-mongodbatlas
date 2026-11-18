@@ -76,7 +76,7 @@ type CloudBackupCollectionRestoreJob struct {
 	RestoredDocuments pulumi.IntOutput `pulumi:"restoredDocuments"`
 	// ID of the snapshot to restore.
 	SnapshotId pulumi.StringOutput `pulumi:"snapshotId"`
-	// Current state of the collection restore job.
+	// Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `getCloudBackupCollectionRestoreJobCollections` data source to get per-collection detailed states.
 	State pulumi.StringOutput `pulumi:"state"`
 	// Target cluster name.
 	TargetClusterName pulumi.StringOutput `pulumi:"targetClusterName"`
@@ -171,7 +171,7 @@ type cloudBackupCollectionRestoreJobState struct {
 	RestoredDocuments *int `pulumi:"restoredDocuments"`
 	// ID of the snapshot to restore.
 	SnapshotId *string `pulumi:"snapshotId"`
-	// Current state of the collection restore job.
+	// Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `getCloudBackupCollectionRestoreJobCollections` data source to get per-collection detailed states.
 	State *string `pulumi:"state"`
 	// Target cluster name.
 	TargetClusterName *string `pulumi:"targetClusterName"`
@@ -219,7 +219,7 @@ type CloudBackupCollectionRestoreJobState struct {
 	RestoredDocuments pulumi.IntPtrInput
 	// ID of the snapshot to restore.
 	SnapshotId pulumi.StringPtrInput
-	// Current state of the collection restore job.
+	// Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `getCloudBackupCollectionRestoreJobCollections` data source to get per-collection detailed states.
 	State pulumi.StringPtrInput
 	// Target cluster name.
 	TargetClusterName pulumi.StringPtrInput
@@ -485,7 +485,7 @@ func (o CloudBackupCollectionRestoreJobOutput) SnapshotId() pulumi.StringOutput 
 	return o.ApplyT(func(v *CloudBackupCollectionRestoreJob) pulumi.StringOutput { return v.SnapshotId }).(pulumi.StringOutput)
 }
 
-// Current state of the collection restore job.
+// Current state of the collection restore job. A `SUCCESSFUL` job can include individual `UNSUPPORTED` collection restores. Use the `getCloudBackupCollectionRestoreJobCollections` data source to get per-collection detailed states.
 func (o CloudBackupCollectionRestoreJobOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupCollectionRestoreJob) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
